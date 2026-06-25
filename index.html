@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Book - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <select id="lang-selector" onchange="changeLanguage()">
+            <option value="fr">Français 🇫🇷</option>
+            <option value="en">English 🇬🇧</option>
+            <option value="de">Deutsch 🇩🇪</option>
+            <option value="nl">Nederlands 🇳🇱</option>
+        </select>
+    </header>
+
+    <nav>
+        <a href="index.html" class="active" data-i18n="nav_home">🏠 Accueil</a>
+        <a href="wifi.html" data-i18n="nav_wifi">📶 WiFi</a>
+        <a href="recommandations.html" data-i18n="nav_local">🛒 Commerces</a>
+        <a href="tours.html" data-i18n="nav_tours">📍 Visites</a>
+    </nav>
+
+    <h1 data-i18n="title_home">Bienvenue à Vendargues</h1>
+
+    <section>
+        <img src="image1.jpg" alt="House" onerror="this.style.display='none'">
+        <h2 data-i18n="welcome_title">Votre Maison de Vacances</h2>
+        <p data-i18n="welcome_text">Nous sommes ravis de vous accueillir. Nous espérons que vous passerez un excellent séjour dans notre belle région.</p>
+        <hr style="margin:20px 0; border:0; border-top:1px solid var(--light-gray);">
+        <h2 data-i18n="contact_title">Une question ?</h2>
+        <p data-i18n="contact_text">Contactez-nous via Abritel ou par téléphone en cas d'urgence.</p>
+        <p style="margin-top:10px;"><strong>📞 +33 6 XX XX XX XX</strong></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

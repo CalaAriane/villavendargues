@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Book - Commerces</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <select id="lang-selector" onchange="changeLanguage()">
+            <option value="fr">Français 🇫🇷</option>
+            <option value="en">English 🇬🇧</option>
+            <option value="de">Deutsch 🇩🇪</option>
+            <option value="nl">Nederlands 🇳🇱</option>
+        </select>
+    </header>
+
+    <nav>
+        <a href="index.html" data-i18n="nav_home">🏠 Accueil</a>
+        <a href="wifi.html" data-i18n="nav_wifi">📶 WiFi</a>
+        <a href="recommandations.html" class="active" data-i18n="nav_local">🛒 Commerces</a>
+        <a href="tours.html" data-i18n="nav_tours">📍 Visites</a>
+    </nav>
+
+    <h1 data-i18n="title_local">Commerces & Adresses</h1>
+
+    <section>
+        <img src="image2.jpg" alt="Shops" onerror="this.style.display='none'">
+        <p data-i18n="local_text" style="margin-bottom: 15px;">Quelques adresses utiles accessibles rapidement :</p>
+        <ul>
+            <li data-i18n="local_1">Boulangerie : À 5 minutes à pied, ouverte dès 7h.</li>
+            <li data-i18n="local_2">Supermarché : Situé à l'entrée du village.</li>
+            <li data-i18n="local_3">Restaurant local : Excellente cuisine méditerranéenne.</li>
+            <li data-i18n="local_4">Pharmacie : Sur la place principale.</li>
+        </ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

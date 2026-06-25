@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Book - WiFi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <select id="lang-selector" onchange="changeLanguage()">
+            <option value="fr">Français 🇫🇷</option>
+            <option value="en">English 🇬🇧</option>
+            <option value="de">Deutsch 🇩🇪</option>
+            <option value="nl">Nederlands 🇳🇱</option>
+        </select>
+    </header>
+
+    <nav>
+        <a href="index.html" data-i18n="nav_home">🏠 Accueil</a>
+        <a href="wifi.html" class="active" data-i18n="nav_wifi">📶 WiFi</a>
+        <a href="recommandations.html" data-i18n="nav_local">🛒 Commerces</a>
+        <a href="tours.html" data-i18n="nav_tours">📍 Visites</a>
+    </nav>
+
+    <h1 data-i18n="title_wifi">Connexion Internet</h1>
+
+    <section>
+        <p data-i18n="wifi_text" style="margin-bottom: 20px;">Voici les identifiants pour vous connecter :</p>
+        <div class="wifi-box">
+            <p><strong data-i18n="wifi_network">Réseau :</strong> Box-Vendargues-4G</p>
+            <p style="margin-top: 10px;"><strong data-i18n="wifi_password">Mot de passe :</strong> SecretPassword123</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
