@@ -1,40 +1,597 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Book - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Livret d'Accueil - Villa Vendargues</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE CONFIGURATION & VARIABLES (Neo-Brutalism Theme) --- */
+        :root {
+            --bg: #f3f0ea;
+            --text: #1a1a1a;
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --card-bg: #ffffff;
+            --border: #1a1a1a;
+            --shadow: 4px 4px 0px #1a1a1a;
+            --font: 'Montserrat', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #f3f0ea;
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --card-bg: #1e1e1e;
+            --border: #f3f0ea;
+            --shadow: 4px 4px 0px #f3f0ea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            padding-bottom: 50px;
+        }
+
+        /* --- KINETIC TYPOGRAPHY & INFINITE MARQUEE --- */
+        .marquee-container {
+            background: var(--primary);
+            color: white;
+            border-bottom: 4px solid var(--border);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* --- STICKY HEADER & THEME MORPHING --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--card-bg);
+            border-bottom: 4px solid var(--border);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .theme-toggle {
+            background: var(--accent);
+            border: 2px solid var(--border);
+            padding: 8px 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px var(--border);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .theme-toggle:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border);
+        }
+
+        /* --- HERO & PARALLAX MULTI-PLANS --- */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary) 25%, transparent 25%) -50px 0,
+                        linear-gradient(225deg, var(--secondary) 25%, transparent 25%) -50px 0,
+                        linear-gradient(45deg, var(--secondary) 25%, transparent 25%),
+                        linear-gradient(315deg, var(--secondary) 25%, var(--bg) 25%);
+            background-size: 100px 100px;
+            border-bottom: 4px solid var(--border);
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-title-box {
+            background: var(--card-bg);
+            border: 4px solid var(--border);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transform: rotate(-1deg);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* --- QUICK ACCESS / CODE PORTAIL (Bento Grid Style) --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 800;
+            border-left: 8px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        /* --- BENTO GRID HIGHLIGHT --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 4px solid var(--border);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px var(--border);
+        }
+
+        .bento-card.highlight {
+            grid-column: span 1;
+            background: var(--accent);
+        }
+        @media (min-width: 900px) {
+            .bento-card.wide { grid-column: span 2; }
+        }
+
+        .bento-card h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-box {
+            font-size: 2rem;
+            font-weight: 800;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 15px;
+            letter-spacing: 4px;
+        }
+
+        /* --- STICKY STACKING CARDS (Consignes) --- */
+        .stacking-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .sticky-card {
+            position: sticky;
+            top: 120px;
+            background: var(--card-bg);
+            border: 4px solid var(--border);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+        }
+
+        .sticky-card:nth-child(1) { background-color: #fff; top: 120px; }
+        .sticky-card:nth-child(2) { background-color: #f9f9f9; top: 140px; }
+        .sticky-card:nth-child(3) { background-color: #f1f1f1; top: 160px; }
+
+        [data-theme="dark"] .sticky-card:nth-child(1) { background-color: #1e1e1e; }
+        [data-theme="dark"] .sticky-card:nth-child(2) { background-color: #252525; }
+        [data-theme="dark"] .sticky-card:nth-child(3) { background-color: #2d2d2d; }
+
+        .consigne-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .consigne-list li {
+            padding: 10px 0;
+            border-bottom: 2px dashed var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        /* --- HORIZONTAL SCROLL PANE (Adresses) --- */
+        .horizontal-scroll-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 5px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .scroll-card {
+            flex: 0 0 320px;
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border: 4px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        /* --- IMAGE PLACEHOLDERS WITH HOVER DISTORTION --- */
+        .card-img-preview {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid var(--border);
+            filter: grayscale(0.3);
+            transition: var(--transition);
+        }
+
+        .scroll-card:hover .card-img-preview {
+            filter: grayscale(0) contrast(1.1);
+            transform: scale(1.02);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h4 {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: 600;
+            border: 2px solid var(--border);
+            box-shadow: 2px 2px 0px var(--border);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .btn-link:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* --- SCROLL REVEAL EFFECT --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- CLICK RIPPLE EFFECT --- */
+        .ripple-surface {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .sticky-card { padding: 20px; }
+        }
+    </style>
 </head>
 <body>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            ✦ BIENVENUE À LA VILLA VENDARGUES • PASSEZ UN SÉJOUR INOUBLIABLE ✦ BIENVENUE À LA VILLA VENDARGUES • PASSEZ UN SÉJOUR INOUBLIABLE
+        </div>
+    </div>
+
     <header>
-        <select id="lang-selector" onchange="changeLanguage()">
-            <option value="fr">Français 🇫🇷</option>
-            <option value="en">English 🇬🇧</option>
-            <option value="de">Deutsch 🇩🇪</option>
-            <option value="nl">Nederlands 🇳🇱</option>
-        </select>
+        <h1>Villa Vendargues</h1>
+        <button class="theme-toggle ripple-surface" onclick="toggleTheme()" id="themeBtn">Mode Sombre 🌙</button>
     </header>
 
-    <nav>
-        <a href="index.html" class="active" data-i18n="nav_home">🏠 Accueil</a>
-        <a href="wifi.html" data-i18n="nav_wifi">📶 WiFi</a>
-        <a href="recommandations.html" data-i18n="nav_local">🛒 Commerces</a>
-        <a href="tours.html" data-i18n="nav_tours">📍 Visites</a>
-    </nav>
-
-    <h1 data-i18n="title_home">Bienvenue à Vendargues</h1>
-
-    <section>
-        <img src="image1.jpg" alt="House" onerror="this.style.display='none'">
-        <h2 data-i18n="welcome_title">Votre Maison de Vacances</h2>
-        <p data-i18n="welcome_text">Nous sommes ravis de vous accueillir. Nous espérons que vous passerez un excellent séjour dans notre belle région.</p>
-        <hr style="margin:20px 0; border:0; border-top:1px solid var(--light-gray);">
-        <h2 data-i18n="contact_title">Une question ?</h2>
-        <p data-i18n="contact_text">Contactez-nous via Abritel ou par téléphone en cas d'urgence.</p>
-        <p style="margin-top:10px;"><strong>📞 +33 6 XX XX XX XX</strong></p>
+    <section class="hero">
+        <div class="hero-title-box">
+            <h2>Votre Guide Privé</h2>
+            <p>Tout ce qu'il faut savoir pour votre séjour au 2 route de Teyran [cite: 1, 26]</p>
+        </div>
     </section>
 
-    <script src="script.js"></script>
+    <div class="container">
+        
+        <h2 class="section-title reveal">Informations Essentielles</h2>
+        <div class="bento-grid reveal">
+            
+            <div class="bento-card highlight">
+                <h3>🔑 Accès Propriété</h3>
+                <p>Portail gris, mur d'enceinte ocre rouge. Le stationnement gratuit est à l'intérieur[cite: 1, 26, 27].</p>
+                <div class="code-box">1809A</div>
+                <small style="display:block; margin-top:10px; font-weight:600;">Code d'entrée numérique</small>
+            </div>
+
+            <div class="bento-card">
+                <h3>🌿 Entretien Hebdomadaire</h3>
+                <p>Pour votre confort optimal, notez l'intervention technique régulière :</p>
+                <p style="margin-top:10px; font-weight:600; color: var(--primary);">
+                    ⏰ Vendredi Matin : Passage conjoint du jardinier et du pisciniste.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <h3>🏥 Urgences & Santé</h3>
+                <p><strong>Médecin Généraliste :</strong> Cabinet Médical de Vendargues (04 67 70..)</p>
+                <p><strong>Pharmacie la plus proche :</strong> Pharmacie des Portes de l'Or, Route de Nîmes.</p>
+                <p style="margin-top:5px;"><strong>Numéro d'urgence :</strong> 112 ou 15</p>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">Consignes Logistiques</h2>
+        <div class="stacking-container reveal">
+            
+            <div class="sticky-card">
+                <h3>🧳 Procédure d'Arrivée</h3>
+                <p>Créneau officiel : <strong>15:00 - 20:00</strong>[cite: 1, 23]. Accueil en personne assuré[cite: 1, 29].</p>
+                <ul class="consigne-list">
+                    <li>✔️ État des lieux initial complet[cite: 2].</li>
+                    <li>✔️ Explication et consignes de la climatisation / chauffage réversible[cite: 1, 35, 2].</li>
+                    <li>✔️ Paramétrage et activation du système d'alarme de la villa[cite: 2].</li>
+                    <li>✔️ Explication complète et fonctionnement des options du Jacuzzi[cite: 2].</li>
+                </ul>
+            </div>
+
+            <div class="sticky-card">
+                <h3>🚪 Procédure de Départ</h3>
+                <p>Libération des lieux requise avant <strong>10:00</strong> maximum[cite: 1, 24, 2].</p>
+                <ul class="consigne-list">
+                    <li>🧺 <strong>Linge de maison :</strong> Enlever et rassembler l'intégralité des draps au pied de chaque lit[cite: 10]. Déposer toutes les serviettes de toilette sales directement dans la baignoire[cite: 5, 60].</li>
+                    <li>🗑️ <strong>Gestion des déchets :</strong> Vider toutes les poubelles de la cuisine et les jeter dans les containers extérieurs[cite: 6, 62].</li>
+                    <li>🍾 <strong>Recyclage du verre :</strong> Jeter les bouteilles en verre vides dans le container de recyclage situé en face du feu tricolore[cite: 6, 63].</li>
+                    <li>💧 <strong>Jacuzzi :</strong> Veiller à baisser la température du jacuzzi au minimum réglementaire[cite: 6, 67, 7, 81].</li>
+                    <li>⚡ <strong>Éco-responsabilité :</strong> Éteindre toutes les lumières, ainsi que les modules de chauffage ou climatisation[cite: 3, 51, 6, 66].</li>
+                    <li>🔒 <strong>Sécurité :</strong> Fermer tous les volets, verrouiller la porte à clé [cite: 8, 86], puis clore le portail extérieur avec le code d'accès[cite: 9, 87]. Déposer la clé à l'emplacement convenu[cite: 9, 89].</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">Marchés & Courses Locales</h2>
+        <div class="horizontal-scroll-wrapper reveal">
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Fred Producteur</h4>
+                    <p>Producteur local de fruits et légumes frais en vente directe. Parfait pour vos salades d'été ! [cite: 13, 134, 135]</p>
+                    <a href="https://www.google.com/maps?q=Fred+Producteur+Vendargues" target="_blank" class="btn-link">S'y rendre →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Chez Sauveur</h4>
+                    <p>Une poissonnerie d'exception combinée à un délicieux espace de restauration de poissons frais[cite: 12, 113, 114].</p>
+                    <a href="https://www.google.com/maps?q=Chez+Sauveur+Poissonnerie" target="_blank" class="btn-link">Voir le site →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Marché de Mauguio</h4>
+                    <p>Grand marché traditionnel et artisanal. Une immersion locale à ne pas rater[cite: 14, 144].</p>
+                    <a href="https://www.mauguio-carnon.com" target="_blank" class="btn-link">Calendrier →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>La Grande-Motte</h4>
+                    <p>Marché côtier typique. Idéal pour combiner emplettes et balade en bord de mer[cite: 16].</p>
+                    <a href="https://www.lagrandemotte.com" target="_blank" class="btn-link">Les Jours →</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">Restaurants & Vignobles Recommandés</h2>
+        <div class="horizontal-scroll-wrapper reveal">
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Mas du Pont</h4>
+                    <p>Marché de producteurs régionaux le dimanche matin, restaurant ouvert la semaine et café-théâtre[cite: 11, 101, 102].</p>
+                    <a href="https://www.lemasdupont.fr" target="_blank" class="btn-link">Le Programme →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Domaine Massillan</h4>
+                    <p>Un superbe vignoble tout près de Montpellier proposant une délicieuse guinguette au milieu des vignes[cite: 12, 109, 111].</p>
+                    <a href="https://www.domainemassillan.fr" target="_blank" class="btn-link">Reserver →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Carré Mer</h4>
+                    <p>Superbe restaurant gastronomique de plage. Un cadre idyllique pour déjeuner les pieds dans le sable[cite: 119, 120].</p>
+                    <a href="https://www.carre-mer.fr" target="_blank" class="btn-link">Le Menu →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>La Banane</h4>
+                    <p>Une adresse incontournable réputée pour ses déclinaisons savoureuses de poissons frais[cite: 122, 123].</p>
+                    <a href="https://www.google.com/maps?q=La+Banane+Restaurant+Poisson" target="_blank" class="btn-link">Avis Google →</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">Visites Énotouristiques & Événements</h2>
+        <div class="horizontal-scroll-wrapper reveal">
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Château Puech Haut</h4>
+                    <p>L'un des meilleurs vins de la région, mondialement connu. À seulement 5 minutes de route de la villa ! [cite: 12, 131, 132, 133]</p>
+                    <a href="https://puech-haut.com" target="_blank" class="btn-link">Dégustation →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Domaine de l'Oulivie</h4>
+                    <p>Moulin et producteur d'huile d'olive d'exception. Guinguette sous les oliviers à la belle saison[cite: 13, 141, 142, 143].</p>
+                    <a href="https://www.oulivie.com" target="_blank" class="btn-link">Découvrir →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Courses Camarguaises</h4>
+                    <p>Découvrez les traditions taurines régionales officielles via la FFCC.</p>
+                    <a href="https://www.ffcc.info" target="_blank" class="btn-link">Calendrier FFCC →</a>
+                </div>
+            </div>
+            <div class="scroll-card">
+                <div class="card-img-preview" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card-content">
+                    <h4>Agenda Montpellier</h4>
+                    <p>Retrouvez en temps réel l'ensemble des concerts, festivals et expositions de la métropole.</p>
+                    <a href="https://www.montpellier3m.fr/agenda" target="_blank" class="btn-link">Grand Agenda →</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* --- DARK/LIGHT MODE MORPHING SWITCH --- */
+        function toggleTheme() {
+            const htmlElement = document.documentElement;
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const themeBtn = document.getElementById('themeBtn');
+            
+            if (currentTheme === 'dark') {
+                htmlElement.setAttribute('data-theme', 'light');
+                themeBtn.innerText = "Mode Sombre 🌙";
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = "Mode Clair ☀️";
+            }
+        }
+
+        /* --- SCROLL REVEAL ANIMATION MECHANISM --- */
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
+
+        /* --- CLICK RIPPLE SURFACE EFFECT --- */
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('ripple-surface')) {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const circle = document.createElement('span');
+                circle.style.position = 'absolute';
+                circle.style.background = 'rgba(255, 255, 255, 0.5)';
+                circle.style.borderRadius = '50%';
+                circle.style.left = `${x}px`;
+                circle.style.top = `${y}px`;
+                circle.style.transform = 'translate(-50%, -50%) scale(0)';
+                circle.style.animation = 'ripple 0.6s linear';
+                circle.style.pointerEvents = 'none';
+                circle.style.width = circle.style.height = `${Math.max(rect.width, rect.height) * 2}px`;
+                
+                // Add keyframe dynamic style injection
+                if(!document.getElementById('ripple-effect-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'ripple-effect-style';
+                    style.innerHTML = `@keyframes ripple { to { transform: translate(-50%, -50%) scale(1); opacity: 0; } }`;
+                    document.head.appendChild(style);
+                }
+
+                e.target.appendChild(circle);
+                setTimeout(() => circle.remove(), 600);
+            }
+        });
+    </script>
 </body>
 </html>
