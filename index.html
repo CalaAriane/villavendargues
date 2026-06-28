@@ -3,59 +3,686 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villa Vendargues - Accueil</title>
+    <title>Villa Vendargues - Livret d'Accueil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CONFIGURATION DES COULEURS ET POLICES (Style Épuré Premium) --- */
+        :root {
+            --bg-color: #f7f5f0;          
+            --text-color: #1a1a1a;        
+            --card-bg: #ffffff;           
+            --accent-color: #3b6647;      
+            --accent-light: #eff3f0;      
+            --border-color: #dbdbdb;      
+            --shadow-subtle: 0 10px 40px rgba(0, 0, 0, 0.03);
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e5e5e5;
+            --card-bg: #1e1e1e;
+            --accent-color: #528c62;
+            --accent-light: #1f2a22;
+            --border-color: #2d2d2d;
+            --shadow-subtle: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- INFINITE MARQUEE & KINETIC TYPOGRAPHY --- */
+        .marquee {
+            background: var(--accent-color);
+            color: #ffffff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee-anim 25s linear infinite;
+        }
+        @keyframes marquee-anim {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* --- STICKY HEADER & CONTROLS --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background-color: rgba(247, 245, 210, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        [data-theme="dark"] header { background-color: rgba(18, 18, 18, 0.85); }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;}
+        .controls { display: flex; gap: 10px; }
+
+        .btn-control {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .btn-control:hover { border-color: var(--accent-color); }
+
+        /* --- NAVIGATION CHIC --- */
+        nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 0 25px 0;
+            scrollbar-width: none;
+        }
+        nav::-webkit-scrollbar { display: none; }
+        nav button {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        nav button.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* --- PAGE MORPHING TRANSITION --- */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2.page-title { font-size: 2rem; font-weight: 600; margin-bottom: 30px; letter-spacing: -0.5px; }
+        h3.section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: var(--accent-color); }
+
+        /* --- BENTO GRID & 3D TILT CARD --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+        .card.highlight { background-color: var(--accent-light); border-color: rgba(59, 102, 71, 0.15); }
+        .code-display { font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: 4px; margin: 15px 0; color: var(--accent-color); }
+
+        /* --- STICKY STACKING CARDS --- */
+        .stack-container { display: flex; flex-direction: column; gap: 25px; margin-bottom: 35px; }
+        .stack-card {
+            position: sticky;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.01);
+        }
+        .stack-card:nth-child(1) { top: 120px; z-index: 1; }
+        .stack-card:nth-child(2) { top: 140px; z-index: 2; }
+
+        .list-clean { list-style: none; }
+        .list-clean li { padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; gap: 12px; font-size: 0.95rem; }
+        .list-clean li:last-child { border-bottom: none; }
+        .list-clean li span.icon { color: var(--accent-color); font-weight: 600; }
+
+        /* --- HORIZONTAL SCROLL PANE --- */
+        .horizontal-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+        }
+        .scroll-item {
+            flex: 0 0 290px;
+            scroll-snap-align: start;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* --- SKELETON LOADING & PREVIEW IMAGE --- */
+        .image-container { position: relative; width: 100%; height: 170px; background-color: #e5e5e5; overflow: hidden; }
+        .skeleton {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: skeleton-load 1.5s infinite;
+        }
+        @keyframes skeleton-load { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        
+        .item-image { width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .item-image.loaded { opacity: 1; }
+        .scroll-item:hover .item-image { transform: scale(1.04); }
+
+        .item-content { padding: 20px; }
+        .item-content h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+        .item-content p { font-size: 0.88rem; color: #555; margin-bottom: 15px; height: 60px; overflow: hidden; }
+        [data-theme="dark"] .item-content p { color: #aaa; }
+        
+        .btn-minimal { display: inline-block; text-decoration: none; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; border-bottom: 2px solid var(--accent-color); padding-bottom: 2px; }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { text-align: center; padding: 40px 0; font-size: 0.8rem; color: #888; border-top: 1px solid var(--border-color); margin-top: 50px; }
+    </style>
 </head>
 <body>
+
+    <div class="marquee">
+        <div class="marquee-inner" id="marquee-text">
+            ✦ BIENVENUE À LA VILLA VENDARGUES • PASSEZ UN SÉJOUR INOUBLIABLE ✦ WELCOME TO VILLA VENDARGUES • HAVE A WONDERFUL STAY ✦
+        </div>
+    </div>
 
     <header>
         <div class="container header-inner">
             <div class="logo">Villa Vendargues</div>
-            <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">Mode Sombre 🌙</button>
+            <div class="controls">
+                <button class="btn-control" onclick="toggleLanguage()" id="langBtn">EN 🇬🇧</button>
+                <button class="btn-control" onclick="toggleTheme()" id="themeBtn">Mode Sombre 🌙</button>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <nav>
-            <a href="index.html" class="active">🏠 Accueil</a>
-            <a href="consignes.html">📋 Logistique</a>
-            <a href="commerces.html">🛒 Courses</a>
-            <a href="recommandations.html">✨ Sorties</a>
+            <button onclick="switchPage('home')" id="nav-home" class="active">🏠 Accueil / Home</button>
+            <button onclick="switchPage('logistics')" id="nav-logistics">📋 Logistique</button>
+            <button onclick="switchPage('shopping')" id="nav-shopping">🛒 Courses / Shops</button>
+            <button onclick="switchPage('activities')" id="nav-activities">✨ Sorties / Visits</button>
         </nav>
 
-        <h2 class="page-title">Bienvenue au 2 route de Teyran</h2>
+        <section id="page-home" class="page-view active">
+            <h2 class="page-title" id="home-title">Bienvenue au 2 route de Teyran</h2>
+            <div class="bento-grid reveal">
+                <div class="card highlight">
+                    <h3 class="section-title" id="bento-gate-title">🔑 Accès Propriété</h3>
+                    <p id="bento-gate-desc">Portail gris motorisé, mur d'enceinte ocre rouge. Stationnement sécurisé et gratuit dans la cour intérieure.</p>
+                    <div class="code-display">1809A</div>
+                </div>
+                <div class="card">
+                    <h3 class="section-title" id="bento-maintenance-title">🌿 Entretien Hebdomadaire</h3>
+                    <p id="bento-maintenance-desc">Pour maintenir les extérieurs parfaits, notez l'intervention des techniciens de la villa :</p>
+                    <p style="margin-top: 12px; font-weight: 500; color: var(--accent-color);" id="bento-maintenance-time">
+                        ⏰ Vendredi matin : Jardinier & Pisciniste.
+                    </p>
+                </div>
+            </div>
+            <div class="card reveal" style="margin-bottom: 20px;">
+                <h3 class="section-title" id="bento-health-title">🏥 Urgences & Santé</h3>
+                <p style="margin-bottom: 6px;"><strong id="bento-health-doc">Médecin Généraliste :</strong> Cabinet Médical de Vendargues</p>
+                <p style="margin-bottom: 6px;"><strong id="bento-health-pharma">Pharmacie :</strong> Pharmacie des Portes de l'Or (Route de Nîmes)</p>
+                <p><strong id="bento-health-urg">Urgence :</strong> 112</p>
+            </div>
+        </section>
 
-        <div class="bento-grid reveal">
-            <div class="card highlight">
-                <h3 class="section-title">🔑 Accès Propriété</h3>
-                <p>Portail gris automatisé. Stationnement sécurisé et gratuit disponible à l'intérieur.</p>
-                <div class="code-display">1809A</div>
+        <section id="page-logistics" class="page-view">
+            <h2 class="page-title" id="logistics-title">Consignes de séjour</h2>
+            <div class="stack-container">
+                <div class="stack-card reveal">
+                    <h3 class="section-title" style="color: var(--text-color);" id="checkin-title">🛬 Arrivée (15h - 20h)</h3>
+                    <p style="margin-bottom: 10px; color:#666;" id="checkin-desc">Accueil en personne pour l'état des lieux et explications techniques :</p>
+                    <ul class="list-clean" id="checkin-list">
+                        <li><span class="icon">✓</span> Climatisation & chauffage réversible.</li>
+                        <li><span class="icon">✓</span> Mise en marche et arrêt de l'alarme de la villa.</li>
+                        <li><span class="icon">✓</span> Règles d'usage et gestion du Jacuzzi.</li>
+                    </ul>
+                </div>
+                <div class="stack-card reveal">
+                    <h3 class="section-title" style="color: #b83b3b;" id="checkout-title">🛫 Départ (Avant 10h)</h3>
+                    <p style="margin-bottom: 10px; color:#666;" id="checkout-desc">Merci de respecter les directives suivantes avant de rendre les clés :</p>
+                    <ul class="list-clean" id="checkout-list">
+                        <li><span class="icon">▪</span> <strong>Linge :</strong> Retirer et mettre les draps au pied de chaque lit.</li>
+                        <li><span class="icon">▪</span> <strong>Serviettes :</strong> Déposer toutes les serviettes de toilette usagées dans la baignoire.</li>
+                        <li><span class="icon">▪</span> <strong>Poubelles :</strong> Vider toutes les poubelles dans les bacs extérieurs.</li>
+                        <li><span class="icon">▪</span> <strong>Verre :</strong> Jeter le verre vide dans le collecteur face au feu tricolore.</li>
+                        <li><span class="icon">▪</span> <strong>Jacuzzi :</strong> Baisser la température de l'eau au minimum.</li>
+                        <li><span class="icon">▪</span> <strong>Énergie :</strong> Éteindre les lumières et stopper la climatisation / chauffage.</li>
+                        <li><span class="icon">▪</span> <strong>Sécurité :</strong> Fermer les volets, verrouiller la porte et clore le portail.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-shopping" class="page-view">
+            <h2 class="page-title" id="shopping-title">Alimentation & Marchés</h2>
+            <h3 class="section-title reveal" id="shop-sub1">🥦 Artisans & Commerces</h3>
+            <div class="horizontal-scroll reveal" style="margin-bottom: 30px;">
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Fred Producteur</h4>
+                        <p id="shop1-desc">Vente directe de fruits et légumes frais de saison à proximité immédiate.</p>
+                        <a href="http://maps.google.com" target="_blank" class="btn-minimal btn-map">Itinéraire</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Chez Sauveur</h4>
+                        <p id="shop2-desc">Poissonnerie incontournable et espace de restauration de produits de la mer.</p>
+                        <a href="http://maps.google.com" target="_blank" class="btn-minimal btn-site">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            <h3 class="section-title reveal" id="shop-sub2">📆 Les Marchés Locaux</h3>
+            <div class="horizontal-scroll reveal">
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Marché de Mauguio</h4>
+                        <p id="market1-desc">Une grande institution locale. Idéal pour découvrir les produits régionaux.</p>
+                        <a href="https://www.mauguio-carnon.com" target="_blank" class="btn-minimal btn-cal">Calendrier</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>La Grande-Motte</h4>
+                        <p id="market2-desc">Superbe marché côtier traditionnel, parfait pour lier emplettes et balade en mer.</p>
+                        <a href="https://www.lagrandemotte.com" target="_blank" class="btn-minimal btn-days">Les Jours</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-activities" class="page-view">
+            <h2 class="page-title" id="activities-title">Recommandations & Sorties</h2>
+            <h3 class="section-title reveal" id="act-sub1">🍽️ Tables & Vignobles</h3>
+            <div class="horizontal-scroll reveal" style="margin-bottom: 30px;">
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Le Mas du Pont</h4>
+                        <p id="resto1-desc">Marché de producteurs, restaurant de terroir chaleureux et café-théâtre.</p>
+                        <a href="https://www.lemasdupont.fr" target="_blank" class="btn-minimal btn-prog">Programme</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Domaine Massillan</h4>
+                        <p id="resto2-desc">Superbe vignoble historique proposant des soirées guinguettes dans les vignes.</p>
+                        <a href="https://www.domainemassillan.fr" target="_blank" class="btn-minimal btn-book">Réserver</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Carré Mer</h4>
+                        <p id="resto3-desc">Magnifique restaurant de plage privée pour déjeuner ou dîner face au large.</p>
+                        <a href="https://www.carre-mer.fr" target="_blank" class="btn-minimal btn-menu">Le Menu</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>La Banane</h4>
+                        <p id="resto4-desc">Excellente table réputée pour ses déclinaisons de poissons frais locaux.</p>
+                        <a href="https://google.com" target="_blank" class="btn-minimal btn-reviews">Avis Google</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <h3 class="section-title">🌿 Entretien Hebdomadaire</h3>
-                <p>Pour préserver la qualité des installations, notez le passage régulier des techniciens :</p>
-                <p style="margin-top: 12px; font-weight: 500; color: var(--accent-color);">
-                    📍 Chaque vendredi matin : Intervention du jardinier et du pisciniste.
-                </p>
+            <h3 class="section-title reveal" id="act-sub2">🗺️ Terroir & Traditions</h3>
+            <div class="horizontal-scroll reveal">
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Château Puech Haut</h4>
+                        <p id="tour1-desc">Grands vins réputés mondialement. Un domaine grandiose à 5 minutes de la villa.</p>
+                        <a href="https://puech-haut.com" target="_blank" class="btn-minimal btn-visit">Visite</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Domaine de l'Oulivie</h4>
+                        <p id="tour2-desc">Producteur d'huile d'olive d'exception. Guinguette sous les arbres en été.</p>
+                        <a href="https://www.oulivie.com" target="_blank" class="btn-minimal btn-discover">Découvrir</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Course Camarguaise (FFCC)</h4>
+                        <p id="tour3-desc">Suivez le calendrier officiel des événements et traditions taurines régionales.</p>
+                        <a href="https://www.ffcc.info" target="_blank" class="btn-minimal btn-cal2">Calendrier</a>
+                    </div>
+                </div>
+                <div class="scroll-item">
+                    <div class="image-container">
+                        <div class="skeleton"></div>
+                        <div class="item-image" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80');"></div>
+                    </div>
+                    <div class="item-content">
+                        <h4>Agenda Montpellier</h4>
+                        <p id="tour4-desc">Tous les concerts, spectacles et expositions mis à jour en temps réel.</p>
+                        <a href="https://www.montpellier3m.fr/agenda" target="_blank" class="btn-minimal btn-agenda">L'Agenda</a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="card reveal" style="margin-bottom: 40px;">
-            <h3 class="section-title">🏥 Urgences & Santé</h3>
-            <p style="margin-bottom: 8px;"><strong>Médecin généraliste :</strong> Cabinet médical de Vendargues</p>
-            <p style="margin-bottom: 8px;"><strong>Pharmacie :</strong> Pharmacie des Portes de l'Or (Route de Nîmes)</p>
-            <p><strong>Numéro d'urgence européen :</strong> 112</p>
-        </div>
+        </section>
 
         <footer>
-            <p>Villa Vendargues — Livret d'accueil numérique</p>
+            <p>© Villa Vendargues — Digital Welcome Guide</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // --- DICTIONNAIRE DES TRADUCTIONS COMPLETEES ---
+        const i18n = {
+            fr: {
+                langBtn: "EN 🇬🇧", themeDark: "Mode Sombre 🌙", themeLight: "Mode Clair ☀️",
+                navHome: "🏠 Accueil", navLogistics: "📋 Logistique", navShopping: "🛒 Courses", navActivities: "✨ Sorties",
+                homeTitle: "Bienvenue au 2 route de Teyran",
+                bentoGateTitle: "🔑 Accès Propriété", bentoGateDesc: "Portail gris motorisé, mur d'enceinte ocre rouge. Stationnement sécurisé et gratuit dans la cour intérieure.",
+                bentoMaintenanceTitle: "🌿 Entretien Hebdomadaire", bentoMaintenanceDesc: "Pour maintenir les extérieurs parfaits, notez l'intervention des techniciens de la villa :", bentoMaintenanceTime: "⏰ Vendredi matin : Jardinier & Pisciniste.",
+                bentoHealthTitle: "🏥 Urgences & Santé", bentoHealthDoc: "Médecin Généraliste :", bentoHealthPharma: "Pharmacie :", bentoHealthUrg: "Urgence :",
+                logisticsTitle: "Instructions d'arrivée et de départ",
+                checkinTitle: "🛬 Arrivée (15h - 20h)", checkinDesc: "Accueil en personne pour l'état des lieux et explications techniques :",
+                checkinList: "<li><span class='icon'>✓</span> Climatisation & chauffage réversible.</li><li><span class='icon'>✓</span> Mise en marche et arrêt de l'alarme de la villa.</li><li><span class='icon'>✓</span> Règles d'usage et gestion du Jacuzzi.</li>",
+                checkoutTitle: "🛫 Départ (Avant 10h)", checkoutDesc: "Merci de respecter les directives suivantes avant de rendre les clés :",
+                checkoutList: "<li><span class='icon'>▪</span> <strong>Linge :</strong> Retirer et mettre les draps au pied de chaque lit.</li><li><span class='icon'>▪</span> <strong>Serviettes :</strong> Déposer toutes les serviettes de toilette usagées dans la baignoire.</li><li><span class='icon'>▪</span> <strong>Poubelles :</strong> Vider toutes les poubelles dans les bacs extérieurs.</li><li><span class='icon'>▪</span> <strong>Verre :</strong> Jeter le verre vide dans le collecteur face au feu tricolore.</li><li><span class='icon'>▪</span> <strong>Jacuzzi :</strong> Baisser la température de l'eau au minimum.</li><li><span class='icon'>▪</span> <strong>Énergie :</strong> Éteindre les lumières et stopper la climatisation / chauffage.</li><li><span class='icon'>▪</span> <strong>Sécurité :</strong> Fermer les volets, verrouiller la porte et clore le portail.</li>",
+                shoppingTitle: "Commerces & Alimentation", shopSub1: "🥦 Artisans & Commerces", shopSub2: "📆 Les Marchés Locaux",
+                shop1Desc: "Vente directe de fruits et légumes frais de saison à proximité immédiate.", shop2Desc: "Poissonnerie incontournable et espace de restauration de produits de la mer.",
+                market1Desc: "Une grande institution locale. Idéal pour découvrir les produits régionaux.", market2Desc: "Superbe marché côtier traditionnel, parfait pour lier emplettes et balade en mer.",
+                activitiesTitle: "Restaurants & Vignobles conseillés", actSub1: "🍽️ Tables & Vignobles", actSub2: "🗺️ Terroir & Traditions",
+                resto1Desc: "Marché de producteurs, restaurant de terroir chaleureux et café-théâtre.", resto2Desc: "Superbe vignoble historique proposant des soirées guinguettes dans les vignes.",
+                resto3Desc: "Magnifique restaurant de plage privée pour déjeuner ou dîner face au large.", resto4Desc: "Excellente table réputée pour ses déclinaisons de poissons frais locaux.",
+                tour1Desc: "Grands vins réputés mondialement. Un domaine grandiose à 5 minutes de la villa.", tour2Desc: "Producteur d'huile d'olive d'exception. Guinguette sous les arbres en été.",
+                tour3Desc: "Suivez le calendrier officiel des événements et traditions taurines régionales.", tour4Desc: "Tous les concerts, spectacles et expositions mis à jour en temps réel.",
+                btnMap: "Itinéraire", btnSite: "Visiter", btnCal: "Calendrier", btnDays: "Les Jours", btnProg: "Programme", btnBook: "Réserver", btnMenu: "Le Menu", btnReviews: "Avis Google", btnVisit: "Visite", btnDiscover: "Découvrir", btnCal2: "Calendrier", btnAgenda: "L'Agenda"
+            },
+            en: {
+                langBtn: "FR 🇫🇷", themeDark: "Dark Mode 🌙", themeLight: "Light Mode ☀️",
+                navHome: "🏠 Home", navLogistics: "📋 Logistics", navShopping: "🛒 Shopping", navActivities: "✨ Visits",
+                homeTitle: "Welcome to 2 route de Teyran",
+                bentoGateTitle: "🔑 Property Access", bentoGateDesc: "Motorized grey gate, red ochre wall. Free and secure parking in the inner courtyard.",
+                bentoMaintenanceTitle: "🌿 Weekly Maintenance", bentoMaintenanceDesc: "To keep the property spotless, please note the weekly scheduled technical maintenance:", bentoMaintenanceTime: "⏰ Friday morning: Gardener & Pool Specialist.",
+                bentoHealthTitle: "🏥 Medical & Emergencies", bentoHealthDoc: "General Practitioner:", bentoHealthPharma: "Pharmacy:", bentoHealthUrg: "Emergency Number:",
+                logisticsTitle: "Check-in & Check-out Rules",
+                checkinTitle: "🛬 Check-in (3:00 PM - 8:00 PM)", checkinDesc: "Personal greeting on-site for property tour and technical onboarding:",
+                checkinList: "<li><span class='icon'>✓</span> AC & reversible heating system operations.</li><li><span class='icon'>✓</span> Setting up and turning off the villa's alarm system.</li><li><span class='icon'>✓</span> Safety rules and handling instructions for the Jacuzzi.</li>",
+                checkoutTitle: "🛫 Check-out (Before 10:00 AM)", checkoutDesc: "Please comply with the following instructions before dropping off the keys:",
+                checkoutList: "<li><span class='icon'>▪</span> <strong>Bedding:</strong> Remove and bundle all sheets at the foot of each bed.</li><li><span class='icon'>▪</span> <strong>Towels:</strong> Leave all used bathroom towels inside the bathtub.</li><li><span class='icon'>▪</span> <strong>Trash:</strong> Empty all indoor bins into the outdoor garbage containers.</li><li><span class='icon'>▪</span> <strong>Glass recycling:</strong> Drop empty bottles in the recycler facing the traffic light.</li><li><span class='icon'>▪</span> <strong>Jacuzzi:</strong> Make sure to lower the water temperature to its absolute minimum.</li><li><span class='icon'>▪</span> <strong>Energy saving:</strong> Switch off all lights and stop air conditioning / heating.</li><li><span class='icon'>▪</span> <strong>Security:</strong> Close all shutters, lock the front door and close the main gate.</li>",
+                shoppingTitle: "Local Stores & Food Supply", shopSub1: "🥦 Local Artisans & Shops", shopSub2: "📆 Local Open-Air Markets",
+                shop1Desc: "Direct farm sale of fresh seasonal fruits and vegetables nearby.", shop2Desc: "Famous fresh fish market combined with a premium seafood tasting restaurant area.",
+                market1Desc: "A major local open market institution. Perfect to buy local Occitanie food.", market2Desc: "Typical coastal open market, perfect to blend shopping with a seaside walk.",
+                activitiesTitle: "Recommended Restaurants & Wineries", actSub1: "🍽️ Dining & Vineyards", actSub2: "🗺️ Local Heritage & Events",
+                resto1Desc: "Local farmers market, warm traditional restaurant and live cafe-theater.", resto2Desc: "Beautiful historical vineyard offering casual outdoor dining among the vines.",
+                resto3Desc: "Stunning private beach restaurant, perfect to lunch or dine right on the sand.", resto4Desc: "Excellent restaurant highly renowned for its local fresh seafood options.",
+                tour1Desc: "World-famous premium wines. A spectacular estate located 5 minutes from the villa.", tour2Desc: "Premium local olive oil mill. Cozy outdoor dining area under the olive trees in summer.",
+                tour3Desc: "Check the official calendar for local Camargue traditional festivals and bull events.", tour4Desc: "All city concerts, cultural festivals and live exhibitions updated in real-time.",
+                btnMap: "Directions", btnSite: "Visit website", btnCal: "Calendar", btnDays: "Open Days", btnProg: "Schedule", btnBook: "Book Table", btnMenu: "View Menu", btnReviews: "Reviews", btnVisit: "Tour", btnDiscover: "Discover", btnCal2: "Schedule", btnAgenda: "View Events"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        // --- GESTION DU LANGAGE ---
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.documentElement.setAttribute('lang', currentLang);
+            applyTranslations();
+        }
+
+        function applyTranslations() {
+            const t = i18n[currentLang];
+            document.getElementById('langBtn').innerText = t.langBtn;
+            
+            // Elements IDs
+            document.getElementById('nav-home').innerHTML = t.navHome;
+            document.getElementById('nav-logistics').innerHTML = t.navLogistics;
+            document.getElementById('nav-shopping').innerHTML = t.navShopping;
+            document.getElementById('nav-activities').innerHTML = t.navActivities;
+            
+            document.getElementById('home-title').innerHTML = t.homeTitle;
+            document.getElementById('bento-gate-title').innerHTML = t.bentoGateTitle;
+            document.getElementById('bento-gate-desc').innerHTML = t.bentoGateDesc;
+            document.getElementById('bento-maintenance-title').innerHTML = t.bentoMaintenanceTitle;
+            document.getElementById('bento-maintenance-desc').innerHTML = t.bentoMaintenanceDesc;
+            document.getElementById('bento-maintenance-time').innerHTML = t.bentoMaintenanceTime;
+            document.getElementById('bento-health-title').innerHTML = t.bentoHealthTitle;
+            document.getElementById('bento-health-doc').parentNode.firstChild.textContent = t.bentoHealthDoc + " ";
+            document.getElementById('bento-health-pharma').parentNode.firstChild.textContent = t.bentoHealthPharma + " ";
+            document.getElementById('bento-health-urg').parentNode.firstChild.textContent = t.bentoHealthUrg + " ";
+            
+            document.getElementById('logistics-title').innerHTML = t.logisticsTitle;
+            document.getElementById('checkin-title').innerHTML = t.checkinTitle;
+            document.getElementById('checkin-desc').innerHTML = t.checkinDesc;
+            document.getElementById('checkin-list').innerHTML = t.checkinList;
+            document.getElementById('checkout-title').innerHTML = t.checkoutTitle;
+            document.getElementById('checkout-desc').innerHTML = t.checkoutDesc;
+            document.getElementById('checkout-list').innerHTML = t.checkoutList;
+            
+            document.getElementById('shopping-title').innerHTML = t.shoppingTitle;
+            document.getElementById('shop-sub1').innerHTML = t.shopSub1;
+            document.getElementById('shop-sub2').innerHTML = t.shopSub2;
+            document.getElementById('shop1-desc').innerHTML = t.shop1Desc;
+            document.getElementById('shop2-desc').innerHTML = t.shop2Desc;
+            document.getElementById('market1-desc').innerHTML = t.market1Desc;
+            document.getElementById('market2-desc').innerHTML = t.market2Desc;
+            
+            document.getElementById('activities-title').innerHTML = t.activitiesTitle;
+            document.getElementById('act-sub1').innerHTML = t.actSub1;
+            document.getElementById('act-sub2').innerHTML = t.actSub2;
+            document.getElementById('resto1-desc').innerHTML = t.resto1Desc;
+            document.getElementById('resto2-desc').innerHTML = t.resto2Desc;
+            document.getElementById('resto3-desc').innerHTML = t.resto3Desc;
+            document.getElementById('resto4-desc').innerHTML = t.resto4Desc;
+            document.getElementById('tour1-desc').innerHTML = t.tour1Desc;
+            document.getElementById('tour2-desc').innerHTML = t.tour2Desc;
+            document.getElementById('tour3-desc').innerHTML = t.tour3Desc;
+            document.getElementById('tour4-desc').innerHTML = t.tour4Desc;
+
+            // Simple class inner text replacements for dynamic elements
+            document.querySelectorAll('.btn-map').forEach(el => el.innerText = t.btnMap);
+            document.querySelectorAll('.btn-site').forEach(el => el.innerText = t.btnSite);
+            document.querySelectorAll('.btn-cal').forEach(el => el.innerText = t.btnCal);
+            document.querySelectorAll('.btn-days').forEach(el => el.innerText = t.btnDays);
+            document.querySelectorAll('.btn-prog').forEach(el => el.innerText = t.btnProg);
+            document.querySelectorAll('.btn-book').forEach(el => el.innerText = t.btnBook);
+            document.querySelectorAll('.btn-menu').forEach(el => el.innerText = t.btnMenu);
+            document.querySelectorAll('.btn-reviews').forEach(el => el.innerText = t.btnReviews);
+            document.querySelectorAll('.btn-visit').forEach(el => el.innerText = t.btnVisit);
+            document.querySelectorAll('.btn-discover').forEach(el => el.innerText = t.btnDiscover);
+            document.querySelectorAll('.btn-cal2').forEach(el => el.innerText = t.btnCal2);
+            document.querySelectorAll('.btn-agenda').forEach(el => el.innerText = t.btnAgenda);
+            
+            // Refresh toggle text label based on active theme
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            document.getElementById('themeBtn').innerText = currentTheme === 'dark' ? t.themeLight : t.themeDark;
+        }
+
+        // --- SPA INTERACTION & MORPHING EFFECT ---
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            document.getElementById(`nav-${pageId}`).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Trigger scroll reveal module instantly for loaded view
+            setTimeout(scrollRevealEngine, 50);
+        }
+
+        // --- LIGHT/DARK MORPHING THEME ENGINE ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('villa-theme-pref', targetTheme);
+            
+            const t = i18n[currentLang];
+            document.getElementById('themeBtn').innerText = targetTheme === 'dark' ? t.themeLight : t.themeDark;
+        }
+
+        // --- SCROLL REVEAL SCROLL MONITOR ---
+        function scrollRevealEngine() {
+            const items = document.querySelectorAll('.reveal');
+            const triggerLine = window.innerHeight - 50;
+            items.forEach(el => {
+                const distanceTop = el.getBoundingClientRect().top;
+                if (distanceTop < triggerLine) { el.classList.add('active'); }
+            });
+        }
+
+        // --- SKELETON IMAGE LOADER EFFECT ---
+        function initializeImages() {
+            document.querySelectorAll('.item-image').forEach(img => {
+                const fakeLoader = new Image();
+                const srcValue = img.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/, '$2');
+                fakeLoader.src = srcValue;
+                fakeLoader.onload = () => {
+                    img.classList.add('loaded');
+                    if (img.previousElementSibling && img.previousElementSibling.classList.contains('skeleton')) {
+                        img.previousElementSibling.remove();
+                    }
+                };
+            });
+        }
+
+        // --- 3D TILT EFFECT FOR BENTO CARDS ---
+        function setup3dTilt() {
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width/2);
+                    const y = e.clientY - rect.top - (rect.height/2);
+                    // Slight max 8 degree rotation
+                    card.style.transform = `translateY(-4px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('villa-theme-pref') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            applyTranslations();
+            initializeImages();
+            setup3dTilt();
+            
+            window.addEventListener('scroll', scrollRevealEngine);
+            scrollRevealEngine();
+        });
+    </script>
 </body>
 </html>
