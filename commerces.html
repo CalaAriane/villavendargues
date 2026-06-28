@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Vendargues - Commerces</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Villa Vendargues</div>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">Mode Sombre 🌙</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="index.html">🏠 Accueil</a>
+            <a href="consignes.html">📋 Logistique</a>
+            <a href="commerces.html" class="active">🛒 Courses</a>
+            <a href="recommandations.html">✨ Sorties</a>
+        </nav>
+
+        <h2 class="page-title">Commerces & Approvisionnement</h2>
+
+        <h3 class="section-title reveal">🥦 Artisans locaux & Primeurs</h3>
+        <div class="horizontal-scroll reveal" style="margin-bottom: 35px;">
+            <div class="scroll-item">
+                <div class="item-image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="item-content">
+                    <h4>Fred Producteur</h4>
+                    <p>Vente directe de fruits et légumes frais de saison à proximité immédiate.</p>
+                    <a href="#" class="btn-minimal">Localiser</a>
+                </div>
+            </div>
+            <div class="scroll-item">
+                <div class="item-image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="item-content">
+                    <h4>Chez Sauveur</h4>
+                    <p>Poissonnerie incontournable de la région et restaurant de produits de la mer.</p>
+                    <a href="#" class="btn-minimal">Visiter le site</a>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title reveal">📆 Les Marchés Régionaux</h3>
+        <div class="horizontal-scroll reveal">
+            <div class="scroll-item">
+                <div class="item-image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="item-content">
+                    <h4>Marché de Mauguio</h4>
+                    <p>Une véritable institution locale. Idéal pour découvrir les producteurs d'Occitanie.</p>
+                    <a href="https://www.mauguio-carnon.com" target="_blank" class="btn-minimal">Consulter les infos</a>
+                </div>
+            </div>
+            <div class="scroll-item">
+                <div class="item-image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="item-content">
+                    <h4>Marché de La Grande-Motte</h4>
+                    <p>Découvrez l'atmosphère unique du marché côtier lors de vos escapades marines.</p>
+                    <a href="https://www.lagrandemotte.com" target="_blank" class="btn-minimal">Voir l'agenda</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Villa Vendargues — Livret d'accueil numérique</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
