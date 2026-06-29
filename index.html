@@ -52,7 +52,8 @@
         .page-view { display: none; opacity: 0; transform: translateY(15px); transition: opacity 0.4s ease, transform 0.4s ease; }
         .page-view.active { display: block; opacity: 1; transform: translateY(0); }
         h2.page-title { font-size: 2rem; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.5px; }
-        h3.section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: var(--accent-color); }
+        h3.section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: #2a2a2a; }
+        [data-theme="dark"] h3.section-title { color: #e5e5e5; }
 
         /* ADRESSE LINK */
         .address-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 35px; font-size: 1rem; font-weight: 600; color: var(--accent-color); text-decoration: none; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 30px; box-shadow: var(--shadow-subtle); transition: 0.3s; }
@@ -160,7 +161,7 @@
                     <ul class="list-clean i18n" data-key="checkinList"></ul>
                 </div>
                 <div class="stack-card reveal">
-                    <h3 class="section-title i18n" style="color: #b83b3b;" data-key="checkoutTitle">🛫 Départ</h3>
+                    <h3 class="section-title i18n" style="color: var(--text-color);" data-key="checkoutTitle">🛫 Départ</h3>
                     <p style="margin-bottom: 10px;" class="i18n" data-key="checkoutDesc"></p>
                     <ul class="list-clean id-list-checkout" id="checkout-list-element"></ul>
                 </div>
@@ -253,50 +254,53 @@
             { section: "artisans", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEso3II7I_8HByqcNPU9nN16kkcJl8_QrbshR7WjKYzzIbRZte1NaWYff9-bQHD0RX3I05Tv6DQsmB25yORfwF3AaLfTrepsPjTXy-wnfzo1H0C2zcM4wzlNSNdlG3DD3I-uppnlQ=w408-h408-k-no", link: "https://maps.google.com/?q=FRED+PRODUCTEUR+Le+Cres",
               fr: { t: "Fred Producteur", d: "Producteur Fruits Et Légumes. Vente Directe Au Crès, à 5min en voiture de la maison.", bt: "Circuit Court", bd: "Parfait pour des fruits et légumes ultra-frais et de saison !" },
               en: { t: "Fred Producteur", d: "Direct fruit and vegetable farm sales in Le Crès (5 min drive).", bt: "Freshness", bd: "Incredible local products for your summer salads." } },
-            { section: "artisans", img: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Chez+Sauveur+Poissonnerie",
+            { section: "artisans", img: "https://www.chezsauveur.com/public/img/big/PLATEAUjpg_6332b703d76b4.jpg", link: "https://www.chezsauveur.com/contact.html",
               fr: { t: "Chez Sauveur", d: "Poissonnerie et délicieux restaurant de poissons très frais.", bt: "La Mer à Table", bd: "Une adresse incontournable pour les amateurs de vrais produits marins." },
               en: { t: "Chez Sauveur", d: "Excellent fish market and delicious fresh seafood restaurant.", bt: "Seafood", bd: "A must-visit for amazing local fish." } },
-            { section: "artisans", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80", link: "https://clarajung.fr",
+            { section: "artisans", img: "https://www.clarajung.fr/wp-content/uploads/elementor/thumbs/Camille_Marie_Vavoihigher_ClaraJung_Avril25-75-r4cq8ucrt9mnjsvhvbnvc3u4ab3552glj6deanl548.jpg", link: "https://clarajung.fr",
               fr: { t: "Clara Jung Pâtisserie", d: "Artisan pâtissier d'exception renommé pour ses douceurs haut de gamme.", bt: "Gourmandise", bd: "Idéal pour s'offrir un dessert raffiné durant le séjour." },
               en: { t: "Clara Jung Pastry", d: "Exceptional artisan pastry chef for refined sweets.", bt: "Delicious", bd: "Treat yourself to their high-end sweet creations." } },
-            
+            { section: "artisans", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEy67gohQLUwQ-Kq4TiTr1mNu8SWB6frJzVS4g3fsZtq0LTsJhS7BPVtTkZ8rnVbe0wgjeqRhmdOXYE2fTPlHraBU7upIEKX6mP75wUqR_6De7C0T1caetAL-unmX-TOl5uGDrfrh92eUo=w408-h306-k-no donne", link: "https://maps.app.goo.gl/aws2mU78VssFDUN99",
+              fr: { t: "Boulangerie Titan", d: "Boulangerie artisanale à Vendargues, idéale pour votre pain frais et vos viennoiseries du matin.", bt: "Boulangerie", bd: "Une excellente adresse locale pour des petits-déjeuners réussis." },
+              en: { t: "Titan Bakery", d: "Artisan bakery in Vendargues, perfect for your fresh bread and morning pastries.", bt: "Bakery", bd: "An excellent local spot for your breakfasts." } },
+
             /* ================= MARCHÉS ================= */
-            { section: "marches", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80", link: "https://www.mauguio-carnon.com",
+            { section: "marches", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHABxWewL3-m54fs4veQDCvQQ9IWWRZ76YTr43YgJuqW-YC7XVjo6JgbcBhAZazkHoa50by_4cci-amtl0D3jnU_-Xxj7Df2JaGXrmXKXrr-hiWeagC6CsakNMSfwlRludxnspR=s1360-w1360-h1020", link: "https://mauguio-carnon.com/mes-loisirs/envie-de-nature/les-marches/",
               fr: { t: "Marché de Mauguio", d: "Grand marché traditionnel très vivant, riche en couleurs et saveurs.", bt: "Authentique", bd: "Une superbe immersion dominicale à faire absolument." },
               en: { t: "Mauguio Market", d: "Large traditional market full of local flavors.", bt: "Authentic", bd: "A regional institution to discover southern products." } },
-            { section: "marches", img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=400&q=80", link: "https://www.lagrandemotte.com",
+            { section: "marches", img: "https://www.lagrandemotte.com/wp-content/uploads/2020/07/marche_1.jpg", link: "https://www.lagrandemotte.com/les-marches/",
               fr: { t: "Marché de la Grande Motte", d: "Marché idéal pour combiner une agréable matinée côtière et emplettes.", bt: "Ambiance", bd: "Idéal pour ramener du poisson frais au retour de la plage." },
               en: { t: "La Grande Motte Market", d: "Beautiful coastal market to combine a seaside walk and shopping.", bt: "Vibe", bd: "Ideal for fresh fish and local goods." } },
             { section: "marches", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+de+Castries",
               fr: { t: "Marché de Castries", d: "Marché convivial situé au cœur de ce charmant village historique.", bt: "Tradition", bd: "Parfait pour une balade matinale reposante." },
               en: { t: "Castries Market", d: "Friendly market located in the heart of this beautiful village.", bt: "Tradition", bd: "Perfect for a quiet morning." } },
-            { section: "marches", img: "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+du+Cres",
+            { section: "marches", img: "https://www.lecres.fr//image/BibliothequeImages/611_1603699371/La_Vague_-_marche_trinquat_-_Cres.jpg", link: "https://www.lecres.fr/Le-march%C3%A9-du-Cr%C3%A8s/383/",
               fr: { t: "Marché du Crès", d: "Petit marché de proximité très pratique et détendu.", bt: "Proximité", bd: "On y trouve d'excellents produits à quelques minutes." },
               en: { t: "Le Crès Market", d: "Small local market very close to the villa, very convenient.", bt: "Close", bd: "Find the essentials in a relaxed atmosphere." } },
-            { section: "marches", img: "https://images.unsplash.com/photo-1603048297172-c92544798d5e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+de+Teyran",
+            { section: "marches", img: "https://www.ville-teyran.fr/image/BibliothequeImages/05_VIVRE_A_TEYRAN/05_Vie_eco/01_Marche_hebdo/8d9390bc7dc846c0aff6f58f0552fc76_%281%29-site.jpg", link: "https://www.ville-teyran.fr/March%C3%A9-hebdomadaire/145/",
               fr: { t: "Marché de Teyran", d: "Petit marché de village mettant en valeur les producteurs locaux.", bt: "Qualité", bd: "Une ambiance de village typique du Sud." },
               en: { t: "Teyran Market", d: "Discover the producers of the village of Teyran.", bt: "Quality", bd: "Excellent regional products nearby." } },
 
             /* ================= RESTOS & PLAGES ================= */
-            { section: "restos", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Restaurant+la+banane+palavas",
+            { section: "restos", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEiSpIQ7c7EAmJVxp0ZR5wqvG2ulLHK8-1Nw_bU_hyuCHUl5Hm_y_PXRNx8UbV2Z2iFCZF8GTSffB1kNS3eDfzCq595Ucz-iDQTnOCbFGh5oEIYOkdetMacVFZzobywf2IJhgjx-w=s1360-w1360-h1020", link: "https://www.restaurantlabanane.fr/",
               fr: { t: "Restaurant la banane à Palavas", d: "Très bon restaurant de poissons frais situé en bord de mer.", bt: "Frais", bd: "Idéal pour savourer la pêche du jour les yeux dans l'eau." },
               en: { t: "La Banane", d: "Great seafood restaurant by the sea in Palavas.", bt: "Fresh", bd: "A safe bet to taste the catch of the day." } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+de+cecelles+La+guinguette+des+amoureux",
+            { section: "restos", img: "https://www.grandpicsaintloup-tourisme.fr/_objects/tao_suite_annuaire/pna/photos/t1_hres/652.webp?1747887538", link: "https://www.grandpicsaintloup-tourisme.fr/patrimoine-naturel/lac-de-ceceles",
               fr: { t: "Lac de Cecelles / La guinguette des amoureux", d: "Sublime lac non loin du village de Saint-Mathieu-de-Tréviers. Très sympa pour pique-nique ou guinguette au bord de l'eau. Pas d’accès PMR.", bt: "Cadre", bd: "Un véritable havre de paix romantique et sauvage." },
               en: { t: "Lovers' Guinguette", d: "Sublime lake (Cécelles) for picnic or dining. No wheelchair access.", bt: "Idyllic", bd: "A stunning romantic and natural setting by the water." } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80", link: "https://www.plage-bonaventure.fr",
+            { section: "restos", img: "https://laplagebonaventure.fr/wp-content/uploads/2026/05/20260424Bonaventure-559HD.jpg", link: "https://laplagebonaventure.fr/",
               fr: { t: "La Plage Bonaventure", d: "Pour déjeuner, dîner ou prendre un verre au coucher du soleil les pieds dans le sable, sur une des plus belles plages. Très familial.", bt: "Unique", bd: "Une ambiance magique au bord de la Méditerranée." },
               en: { t: "Bonaventure Beach", d: "Family-friendly private beach to dine with your feet in the sand at sunset.", bt: "Magic", bd: "One of the most beautiful beaches in the region." } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Plage+paillote+sauvage",
+            { section: "restos", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFD-j2KLjlND7vHEWosVxvvqfw3t9dNgE9aGy1Xjoc9XGvv3bInG2wlEafPJzocw1cCQaB7aYTqzcaybsHDUBILxe2aHDsT7DbG70qzT-k3KiOpnYPxD5vEs0aKmr-j6OviU3hP=w408-h544-k-no", link: "https://www.google.com/maps/place/La+Plage+paillote+sauvage/@43.5537854,4.0127111,709m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12b6bdcc84aa9e9d:0x5765284a856c2a69!8m2!3d43.5537854!4d4.015286!16s%2Fg%2F11s37z2g93?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D",
               fr: { t: "La Plage paillote sauvage", d: "Plage privée très familiale et sympa. Salade repas et transat à prix correct. Parking Gratuit ! Vous pouvez aussi vous poser à côté sans louer de transat.", bt: "Astuce", bd: "Idéal pour économiser le parking tout en profitant du spot." },
               en: { t: "Paillote Sauvage", d: "Family beach club. Good food and sunbeds at fair prices. Free parking!", bt: "Tip", bd: "You can also sit next to it without renting sunbeds!" } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=400&q=80", link: "https://marchedulez.com",
+            { section: "restos", img: "https://marchedulez.com/wp-content/uploads/2025/08/marche_du_lez_sunside.jpg.webp", link: "https://marchedulez.com",
               fr: { t: "Marché du lez à Montpellier", d: "Très sympa le soir en fin de semaine pour manger et boire un coup, balade au bord du fleuve du Lez très agréable.", bt: "Branché", bd: "Rassemblement de foodtrucks et brocanteurs incontournable." },
               en: { t: "Marché du Lez", d: "Very nice on weekend evenings to eat and drink. Walk along the river.", bt: "Trendy", bd: "A must-see in Montpellier with food trucks." } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Ponant+sur+berges",
+            { section: "restos", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF82X794uH60yMIeDlQ_vwXNZT8ijn2PHVV9oPRd8M9fdJiMvlKV4mQQ5nqCY9slgh0Oa7Aju8Q8XwhQ3kG3rDeOlAPEzf3ZAD6mvBMtSxFYypc-0_LQkvwlmI9eSWKS0DMx_2WccU6I7wf=s1360-w1360-h1020", link: "https://www.google.com/maps/place/Ponant+Sur+Berges/@43.5682035,4.1002945,709m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12b699204fffa49f:0x9a8944b2a9da3a26!8m2!3d43.5682035!4d4.1002945!16s%2Fg%2F11nnmxhwlx?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D",
               fr: { t: "Ponant sur berges", d: "Un spot ultra convivial au bord de l'eau pour se détendre en fin de journée.", bt: "Détente", bd: "Parfait pour décompresser dans un cadre verdoyant." },
               en: { t: "Ponant sur berges", d: "Great friendly place to have a drink and relax.", bt: "Relax", bd: "Ideal after a day of sightseeing." } },
-            { section: "restos", img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Le+bain+de+soleil",
+            { section: "restos", img: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF8NyP6kcNWKm-pVVAJd8nugjaWglDu9AtCcHJ1VSO0nSpd5h9_I-jPCsbtXuLVojqbJbhMC7CbDW02YThXj3ctD4WGMTrpar72sTkFVpiGRMkgqIVg1gzl-xRFoLCZ2cdo_Zb90vfRo677=s1360-w1360-h1020", link: "https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b6ba5975caa2a3:0x84a317a7e10e6e4c?sa=X&ved=1t:8290&ictx=111",
               fr: { t: "Le bain de soleil", d: "Une jolie paillote décontractée pour savourer le climat du Sud.", bt: "Soleil", bd: "Idéal pour une journée farniente complète." },
               en: { t: "Le bain de soleil", d: "A perfect name for this very pleasant beach hut in season.", bt: "Vibe", bd: "Enjoy the sun and the southern heat." } },
 
