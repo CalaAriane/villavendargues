@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villa Vendargues - Livret d'Accueil</title>
+    <title>Villa De d'Ariane - Livret d'Accueil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -58,14 +58,12 @@
         .address-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 35px; font-size: 1rem; font-weight: 600; color: var(--accent-color); text-decoration: none; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 30px; box-shadow: var(--shadow-subtle); transition: 0.3s; }
         .address-link:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
 
-        /* FLIP CARDS 3D */
-        .flip-card { perspective: 1000px; margin-bottom: 20px; }
-        .flip-inner { display: grid; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; height: 100%; }
-        .flip-card:hover .flip-inner { transform: rotateY(180deg); }
-        .flip-front, .flip-back { grid-area: 1 / 1; backface-visibility: hidden; border-radius: 16px; background-color: var(--card-bg); border: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); overflow: hidden; display: flex; flex-direction: column; }
-        .flip-back { transform: rotateY(180deg); background-color: var(--accent-color); color: #fff; padding: 25px; justify-content: center; align-items: center; text-align: center; }
-        .flip-back h4 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
-        .flip-back p { font-size: 0.9rem; font-weight: 500; font-style: italic; line-height: 1.5; }
+        /* BLOCS STATIQUES (Bento d'accueil sans flip) */
+        .bento-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: var(--shadow-subtle); padding: 25px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
+
+        /* ENCADRÉ POUR TEXTE BONUS */
+        .item-badge { background: rgba(59, 102, 71, 0.06); color: var(--accent-color); padding: 10px 14px; border-radius: 10px; font-size: 0.8rem; font-weight: 500; line-height: 1.4; border-left: 3px solid var(--accent-color); }
+        [data-theme="dark"] .item-badge { background: rgba(82, 140, 98, 0.12); }
 
         /* STICKY CARDS (Logistique) */
         .stack-container { display: flex; flex-direction: column; gap: 25px; margin-bottom: 35px; }
@@ -85,14 +83,17 @@
         .horizontal-scroll::-webkit-scrollbar { height: 8px; }
         .horizontal-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
         .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
-        .scroll-item { flex: 0 0 290px; scroll-snap-align: start; }
         
+        /* CARTES PLACES FLATES (Optimisées mobile, sans bug de survol) */
+        .place-card { flex: 0 0 290px; scroll-snap-align: start; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: var(--shadow-subtle); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+        .place-card:hover { transform: translateY(-4px); }
         .item-image { width: 100%; height: 160px; background-size: cover; background-position: center; }
-        .item-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
-        .item-content h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
-        .item-content p { font-size: 0.85rem; color: #555; margin-bottom: 15px; line-height: 1.4; }
+        .item-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 12px; justify-content: space-between; }
+        .item-content h4 { font-size: 1.05rem; font-weight: 600; }
+        .item-content p { font-size: 0.85rem; color: #555; line-height: 1.4; }
         [data-theme="dark"] .item-content p { color: #aaa; }
-        .btn-minimal { align-self: flex-start; text-decoration: none; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; border-bottom: 2px solid var(--accent-color); padding-bottom: 2px; }
+        .btn-minimal { align-self: flex-start; text-decoration: none; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; border-bottom: 2px solid var(--accent-color); padding-bottom: 2px; transition: 0.2s; }
+        .btn-minimal:hover { border-color: var(--text-color); color: var(--text-color); }
 
         /* SCROLL REVEAL */
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -106,7 +107,7 @@
 
     <header>
         <div class="container header-inner">
-            <div class="logo">Villa Vendargues</div>
+            <div class="logo">Villa De d'Ariane</div>
             <div class="controls">
                 <select id="langSelector" class="btn-control" onchange="changeLanguage(this.value)">
                     <option value="fr">FR 🇫🇷</option>
@@ -128,39 +129,25 @@
         </nav>
 
         <section id="page-home" class="page-view active">
-            <h2 class="page-title i18n" data-key="homeTitle">Bienvenue à la Villa</h2>
+            <h2 class="page-title i18n" data-key="homeTitle">Bienvenue à la Villa De d’Ariane</h2>
             
-            <a href="https://maps.google.com/?q=2+route+de+Teyran,+34740+Vendargues" target="_blank" class="address-link reveal">
+            <a href="https://maps.google.com/?q=2+route+de+Teyran,+Vendargues" target="_blank" class="address-link reveal">
                 📍 2 route de Teyran, Vendargues
             </a>
             
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front" style="padding: 25px;">
-                        <h3 class="section-title i18n" data-key="bentoMaintenanceTitle">🌿 Entretien Hebdomadaire</h3>
-                        <p class="i18n" data-key="bentoMaintenanceDesc">Pour maintenir les extérieurs parfaits...</p>
-                        <p style="margin-top: 12px; font-weight: 600; color: var(--accent-color);" class="i18n" data-key="bentoMaintenanceTime"></p>
-                    </div>
-                    <div class="flip-back">
-                        <h4 class="i18n" data-key="backMaintTitle">Intervention Discrète</h4>
-                        <p class="i18n" data-key="backMaintDesc">Nos équipes passent silencieusement...</p>
-                    </div>
-                </div>
+            <div class="bento-card reveal">
+                <h3 class="section-title i18n" data-key="bentoMaintenanceTitle">🌿 Entretien Hebdomadaire</h3>
+                <p class="i18n" data-key="bentoMaintenanceDesc">Pour maintenir les extérieurs parfaits...</p>
+                <p style="font-weight: 600; color: var(--accent-color);" class="i18n" data-key="bentoMaintenanceTime"></p>
+                <div class="item-badge i18n" data-key="backMaintDesc"></div>
             </div>
 
-            <div class="flip-card reveal">
-                <div class="flip-inner">
-                    <div class="flip-front" style="padding: 25px;">
-                        <h3 class="section-title i18n" data-key="bentoHealthTitle">🏥 Urgences & Santé</h3>
-                        <p style="margin-bottom: 6px;"><strong class="i18n" data-key="bentoHealthDoc"></strong> Cabinet Médical de Vendargues</p>
-                        <p style="margin-bottom: 6px;"><strong class="i18n" data-key="bentoHealthPharma"></strong> Pharmacie des Portes de l'Or</p>
-                        <p><strong class="i18n" data-key="bentoHealthUrg"></strong> 112</p>
-                    </div>
-                    <div class="flip-back">
-                        <h4 class="i18n" data-key="backHealthTitle">Assistance Rapide</h4>
-                        <p class="i18n" data-key="backHealthDesc">Les services de santé sont situés à moins de 5 minutes.</p>
-                    </div>
-                </div>
+            <div class="bento-card reveal">
+                <h3 class="section-title i18n" data-key="bentoHealthTitle">🏥 Urgences & Santé</h3>
+                <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthDoc"></strong> Cabinet Médical de Vendargues</p>
+                <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthPharma"></strong> Pharmacie des Portes de l'Or</p>
+                <p><strong class="i18n" data-key="bentoHealthUrg"></strong> 112</p>
+                <div class="item-badge i18n" data-key="backHealthDesc"></div>
             </div>
         </section>
 
@@ -175,7 +162,7 @@
                 <div class="stack-card reveal">
                     <h3 class="section-title i18n" style="color: #b83b3b;" data-key="checkoutTitle">🛫 Départ</h3>
                     <p style="margin-bottom: 10px;" class="i18n" data-key="checkoutDesc"></p>
-                    <ul class="list-clean i18n" data-key="checkoutList"></ul>
+                    <ul class="list-clean id-list-checkout" id="checkout-list-element"></ul>
                 </div>
             </div>
         </section>
@@ -207,7 +194,7 @@
         </section>
 
         <footer>
-            <p>© Villa Vendargues — Digital Welcome Guide</p>
+            <p>© Villa De d'Ariane — Digital Welcome Guide</p>
         </footer>
     </div>
 
@@ -215,190 +202,190 @@
         // --- DICTIONNAIRE GLOBAL STATIQUE ---
         const i18nGlobal = {
             fr: {
-                marquee: "✦ BIENVENUE À LA VILLA VENDARGUES • PASSEZ UN SÉJOUR INOUBLIABLE ✦", themeToggle: "Mode Sombre 🌙", hintScroll: "➔ Faites défiler pour voir plus", btnLink: "Découvrir le lieu",
-                navHome: "🏠 Accueil", navLogistics: "📋 Logistique", navShopping: "🛒 Courses", navActivities: "✨ Sorties", homeTitle: "Bienvenue à la Villa",
-                bentoMaintenanceTitle: "🌿 Entretien Hebdomadaire", bentoMaintenanceDesc: "Pour maintenir les extérieurs parfaits, notez l'intervention des techniciens de la villa :", bentoMaintenanceTime: "⏰ Vendredi matin : Jardinier & Pisciniste.",
-                backMaintTitle: "Intervention Discrète", backMaintDesc: "\"Nos équipes passent silencieusement pour garantir une eau de piscine pure et un jardin fleuri sans vous déranger.\"",
+                marquee: "✦ BIENVENUE À LA VILLA DE D'ARIANE • PASSEZ UN SÉJOUR INOUBLIABLE ✦", themeToggle: "Mode Sombre 🌙", hintScroll: "➔ Faites défiler pour voir plus", btnLink: "Découvrir le lieu",
+                navHome: "🏠 Accueil", navLogistics: "📋 Logistique", navShopping: "🛒 Courses", navActivities: "✨ Sorties", homeTitle: "Bienvenue à la Villa De d’Ariane",
+                bentoMaintenanceTitle: "🌿 Entretien Hebdomadaire", bentoMaintenanceDesc: "Pour maintenir les extérieurs parfaits, notez l'intervention des techniciens de la villa (Jardinier & Pisciniste). L'intervention se fait en autonomie totale : les locataires n'ont pas besoin d'être sur place puisque les techniciens ont le code du portail.", bentoMaintenanceTime: "⏰ Vendredi matin : Passage des techniciens.",
+                backMaintDesc: "💡 Note : Nos équipes passent de façon totalement indépendante et discrète sans nécessiter votre présence.",
                 bentoHealthTitle: "🏥 Urgences & Santé", bentoHealthDoc: "Médecin Généraliste :", bentoHealthPharma: "Pharmacie :", bentoHealthUrg: "Urgence :",
-                backHealthTitle: "Assistance Rapide", backHealthDesc: "\"Les services de santé sont situés à moins de 5 minutes de la villa pour votre tranquillité d'esprit.\"",
+                backHealthDesc: "💡 Note : Tous les services médicaux de secours essentiels se trouvent à moins de 5 minutes de la maison.",
                 logisticsTitle: "Consignes de séjour", checkinTitle: "🛬 Arrivée (15h - 20h)", checkinDesc: "Accueil en personne pour l'état des lieux et explications :",
                 checkinList: "<li><span class='icon'>✓</span> Climatisation & chauffage réversible.</li><li><span class='icon'>✓</span> Alarme de la villa.</li><li><span class='icon'>✓</span> Gestion du Jacuzzi.</li>",
-                checkoutTitle: "🛫 Départ (Avant 10h)", checkoutDesc: "Merci de respecter ces directives avant le départ :",
-                checkoutList: "<li><span class='icon'>▪</span> <strong>Linge :</strong> Rassembler au pied des lits.</li><li><span class='icon'>▪</span> <strong>Serviettes :</strong> À déposer dans la baignoire.</li><li><span class='icon'>▪</span> <strong>Poubelles :</strong> Vider dans les bacs extérieurs.</li><li><span class='icon'>▪</span> <strong>Jacuzzi :</strong> Température au minimum.</li><li><span class='icon'>▪</span> <strong>Sécurité :</strong> Fermer volets, porte et portail.</li>",
+                checkoutTitle: "🛫 Départ (Avant 10h)", checkoutDesc: "Merci de bien vouloir respecter scrupuleusement ces directives avant votre départ :",
+                checkoutList: "<li><span class='icon'>▪</span> <strong>Linge :</strong> Rassembler l'ensemble au pied de chaque lit.</li><li><span class='icon'>▪</span> <strong>Serviettes :</strong> À déposer directement dans la baignoire.</li><li><span class='icon'>▪</span> <strong>Poubelles :</strong> Vider dans les bacs extérieurs. Mettre impérativement les bouteilles en verre usagées dans le container qui se trouve derrière le camion Pizza.</li><li><span class='icon'>▪</span> <strong>Barbecue :</strong> Le barbecue doit être laissé propre et la barquette qui est sous le barbecue doit être jetée à la poubelle.</li><li><span class='icon'>▪</span> <strong>Jacuzzi :</strong> Remettre la température au minimum.</li><li><span class='icon'>▪</span> <strong>Sécurité :</strong> Veiller à fermer les volets, la porte ainsi que le portail.</li>",
                 shoppingTitle: "Alimentation & Marchés", activitiesTitle: "Recommandations & Sorties"
             },
             en: {
-                marquee: "✦ WELCOME TO VILLA VENDARGUES • HAVE A WONDERFUL STAY ✦", themeToggle: "Dark Mode 🌙", hintScroll: "➔ Swipe to see more", btnLink: "Discover",
-                navHome: "🏠 Home", navLogistics: "📋 Rules", navShopping: "🛒 Shops", navActivities: "✨ Visits", homeTitle: "Welcome to the Villa",
-                bentoMaintenanceTitle: "🌿 Weekly Maintenance", bentoMaintenanceDesc: "To keep the property spotless, note the technical schedule:", bentoMaintenanceTime: "⏰ Friday morning: Gardener & Pool.",
-                backMaintTitle: "Discreet Service", backMaintDesc: "\"Our team works quietly to ensure a perfect garden without disturbing you.\"",
+                marquee: "✦ WELCOME TO VILLA DE D'ARIANE • HAVE A WONDERFUL STAY ✦", themeToggle: "Dark Mode 🌙", hintScroll: "➔ Swipe to see more", btnLink: "Discover",
+                navHome: "🏠 Home", navLogistics: "📋 Rules", navShopping: "🛒 Shops", navActivities: "✨ Visits", homeTitle: "Welcome to Villa De d'Ariane",
+                bentoMaintenanceTitle: "🌿 Weekly Maintenance", bentoMaintenanceDesc: "The pool and garden technicians operate in complete autonomy. Guests do not need to stay on site as they have the gate code.", bentoMaintenanceTime: "⏰ Friday morning: Technicians visit.",
+                backMaintDesc: "💡 Note: Our technical staff works independently without requiring your presence.",
                 bentoHealthTitle: "🏥 Medical & Emergencies", bentoHealthDoc: "Doctor:", bentoHealthPharma: "Pharmacy:", bentoHealthUrg: "Emergency:",
-                backHealthTitle: "Quick Assistance", backHealthDesc: "\"Health services are located less than 5 minutes away.\"",
+                backHealthDesc: "💡 Note: Main emergency health services are under a 5-minute drive from the house.",
                 logisticsTitle: "Stay Instructions", checkinTitle: "🛬 Check-in (3 PM - 8 PM)", checkinDesc: "Personal greeting on-site for property tour:",
                 checkinList: "<li><span class='icon'>✓</span> AC & heating.</li><li><span class='icon'>✓</span> Alarm system.</li><li><span class='icon'>✓</span> Jacuzzi rules.</li>",
                 checkoutTitle: "🛫 Check-out (Before 10 AM)", checkoutDesc: "Please comply with these instructions:",
-                checkoutList: "<li><span class='icon'>▪</span> <strong>Bedding:</strong> Bundle at the foot of beds.</li><li><span class='icon'>▪</span> <strong>Towels:</strong> Leave in bathtub.</li><li><span class='icon'>▪</span> <strong>Trash:</strong> Empty in outdoor bins.</li><li><span class='icon'>▪</span> <strong>Jacuzzi:</strong> Lower temp to minimum.</li><li><span class='icon'>▪</span> <strong>Security:</strong> Close shutters and lock doors.</li>",
+                checkoutList: "<li><span class='icon'>▪</span> <strong>Bedding:</strong> Bundle at the foot of beds.</li><li><span class='icon'>▪</span> <strong>Towels:</strong> Leave in the bathtub.</li><li><span class='icon'>▪</span> <strong>Trash & Glass:</strong> Empty in outdoor bins. Empty glass bottles must be thrown into the glass container behind the Pizza truck.</li><li><span class='icon'>▪</span> <strong>Barbecue:</strong> Must be left completely clean and the drip tray underneath thrown away.</li><li><span class='icon'>▪</span> <strong>Jacuzzi:</strong> Lower temp to minimum.</li><li><span class='icon'>▪</span> <strong>Security:</strong> Close all shutters and lock doors.</li>",
                 shoppingTitle: "Local Stores & Markets", activitiesTitle: "Restaurants & Visits"
             },
             de: {
-                marquee: "✦ WILLKOMMEN IN DER VILLA VENDARGUES ✦", themeToggle: "Dunkel 🌙", hintScroll: "➔ Wischen für mehr", btnLink: "Entdecken",
+                marquee: "✦ WILLKOMMEN IN DER VILLA DE D'ARIANE ✦", themeToggle: "Dunkel 🌙", hintScroll: "➔ Wischen für mehr", btnLink: "Entdecken",
                 navHome: "🏠 Startseite", navLogistics: "📋 Regeln", navShopping: "🛒 Einkaufen", navActivities: "✨ Ausflüge", homeTitle: "Willkommen",
-                bentoMaintenanceTitle: "🌿 Pflege", bentoMaintenanceDesc: "Bitte beachten Sie:", bentoMaintenanceTime: "⏰ Freitagmorgen: Gärtner & Pool.", backMaintTitle: "Diskret", backMaintDesc: "Unser Team arbeitet leise.",
-                bentoHealthTitle: "🏥 Notfälle", bentoHealthDoc: "Arzt:", bentoHealthPharma: "Apotheke:", bentoHealthUrg: "Notruf:", backHealthTitle: "Hilfe", backHealthDesc: "Gesundheitsdienste in der Nähe.",
-                logisticsTitle: "Regeln", checkinTitle: "🛬 Ankunft", checkinDesc: "Persönliche Einweisung:", checkinList: "<li><span class='icon'>✓</span> Klima & Heizung.</li><li><span class='icon'>✓</span> Alarm.</li><li><span class='icon'>✓</span> Whirlpool.</li>",
-                checkoutTitle: "🛫 Abreise", checkoutDesc: "Bitte beachten:", checkoutList: "<li><span class='icon'>▪</span> Müll rausbringen.</li><li><span class='icon'>▪</span> Whirlpool Minimum.</li><li><span class='icon'>▪</span> Abschließen.</li>",
+                bentoMaintenanceTitle: "🌿 Pflege", bentoMaintenanceDesc: "Gärtner & Pooltechniker arbeiten völlig autonom. Sie müssen nicht vor Ort sein, da sie den Torcode haben.", bentoMaintenanceTime: "⏰ Freitagmorgen: Technikerbesuch.", backMaintDesc: "💡 Autonome Pflege.",
+                bentoHealthTitle: "🏥 Notfälle", bentoHealthDoc: "Arzt:", bentoHealthPharma: "Apotheke:", bentoHealthUrg: "Notruf:", backHealthDesc: "💡 5 Minuten entfernt.",
+                logisticsTitle: "Regeln", checkinTitle: "🛬 Ankunft", checkinDesc: "Persönliche Einweisung:", checkinList: "<li><span class='icon'>✓</span> Klima.</li><li><span class='icon'>✓</span> Alarm.</li><li><span class='icon'>✓</span> Whirlpool.</li>",
+                checkoutTitle: "🛫 Abreise", checkoutDesc: "Bitte beachten:", checkoutList: "<li><span class='icon'>▪</span> Müll rausbringen (Glas zum Container hinter dem Pizzawagen).</li><li><span class='icon'>▪</span> Grill sauber hinterlassen & Auffangschale entsorgen.</li><li><span class='icon'>▪</span> Whirlpool Minimum.</li><li><span class='icon'>▪</span> Abschließen.</li>",
                 shoppingTitle: "Märkte", activitiesTitle: "Ausflüge"
             },
             nl: {
-                marquee: "✦ WELKOM IN VILLA VENDARGUES ✦", themeToggle: "Donker 🌙", hintScroll: "➔ Veeg om meer te zien", btnLink: "Ontdekken",
+                marquee: "✦ WELKOM IN VILLA DE D'ARIANE ✦", themeToggle: "Donker 🌙", hintScroll: "➔ Veeg om meer te zien", btnLink: "Ontdekken",
                 navHome: "🏠 Home", navLogistics: "📋 Regels", navShopping: "🛒 Winkelen", navActivities: "✨ Uitstapjes", homeTitle: "Welkom",
-                bentoMaintenanceTitle: "🌿 Onderhoud", bentoMaintenanceDesc: "Let op de planning:", bentoMaintenanceTime: "⏰ Vrijdagochtend: Tuinman & Zwembad.", backMaintTitle: "Discreet", backMaintDesc: "Ons team werkt stil.",
-                bentoHealthTitle: "🏥 Noodgevallen", bentoHealthDoc: "Dokter:", bentoHealthPharma: "Apotheek:", bentoHealthUrg: "Noodnummer:", backHealthTitle: "Hulp", backHealthDesc: "Diensten in de buurt.",
+                bentoMaintenanceTitle: "🌿 Onderhoud", bentoMaintenanceDesc: "De tuinman en zwembadtechnicus werken volledig autonoom. U hoeft niet aanwezig te zijn, zij hebben de toegangscode.", bentoMaintenanceTime: "⏰ Vrijdagochtend: Onderhoud.", backMaintDesc: "💡 Autonoom onderhoud.",
+                bentoHealthTitle: "🏥 Noodgevallen", bentoHealthDoc: "Dokter:", bentoHealthPharma: "Apotheek:", bentoHealthUrg: "Noodnummer:", backHealthDesc: "💡 Binnen 5 minuten.",
                 logisticsTitle: "Regels", checkinTitle: "🛬 Aankomst", checkinDesc: "Persoonlijke uitleg:", checkinList: "<li><span class='icon'>✓</span> Airco.</li><li><span class='icon'>✓</span> Alarm.</li><li><span class='icon'>✓</span> Jacuzzi.</li>",
-                checkoutTitle: "🛫 Vertrek", checkoutDesc: "Instructies:", checkoutList: "<li><span class='icon'>▪</span> Vuilnis buiten.</li><li><span class='icon'>▪</span> Jacuzzi minimum.</li><li><span class='icon'>▪</span> Afsluiten.</li>",
+                checkoutTitle: "🛫 Vertrek", checkoutDesc: "Instructies:", checkoutList: "<li><span class='icon'>▪</span> Vuilnis buiten (Glasbak achter de pizzawagen).</li><li><span class='icon'>▪</span> Barbecue schoon achterlaten en bakje eronder weggooien.</li><li><span class='icon'>▪</span> Jacuzzi minimum.</li><li><span class='icon'>▪</span> Afsluiten.</li>",
                 shoppingTitle: "Markten", activitiesTitle: "Uitstapjes"
             }
         };
 
-        // --- BASE DE DONNÉES DES 42 LIEUX ---
+        // --- BASE DE DONNÉES DES LIEUX (Pour changer d'image, remplacez simplement l'URL entre guillemets du paramètre 'img') ---
         const dbPlaces = [
             /* ================= ARTISANS & COMMERCES ================= */
-            { section: "artisans", img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Fred+Producteur+Le+Cres",
-              fr: { t: "Fred Producteur", d: "Producteur Fruits Et Légumes. Vente directe Au Crès (à 5min en voiture).", bt: "Circuit Court", bd: "Des produits d'une fraîcheur incroyable pour vos repas d'été !" },
-              en: { t: "Fred Producteur", d: "Direct fruit and vegetable farm sales in Le Crès (5 min drive).", bt: "Freshness", bd: "Incredible local products for your summer salads." }, de:{t:"Fred Obst",d:"Obst & Gemüse.",bt:"Frisch",bd:"Tolle Qualität."}, nl:{t:"Fred Groenten",d:"Verse groenten en fruit.",bt:"Vers",bd:"Top kwaliteit."} },
+            { section: "artisans", img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=FRED+PRODUCTEUR+Le+Cres",
+              fr: { t: "Fred Producteur", d: "Producteur Fruits Et Légumes. Vente Directe Au Crès, à 5min en voiture de la maison.", bt: "Circuit Court", bd: "Parfait pour des fruits et légumes ultra-frais et de saison !" },
+              en: { t: "Fred Producteur", d: "Direct fruit and vegetable farm sales in Le Crès (5 min drive).", bt: "Freshness", bd: "Incredible local products for your summer salads." } },
             { section: "artisans", img: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Chez+Sauveur+Poissonnerie",
-              fr: { t: "Chez Sauveur", d: "Excellente poissonnerie et délicieux restaurant de poissons frais.", bt: "La Mer à Table", bd: "Une adresse incontournable pour les amateurs de fruits de mer." },
-              en: { t: "Chez Sauveur", d: "Excellent fish market and delicious fresh seafood restaurant.", bt: "Seafood lovers", bd: "A must-visit for amazing local fish." }, de:{t:"Chez Sauveur",d:"Fischmarkt und Restaurant.",bt:"Lecker",bd:"Bester Fisch."}, nl:{t:"Chez Sauveur",d:"Vismarkt en restaurant.",bt:"Heerlijk",bd:"Beste vis."} },
+              fr: { t: "Chez Sauveur", d: "Poissonnerie et délicieux restaurant de poissons très frais.", bt: "La Mer à Table", bd: "Une adresse incontournable pour les amateurs de vrais produits marins." },
+              en: { t: "Chez Sauveur", d: "Excellent fish market and delicious fresh seafood restaurant.", bt: "Seafood", bd: "A must-visit for amazing local fish." } },
             { section: "artisans", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80", link: "https://clarajung.fr",
-              fr: { t: "Clara Jung Pâtisserie", d: "Artisan pâtissier d'exception pour des douceurs raffinées.", bt: "Gourmandise", bd: "Laissez-vous tenter par leurs créations sucrées haut de gamme." },
-              en: { t: "Clara Jung Pastry", d: "Exceptional artisan pastry chef for refined sweets.", bt: "Delicious", bd: "Treat yourself to their high-end sweet creations." }, de:{t:"Clara Jung",d:"Exzellente Bäckerei.",bt:"Süß",bd:"Köstliche Kuchen."}, nl:{t:"Clara Jung",d:"Geweldige bakkerij.",bt:"Zoet",bd:"Heerlijke taarten."} },
+              fr: { t: "Clara Jung Pâtisserie", d: "Artisan pâtissier d'exception renommé pour ses douceurs haut de gamme.", bt: "Gourmandise", bd: "Idéal pour s'offrir un dessert raffiné durant le séjour." },
+              en: { t: "Clara Jung Pastry", d: "Exceptional artisan pastry chef for refined sweets.", bt: "Delicious", bd: "Treat yourself to their high-end sweet creations." } },
             
             /* ================= MARCHÉS ================= */
             { section: "marches", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80", link: "https://www.mauguio-carnon.com",
-              fr: { t: "Marché de Mauguio", d: "Grand marché traditionnel d'Occitanie riche en saveurs.", bt: "Authentique", bd: "Une institution régionale pour découvrir les bons produits du Sud." },
-              en: { t: "Mauguio Market", d: "Large traditional market full of local flavors.", bt: "Authentic", bd: "A regional institution to discover southern products." }, de:{t:"Markt Mauguio",d:"Großer Traditionsmarkt.",bt:"Authentisch",bd:"Tolle Produkte."}, nl:{t:"Markt Mauguio",d:"Grote traditionele markt.",bt:"Authentiek",bd:"Geweldige producten."} },
+              fr: { t: "Marché de Mauguio", d: "Grand marché traditionnel très vivant, riche en couleurs et saveurs.", bt: "Authentique", bd: "Une superbe immersion dominicale à faire absolument." },
+              en: { t: "Mauguio Market", d: "Large traditional market full of local flavors.", bt: "Authentic", bd: "A regional institution to discover southern products." } },
             { section: "marches", img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=400&q=80", link: "https://www.lagrandemotte.com",
-              fr: { t: "Marché de La Grande Motte", d: "Beau marché côtier pour allier balade marine et emplettes.", bt: "Ambiance", bd: "Idéal pour ramener des produits frais tout juste débarqués." },
-              en: { t: "La Grande Motte Market", d: "Beautiful coastal market to combine a seaside walk and shopping.", bt: "Vibe", bd: "Ideal for fresh fish and local goods." }, de:{t:"Markt Grande Motte",d:"Küstenmarkt.",bt:"Schön",bd:"Frischer Fisch."}, nl:{t:"Markt Grande Motte",d:"Kustmarkt.",bt:"Mooi",bd:"Verse vis."} },
+              fr: { t: "Marché de la Grande Motte", d: "Marché idéal pour combiner une agréable matinée côtière et emplettes.", bt: "Ambiance", bd: "Idéal pour ramener du poisson frais au retour de la plage." },
+              en: { t: "La Grande Motte Market", d: "Beautiful coastal market to combine a seaside walk and shopping.", bt: "Vibe", bd: "Ideal for fresh fish and local goods." } },
             { section: "marches", img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+de+Castries",
-              fr: { t: "Marché de Castries", d: "Marché convivial situé au cœur de ce très beau village.", bt: "Tradition", bd: "Parfait pour une matinée tranquille." },
-              en: { t: "Castries Market", d: "Friendly market located in the heart of this beautiful village.", bt: "Tradition", bd: "Perfect for a quiet morning." }, de:{t:"Markt Castries",d:"Kleiner Markt.",bt:"Ruhig",bd:"Sehr traditionell."}, nl:{t:"Markt Castries",d:"Kleine markt.",bt:"Rustig",bd:"Heel traditioneel."} },
+              fr: { t: "Marché de Castries", d: "Marché convivial situé au cœur de ce charmant village historique.", bt: "Tradition", bd: "Parfait pour une balade matinale reposante." },
+              en: { t: "Castries Market", d: "Friendly market located in the heart of this beautiful village.", bt: "Tradition", bd: "Perfect for a quiet morning." } },
             { section: "marches", img: "https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+du+Cres",
-              fr: { t: "Marché du Crès", d: "Petit marché local tout près de la villa, très pratique.", bt: "Proximité", bd: "On y trouve l'essentiel dans une atmosphère détendue." },
-              en: { t: "Le Crès Market", d: "Small local market very close to the villa, very convenient.", bt: "Close", bd: "Find the essentials in a relaxed atmosphere." }, de:{t:"Markt Crès",d:"Sehr nah.",bt:"Praktisch",bd:"Gute Auswahl."}, nl:{t:"Markt Crès",d:"Heel dichtbij.",bt:"Handig",bd:"Goede selectie."} },
+              fr: { t: "Marché du Crès", d: "Petit marché de proximité très pratique et détendu.", bt: "Proximité", bd: "On y trouve d'excellents produits à quelques minutes." },
+              en: { t: "Le Crès Market", d: "Small local market very close to the villa, very convenient.", bt: "Close", bd: "Find the essentials in a relaxed atmosphere." } },
             { section: "marches", img: "https://images.unsplash.com/photo-1603048297172-c92544798d5e?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Marche+de+Teyran",
-              fr: { t: "Marché de Teyran", d: "Découvrez les producteurs du village de Teyran.", bt: "Qualité", bd: "Des produits régionaux excellents à deux pas." },
-              en: { t: "Teyran Market", d: "Discover the producers of the village of Teyran.", bt: "Quality", bd: "Excellent regional products nearby." }, de:{t:"Markt Teyran",d:"Regionale Produkte.",bt:"Qualität",bd:"Sehr gut."}, nl:{t:"Markt Teyran",d:"Regionale producten.",bt:"Kwaliteit",bd:"Heel goed."} },
+              fr: { t: "Marché de Teyran", d: "Petit marché de village mettant en valeur les producteurs locaux.", bt: "Qualité", bd: "Une ambiance de village typique du Sud." },
+              en: { t: "Teyran Market", d: "Discover the producers of the village of Teyran.", bt: "Quality", bd: "Excellent regional products nearby." } },
 
             /* ================= RESTOS & PLAGES ================= */
             { section: "restos", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Restaurant+la+banane+palavas",
-              fr: { t: "La Banane (Palavas)", d: "Très bon restaurant de poissons en bord de mer à Palavas.", bt: "Frais", bd: "Une valeur sûre pour déguster la pêche du jour." },
-              en: { t: "La Banane", d: "Great seafood restaurant by the sea in Palavas.", bt: "Fresh", bd: "A safe bet to taste the catch of the day." }, de:{t:"La Banane",d:"Tolles Fischrestaurant.",bt:"Frisch",bd:"Sehr lecker."}, nl:{t:"La Banane",d:"Geweldig visrestaurant.",bt:"Vers",bd:"Erg lekker."} },
-            { section: "restos", img: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+de+cecelles+guinguette",
-              fr: { t: "Guinguette des Amoureux", d: "Sublime lac (Cécelles) pour pique-nique ou resto. (Pas d'accès PMR).", bt: "Idyllique", bd: "Un cadre romantique et naturel époustouflant au bord de l'eau." },
-              en: { t: "Lovers' Guinguette", d: "Sublime lake (Cécelles) for picnic or dining. (No wheelchair access).", bt: "Idyllic", bd: "A stunning romantic and natural setting by the water." }, de:{t:"Guinguette Cécelles",d:"Schöner See. (Nicht rollstuhlgerecht).",bt:"Romantisch",bd:"Tolle Natur."}, nl:{t:"Guinguette Cécelles",d:"Mooi meer. (Niet rolstoeltoegankelijk).",bt:"Romantisch",bd:"Geweldige natuur."} },
+              fr: { t: "Restaurant la banane à Palavas", d: "Très bon restaurant de poissons frais situé en bord de mer.", bt: "Frais", bd: "Idéal pour savourer la pêche du jour les yeux dans l'eau." },
+              en: { t: "La Banane", d: "Great seafood restaurant by the sea in Palavas.", bt: "Fresh", bd: "A safe bet to taste the catch of the day." } },
+            { section: "restos", img: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+de+cecelles+La+guinguette+des+amoureux",
+              fr: { t: "Lac de Cecelles / La guinguette des amoureux", d: "Sublime lac non loin du village de Saint-Mathieu-de-Tréviers. Très sympa pour pique-nique ou guinguette au bord de l'eau. Pas d’accès PMR.", bt: "Cadre", bd: "Un véritable havre de paix romantique et sauvage." },
+              en: { t: "Lovers' Guinguette", d: "Sublime lake (Cécelles) for picnic or dining. No wheelchair access.", bt: "Idyllic", bd: "A stunning romantic and natural setting by the water." } },
             { section: "restos", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80", link: "https://www.plage-bonaventure.fr",
-              fr: { t: "La Plage Bonaventure", d: "Plage privée très familiale pour dîner les pieds dans le sable au coucher du soleil.", bt: "Magique", bd: "L'une des plus belles plages de la région." },
-              en: { t: "Bonaventure Beach", d: "Family-friendly private beach to dine with your feet in the sand at sunset.", bt: "Magic", bd: "One of the most beautiful beaches in the region." }, de:{t:"Strand Bonaventure",d:"Privatstrand. Abendessen im Sand.",bt:"Magisch",bd:"Wunderschön."}, nl:{t:"Strand Bonaventure",d:"Privéstrand. Dineren in het zand.",bt:"Magisch",bd:"Prachtig."} },
-            { section: "restos", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=La+Plage+paillote+sauvage",
-              fr: { t: "La Paillote Sauvage", d: "Plage privée familiale. Salades repas et transats à prix correct. Parking Gratuit !", bt: "Astuce", bd: "Vous pouvez aussi vous poser à côté sans louer de transats !" },
-              en: { t: "Paillote Sauvage", d: "Family beach club. Good food and sunbeds at fair prices. Free parking!", bt: "Tip", bd: "You can also sit next to it without renting sunbeds!" }, de:{t:"Paillote Sauvage",d:"Strandclub. Kostenloses Parken!",bt:"Tipp",bd:"Sehr familienfreundlich."}, nl:{t:"Paillote Sauvage",d:"Strandclub. Gratis parkeren!",bt:"Tip",bd:"Zeer gezinsvriendelijk."} },
+              fr: { t: "La Plage Bonaventure", d: "Pour déjeuner, dîner ou prendre un verre au coucher du soleil les pieds dans le sable, sur une des plus belles plages. Très familial.", bt: "Unique", bd: "Une ambiance magique au bord de la Méditerranée." },
+              en: { t: "Bonaventure Beach", d: "Family-friendly private beach to dine with your feet in the sand at sunset.", bt: "Magic", bd: "One of the most beautiful beaches in the region." } },
+            { section: "restos", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Plage+paillote+sauvage",
+              fr: { t: "La Plage paillote sauvage", d: "Plage privée très familiale et sympa. Salade repas et transat à prix correct. Parking Gratuit ! Vous pouvez aussi vous poser à côté sans louer de transat.", bt: "Astuce", bd: "Idéal pour économiser le parking tout en profitant du spot." },
+              en: { t: "Paillote Sauvage", d: "Family beach club. Good food and sunbeds at fair prices. Free parking!", bt: "Tip", bd: "You can also sit next to it without renting sunbeds!" } },
             { section: "restos", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=400&q=80", link: "https://marchedulez.com",
-              fr: { t: "Marché du Lez", d: "Très sympa le soir en fin de semaine pour manger et boire un coup. Balade au bord du Lez.", bt: "Branché", bd: "Lieu incontournable de Montpellier avec ses foodtrucks." },
-              en: { t: "Marché du Lez", d: "Very nice on weekend evenings to eat and drink. Walk along the river.", bt: "Trendy", bd: "A must-see in Montpellier with food trucks." }, de:{t:"Marché du Lez",d:"Foodtrucks und Bars am Fluss.",bt:"Trendig",bd:"Tolles Abendprogramm."}, nl:{t:"Marché du Lez",d:"Foodtrucks en bars aan de rivier.",bt:"Trendy",bd:"Geweldig avondprogramma."} },
+              fr: { t: "Marché du lez à Montpellier", d: "Très sympa le soir en fin de semaine pour manger et boire un coup, balade au bord du fleuve du Lez très agréable.", bt: "Branché", bd: "Rassemblement de foodtrucks et brocanteurs incontournable." },
+              en: { t: "Marché du Lez", d: "Very nice on weekend evenings to eat and drink. Walk along the river.", bt: "Trendy", bd: "A must-see in Montpellier with food trucks." } },
             { section: "restos", img: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Ponant+sur+berges",
-              fr: { t: "Ponant sur berges", d: "Super endroit convivial pour boire un verre et se détendre.", bt: "Détente", bd: "Idéal après une journée de visite." },
-              en: { t: "Ponant sur berges", d: "Great friendly place to have a drink and relax.", bt: "Relax", bd: "Ideal after a day of sightseeing." }, de:{t:"Ponant sur berges",d:"Toller Ort für einen Drink.",bt:"Entspannen",bd:"Sehr gemütlich."}, nl:{t:"Ponant sur berges",d:"Geweldige plek voor een drankje.",bt:"Ontspannen",bd:"Heel gezellig."} },
+              fr: { t: "Ponant sur berges", d: "Un spot ultra convivial au bord de l'eau pour se détendre en fin de journée.", bt: "Détente", bd: "Parfait pour décompresser dans un cadre verdoyant." },
+              en: { t: "Ponant sur berges", d: "Great friendly place to have a drink and relax.", bt: "Relax", bd: "Ideal after a day of sightseeing." } },
             { section: "restos", img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Le+bain+de+soleil",
-              fr: { t: "Le bain de soleil", d: "Un nom parfait pour cette paillote très agréable en saison.", bt: "Ambiance", bd: "Profitez du soleil et de la chaleur du sud." },
-              en: { t: "Le bain de soleil", d: "A perfect name for this very pleasant beach hut in season.", bt: "Vibe", bd: "Enjoy the sun and the southern heat." }, de:{t:"Le bain de soleil",d:"Schöner Strandclub.",bt:"Sonne",bd:"Perfekt für den Sommer."}, nl:{t:"Le bain de soleil",d:"Mooie strandclub.",bt:"Zon",bd:"Perfect voor de zomer."} },
+              fr: { t: "Le bain de soleil", d: "Une jolie paillote décontractée pour savourer le climat du Sud.", bt: "Soleil", bd: "Idéal pour une journée farniente complète." },
+              en: { t: "Le bain de soleil", d: "A perfect name for this very pleasant beach hut in season.", bt: "Vibe", bd: "Enjoy the sun and the southern heat." } },
 
             /* ================= DOMAINES ================= */
             { section: "domaines", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80", link: "https://www.lemasdupont.fr",
-              fr: { t: "Mas du Pont", d: "Marché de producteurs le dimanche. Restaurant toute la semaine et café-théâtre.", bt: "Complet", bd: "Un lieu vivant qui regroupe terroir et culture." },
-              en: { t: "Mas du Pont", d: "Farmers market on Sundays. Restaurant all week and cafe-theater.", bt: "Vibrant", bd: "A lively place mixing food and culture." }, de:{t:"Mas du Pont",d:"Markt, Restaurant und Theater.",bt:"Lebendig",bd:"Sehr empfehlenswert."}, nl:{t:"Mas du Pont",d:"Markt, restaurant en theater.",bt:"Levendig",bd:"Zeer aan te bevelen."} },
+              fr: { t: "Mas du Pont", d: "Petit marché des producteurs régionaux le dimanche matin. Restaurant toute la semaine et café-théâtre.", bt: "Culture", bd: "Un lieu qui mêle à merveille gastronomie locale et spectacles." },
+              en: { t: "Mas du Pont", d: "Farmers market on Sundays. Restaurant all week and cafe-theater.", bt: "Vibrant", bd: "A lively place mixing food and culture." } },
             { section: "domaines", img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80", link: "https://www.domainemassillan.fr",
-              fr: { t: "Domaine Massillan", d: "Vignoble réputé près de Montpellier organisant une guinguette dans les vignes.", bt: "Soirées", bd: "Superbe ambiance estivale autour du vin." },
-              en: { t: "Domaine Massillan", d: "Renowned vineyard near Montpellier organizing outdoor parties in the vines.", bt: "Evenings", bd: "Great summer vibe around wine." }, de:{t:"Massillan",d:"Weingut mit Partys im Freien.",bt:"Toll",bd:"Schöne Sommerabende."}, nl:{t:"Massillan",d:"Wijngoed met buitenfeesten.",bt:"Leuk",bd:"Mooie zomeravonden."} },
+              fr: { t: "Domaine Massillan", d: "Vignoble réputé près de Montpellier organisant une chouette guinguette dans les vignes.", bt: "Vignes", bd: "Parfait pour une soirée estivale typique sous les lampions." },
+              en: { t: "Domaine Massillan", d: "Renowned vineyard near Montpellier organizing outdoor parties in the vines.", bt: "Evenings", bd: "Great summer vibe around wine." } },
             { section: "domaines", img: "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=400&q=80", link: "https://puech-haut.com",
-              fr: { t: "Château Puech Haut", d: "Un des meilleurs vins de notre région. Sur les tables du monde entier. À 5 min de la villa.", bt: "Prestige", bd: "Visite et dégustation incontournables." },
-              en: { t: "Château Puech Haut", d: "One of our region's best wines, served worldwide. 5 mins from the villa.", bt: "Prestige", bd: "A must-do tasting visit." }, de:{t:"Puech Haut",d:"Weltklasse-Weine. 5 Min entfernt.",bt:"Top",bd:"Ein Muss."}, nl:{t:"Puech Haut",d:"Wereldklasse wijnen. 5 min afstand.",bt:"Top",bd:"Een aanrader."} },
+              fr: { t: "Chateau Puech haut", d: "Un des meilleurs vins de notre région. Sur les tables du monde entier. À 5 mn en voiture de la villa.", bt: "Prestige", bd: "La boutique et le domaine sont magnifiques à visiter." },
+              en: { t: "Château Puech Haut", d: "One of our region's best wines, served worldwide. 5 mins from the villa.", bt: "Prestige", bd: "A must-do tasting visit." } },
             { section: "domaines", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80", link: "https://www.oulivie.com",
-              fr: { t: "Domaine de l'Oulivie", d: "Producteur d'huile d'olive. À la belle saison, restaurant familial en plein air sous les oliviers.", bt: "Le Sud", bd: "Regardez le programme sur leur site, c'est génial !" },
-              en: { t: "Domaine de l'Oulivie", d: "Olive oil producer. Family outdoor restaurant under the olive trees in summer.", bt: "South", bd: "Check their website for events!" }, de:{t:"Oulivie",d:"Olivenölmühle. Essen im Freien.",bt:"Natur",bd:"Sehr idyllisch."}, nl:{t:"Oulivie",d:"Olijfoliemolen. Buiten eten.",bt:"Natuur",bd:"Zeer idyllisch."} },
+              fr: { t: "Domaine de l'Oulivie", d: "Producteur d'huiles d'olive - Moulin à huile pour acheter et visiter. À la belle saison, restau en plein air sous les oliviers. Très sympa, familial. Regarder le programme sur leur site.", bt: "Olives", bd: "Une magnifique expérience sous l'ombre des oliviers." },
+              en: { t: "Domaine de l'Oulivie", d: "Olive oil producer. Family outdoor restaurant under the olive trees in summer.", bt: "South", bd: "Check their website for events!" } },
 
             /* ================= PATRIMOINE & NATURE ================= */
-            { section: "visites", img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Ecusson+Montpellier",
-              fr: { t: "L'Écusson (Montpellier)", d: "Cœur historique. Se garer au Polygone (Accessible PMR). Églises, Peyrou, et petit train de la Comédie pour les enfants !", bt: "Magnifique", bd: "L'une des plus belles zones piétonnes d'Europe." },
-              en: { t: "L'Écusson (Montpellier)", d: "Historical center. Park at Polygone (Wheelchair access). Tourist train on Place de la Comédie!", bt: "Gorgeous", bd: "One of Europe's finest pedestrian areas." }, de:{t:"L'Écusson",d:"Historisches Zentrum. Rollstuhlgerecht.",bt:"Schön",bd:"Tolle Altstadt."}, nl:{t:"L'Écusson",d:"Historisch centrum. Rolstoeltoegankelijk.",bt:"Mooi",bd:"Geweldige oude stad."} },
+            { section: "visites", img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Centre+commercial+du+polygone+Montpellier",
+              fr: { t: "L’écusson", d: "Cœur historique. Se garer au centre commercial du Polygone (accessible PMR). Avec les tout-petits, prenez le petit train touristique sur la place de la Comédie. Baladez-vous devant les églises, l’esplanade, le Peyrou.", bt: "PMR", bd: "Le parking du Polygone permet un accès de plain-pied direct à la vieille ville." },
+              en: { t: "L'Écusson (Montpellier)", d: "Historical center. Park at Polygone (Wheelchair access). Tourist train on Place de la Comédie!", bt: "Gorgeous", bd: "One of Europe's finest pedestrian areas." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1543880352-73ec6ba4ccbf?auto=format&fit=crop&w=400&q=80", link: "https://www.tourisme-sete.com",
-              fr: { t: "Ville de Sète", d: "Prendre la spécialité 'tielle' chez Paradiso (espèces uniquement). Regardez le calendrier des événements de la ville !", bt: "Authentique", bd: "Le port de pêche et les canaux sont superbes." },
-              en: { t: "City of Sète", d: "Try the 'tielle' at Paradiso (cash only). Check the city's event calendar!", bt: "Authentic", bd: "The fishing port and canals are superb." }, de:{t:"Sète",d:"Hafenstadt. Probieren Sie 'Tielle'!",bt:"Hafen",bd:"Sehr charmant."}, nl:{t:"Sète",d:"Havenstad. Probeer 'tielle'!",bt:"Haven",bd:"Zeer charmant."} },
+              fr: { t: "Ville de sète", d: "Prendre la spécialité tielle chez Paradiso (paiement en espèces). Regarder le site web avec calendrier de la ville pour ne pas louper de bons événements.", bt: "Espèces", bd: "Attention : Paradiso ne prend pas la carte bancaire !" },
+              en: { t: "City of Sète", d: "Try the 'tielle' at Paradiso (cash only). Check the city's event calendar!", bt: "Authentic", bd: "The fishing port and canals are superb." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1552554799-a1b7a2d677ec?auto=format&fit=crop&w=400&q=80", link: "https://ot-aiguesmortes.com",
-              fr: { t: "Aigues Mortes", d: "Cité fortifiée entourée de salins roses. Un joyau médiéval de la Camargue.", bt: "Histoire", bd: "Promenade magique sur les remparts." },
-              en: { t: "Aigues Mortes", d: "Fortified city surrounded by pink salt flats. A medieval jewel.", bt: "History", bd: "Magic walk on the ramparts." }, de:{t:"Aigues Mortes",d:"Mittelalterliche Stadt.",bt:"Geschichte",bd:"Tolle Stadtmauer."}, nl:{t:"Aigues Mortes",d:"Middeleeuwse stad.",bt:"Geschiedenis",bd:"Geweldige stadsmuur."} },
+              fr: { t: "Aigues mortes", d: "Cité médiévale fortifiée unique en Camargue, au cœur des marais salants roses.", bt: "Histoire", bd: "Faites le tour des remparts au coucher du soleil." },
+              en: { t: "Aigues Mortes", d: "Fortified city surrounded by pink salt flats. A medieval jewel.", bt: "History", bd: "Magic walk on the ramparts." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1569007786438-bb4829392e21?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Saint+Guilhem+le+desert",
-              fr: { t: "Saint Guilhem le Désert", d: "Classé parmi les plus beaux villages de France. Abbaye et gorges superbes.", bt: "Incontournable", bd: "Idéal pour mêler baignade en rivière et vieilles pierres." },
-              en: { t: "Saint Guilhem le Désert", d: "Ranked among France's most beautiful villages. Abbey and gorges.", bt: "Must-Do", bd: "Mix river swimming and history." }, de:{t:"St. Guilhem",d:"Wunderschönes Dorf.",bt:"Toll",bd:"Viel Geschichte."}, nl:{t:"St. Guilhem",d:"Prachtig dorp.",bt:"Mooi",bd:"Veel geschiedenis."} },
+              fr: { t: "Saint Guilhem le désert", d: "Un des plus beaux villages de France niché dans les magnifiques Gorges de l'Hérault.", bt: "Incontournable", bd: "Des ruelles médiévales pleines de charme." },
+              en: { t: "Saint Guilhem le Désert", d: "Ranked among France's most beautiful villages. Abbey and gorges.", bt: "Must-Do", bd: "Mix river swimming and history." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1601662916666-6b2160350280?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Chateau+de+castries",
-              fr: { t: "Château de Castries", d: "Surnommé le 'Petit Versailles du Languedoc'. Jardins magnifiques.", bt: "Royal", bd: "À quelques minutes de la villa." },
-              en: { t: "Castries Castle", d: "Nicknamed the 'Little Versailles of Languedoc'. Beautiful gardens.", bt: "Royal", bd: "Just minutes from the villa." }, de:{t:"Schloss Castries",d:"Schöne Gärten.",bt:"Königlich",bd:"Sehr nah."}, nl:{t:"Kasteel Castries",d:"Prachtige tuinen.",bt:"Koninklijk",bd:"Heel dichtbij."} },
+              fr: { t: "Chateau de castries", d: "Un magnifique château historique et son grand parc à la française tout proche.", bt: "Local", bd: "Surnommé le petit Versailles du Languedoc." },
+              en: { t: "Castries Castle", d: "Nicknamed the 'Little Versailles of Languedoc'. Beautiful gardens.", bt: "Royal", bd: "Just minutes from the villa." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1598460627795-0975cb450849?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Cathedrale+de+Villeneuve+les+maguelone",
-              fr: { t: "Cathédrale de Maguelone", d: "Superbe cathédrale perdue entre les vignes et la mer sur une presqu'île.", bt: "Unique", bd: "Accès à pied ou via le petit train." },
-              en: { t: "Maguelone Cathedral", d: "Superb cathedral lost between vines and sea on a peninsula.", bt: "Unique", bd: "Access on foot or mini train." }, de:{t:"Kathedrale Maguelone",d:"Schöne Kirche am Meer.",bt:"Einzigartig",bd:"Toller Ausblick."}, nl:{t:"Kathedraal Maguelone",d:"Mooie kerk aan zee.",bt:"Uniek",bd:"Prachtig uitzicht."} },
-            { section: "visites", img: "https://images.unsplash.com/photo-1582656910626-d6682cc9b0d7?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+du+salagou",
-              fr: { t: "Lac du Salagou", d: "Paysage martien unique de terre rouge (la ruffe). Baignade et activités nautiques.", bt: "Dépaysant", bd: "Les couleurs au coucher du soleil sont folles." },
-              en: { t: "Lake Salagou", d: "Unique Martian landscape of red earth. Swimming and water sports.", bt: "Exotic", bd: "Crazy colors at sunset." }, de:{t:"Salagou See",d:"Rote Erde, toller See.",bt:"Natur",bd:"Wunderschön."}, nl:{t:"Salagou Meer",d:"Rode aarde, prachtig meer.",bt:"Natuur",bd:"Heel mooi."} },
+              fr: { t: "Cathédrale de Villeneuve les maguelone", d: "Superbe édifice roman isolé sur une presqu'île entre mer et étangs.", bt: "Unique", bd: "Une balade hors du temps au milieu des vignes marines." },
+              en: { t: "Maguelone Cathedral", d: "Superb cathedral lost between vines and sea on a peninsula.", bt: "Unique", bd: "Access on foot or mini train." } },
+            { section: "visites", img: "https://images.unsplash.com/photo-1582656910626-d6682cc9b0d7?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Le+lac+du+salagou",
+              fr: { t: "Le lac du salagou", d: "Un lac au paysage lunaire spectaculaire de terres rouges (ruffes).", bt: "Paysage", bd: "Idéal pour la rando, le VTT ou la baignade." },
+              en: { t: "Lake Salagou", d: "Unique Martian landscape of red earth. Swimming and water sports.", bt: "Exotic", bd: "Crazy colors at sunset." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1520645062688-66236b2518e1?auto=format&fit=crop&w=400&q=80", link: "https://www.demoiselles.com",
-              fr: { t: "Grotte des Demoiselles", d: "Grotte spectaculaire avec d'immenses stalactites. Accès en funiculaire.", bt: "Impressionnant", bd: "Prévoyez un petit gilet, il y fait frais !" },
-              en: { t: "Demoiselles Cave", d: "Spectacular cave with huge stalactites. Funicular access.", bt: "Impressive", bd: "Bring a light jacket, it's cool inside!" }, de:{t:"Demoiselles Höhle",d:"Spektakuläre Tropfsteinhöhle.",bt:"Toll",bd:"Etwas kühl innen."}, nl:{t:"Demoiselles Grot",d:"Spectaculaire druipsteengrot.",bt:"Mooi",bd:"Beetje koel binnen."} },
+              fr: { t: "Grotte des demoiselles", d: "Une des plus impressionnantes grottes de la région avec sa salle 'cathédrale'.", bt: "Frais", bd: "Idéal quand il fait trop chaud dehors !" },
+              en: { t: "Demoiselles Cave", d: "Spectacular cave with huge stalactites. Funicular access.", bt: "Impressive", bd: "Bring a light jacket, it's cool inside!" } },
             { section: "visites", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80", link: "https://www.bambouseraie.fr",
-              fr: { t: "Bambouseraie d'Anduze", d: "Jardin botanique exceptionnel et forêt géante de bambous.", bt: "Zen", bd: "Une promenade apaisante et unique en Europe." },
-              en: { t: "Anduze Bamboo Park", d: "Exceptional botanical garden and giant bamboo forest.", bt: "Zen", bd: "A soothing walk, unique in Europe." }, de:{t:"Bambuswald Anduze",d:"Riesige Bambusse.",bt:"Zen",bd:"Sehr entspannend."}, nl:{t:"Bamboe Anduze",d:"Enorme bamboes.",bt:"Zen",bd:"Heel ontspannend."} },
+              fr: { t: "Bambouseraie d’anduze", d: "Forêt géante de bambous unique en Europe et superbe jardin botanique.", bt: "Nature", bd: "Une promenade ombragée dépaysante et très zen." },
+              en: { t: "Anduze Bamboo Park", d: "Exceptional botanical garden and giant bamboo forest.", bt: "Zen", bd: "A soothing walk, unique in Europe." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1508688439169-7c8fa57a4141?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Cascade+de+la+VIs",
-              fr: { t: "Cascade de la Vis", d: "Magnifique cascade naturelle. L'eau y est très fraîche même en été !", bt: "Rafraîchissant", bd: "Idéal pour les chaudes journées." },
-              en: { t: "Vis Waterfall", d: "Beautiful natural waterfall. The water is very fresh even in summer!", bt: "Refreshing", bd: "Ideal for hot days." }, de:{t:"Vis Wasserfall",d:"Schöner Wasserfall.",bt:"Frisch",bd:"Kaltes Wasser."}, nl:{t:"Vis Waterval",d:"Mooie waterval.",bt:"Fris",bd:"Koud water."} },
-            { section: "visites", img: "https://images.unsplash.com/photo-1551065609-bba91b0521e6?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Moureze",
-              fr: { t: "Cirque de Mourèze", d: "Chaos dolomitique fascinant offrant de très belles randonnées.", bt: "Nature", bd: "Mettez de bonnes chaussures de marche." },
-              en: { t: "Cirque de Mourèze", d: "Fascinating rock formations offering beautiful hikes.", bt: "Nature", bd: "Wear good walking shoes." }, de:{t:"Mourèze",d:"Tolle Felsformationen.",bt:"Wandern",bd:"Sehr beeindruckend."}, nl:{t:"Mourèze",d:"Geweldige rotsformaties.",bt:"Wandelen",bd:"Zeer indrukwekkend."} },
+              fr: { t: "Cascade de la Vis", d: "Une magnifique cascade naturelle aux eaux fraîches et limpides.", bt: "Fraîcheur", bd: "Un décor de carte postale pour se baigner." },
+              en: { t: "Vis Waterfall", d: "Beautiful natural waterfall. The water is very fresh even in summer!", bt: "Refreshing", bd: "Ideal for hot days." } },
+            { section: "visites", img: "https://images.unsplash.com/photo-1551065609-bba91b0521e6?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Moureze+randonnee",
+              fr: { t: "Mourèze", d: "Un cirque dolomitique aux rochers géants sculptés par le temps. Belle randonnée.", bt: "Rando", bd: "Prévoyez de bonnes chaussures de marche." },
+              en: { t: "Cirque de Mourèze", d: "Fascinating rock formations offering beautiful hikes.", bt: "Nature", bd: "Wear good walking shoes." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1550850839-8dc894ed385a?auto=format&fit=crop&w=400&q=80", link: "https://www.parcornithologique.com",
-              fr: { t: "Parc du Pont de Gau", d: "Le meilleur endroit en Camargue pour observer des centaines de flamants roses !", bt: "Magique", bd: "Le coucher de soleil y est exceptionnel." },
-              en: { t: "Pont de Gau Park", d: "Best place in Camargue to see hundreds of flamingos!", bt: "Magic", bd: "The sunset here is exceptional." }, de:{t:"Pont de Gau",d:"Flamingos beobachten.",bt:"Natur",bd:"Sehr schön."}, nl:{t:"Pont de Gau",d:"Flamingo's bekijken.",bt:"Natuur",bd:"Heel mooi."} },
+              fr: { t: "Parc ornithologique du pont de gau", d: "Le meilleur endroit pour observer les flamants roses de près en Camargue.", bt: "Oiseaux", bd: "Magique en fin de journée pour les photos." },
+              en: { t: "Pont de Gau Park", d: "Best place in Camargue to see hundreds of flamingos!", bt: "Magic", bd: "The sunset here is exceptional." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1540304323207-6bb97063cc12?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Halle+de+sete",
-              fr: { t: "Halle de Sète", d: "Le ventre de la ville ! Un marché couvert coloré et typique.", bt: "Gourmand", bd: "Achetez de quoi faire un bon repas marin." },
-              en: { t: "Sète Covered Market", d: "The belly of the city! A colorful and typical indoor market.", bt: "Gourmet", bd: "Buy fresh seafood here." }, de:{t:"Markthalle Sète",d:"Toller Markt.",bt:"Essen",bd:"Frischer Fisch."}, nl:{t:"Markthal Sète",d:"Geweldige markt.",bt:"Eten",bd:"Verse vis."} },
+              fr: { t: "Halle de sète", d: "Le fameux marché couvert typique de Sète pour acheter les produits locaux.", bt: "Gastronomie", bd: "L'endroit idéal pour s'imprégner de l'ambiance sétoise." },
+              en: { t: "Sète Covered Market", d: "The belly of the city! A colorful and typical indoor market.", bt: "Gourmet", bd: "Buy fresh seafood here." } },
             { section: "visites", img: "https://images.unsplash.com/photo-1460888289873-10e3d231de01?auto=format&fit=crop&w=400&q=80", link: "https://theatredelamer.eu",
-              fr: { t: "Théâtre de la Mer (Sète)", d: "Un théâtre à ciel ouvert avec vue plongeante sur la mer. Voir le calendrier.", bt: "Spectacle", bd: "Un concert ici est une expérience inoubliable." },
-              en: { t: "Théâtre de la Mer", d: "Open-air theater overlooking the sea. Check the calendar.", bt: "Show", bd: "A concert here is unforgettable." }, de:{t:"Theater Sète",d:"Freilufttheater am Meer.",bt:"Toll",bd:"Schöne Konzerte."}, nl:{t:"Theater Sète",d:"Openluchttheater aan zee.",bt:"Mooi",bd:"Leuke concerten."} },
+              fr: { t: "Théatre de la mer a sète", d: "Amphithéâtre à ciel ouvert donnant directement sur la mer. Voir le calendrier.", bt: "Spectacle", bd: "Y voir un concert est un souvenir inoubliable." },
+              en: { t: "Théâtre de la Mer", d: "Open-air theater overlooking the sea. Check the calendar.", bt: "Show", bd: "A concert here is unforgettable." } },
 
             /* ================= LOISIRS & FAMILLE ================= */
             { section: "loisirs", img: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80", link: "https://lepetitparadis.com",
-              fr: { t: "Le Petit Paradis", d: "Parc animalier et de loisirs familial situé directement à Vendargues.", bt: "Enfants", bd: "Parfait pour occuper les petits à deux pas de la maison." },
-              en: { t: "Le Petit Paradis", d: "Family animal and leisure park located right in Vendargues.", bt: "Kids", bd: "Perfect to entertain the little ones nearby." }, de:{t:"Petit Paradis",d:"Tierpark für Kinder.",bt:"Familie",bd:"Sehr nah."}, nl:{t:"Petit Paradis",d:"Dierenpark voor kinderen.",bt:"Familie",bd:"Heel dichtbij."} },
+              fr: { t: "LE petit paradis : Vendargues", d: "Parc animalier et de jeux ombragé idéal pour les familles, situé directement sur la commune.", bt: "Enfants", bd: "Génial pour occuper les petits sans faire de route !" },
+              en: { t: "Le Petit Paradis", d: "Family animal and leisure park located right in Vendargues.", bt: "Kids", bd: "Perfect to entertain the little ones nearby." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80", link: "https://www.seaquarium.fr",
-              fr: { t: "Seaquarium du Grau du Roi", d: "Grand aquarium avec un impressionnant tunnel à requins.", bt: "Plongée", bd: "Une visite fascinante pour toute la famille." },
-              en: { t: "Seaquarium Grau du Roi", d: "Large aquarium with an impressive shark tunnel.", bt: "Dive", bd: "A fascinating visit for the whole family." }, de:{t:"Seaquarium",d:"Tolles Aquarium.",bt:"Fische",bd:"Schön für Kinder."}, nl:{t:"Seaquarium",d:"Geweldig aquarium.",bt:"Vissen",bd:"Leuk voor kinderen."} },
+              fr: { t: "Seaquarium du grau du roi", d: "Grand aquarium de Camargue réputé pour son très impressionnant requinarium.", bt: "Animaux", bd: "Une visite captivante pour les petits comme les grands." },
+              en: { t: "Seaquarium Grau du Roi", d: "Large aquarium with an impressive shark tunnel.", bt: "Dive", bd: "A fascinating visit for the whole family." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?auto=format&fit=crop&w=400&q=80", link: "https://www.planetoceanworld.fr",
-              fr: { t: "Planet Ocean Montpellier", d: "Aquarium et planétarium moderne à Odysseum.", bt: "Découverte", bd: "Idéal pour une journée ludique et climatisée." },
-              en: { t: "Planet Ocean", d: "Modern aquarium and planetarium at Odysseum.", bt: "Discover", bd: "Ideal for a fun and air-conditioned day." }, de:{t:"Planet Ocean",d:"Aquarium & Planetarium.",bt:"Entdecken",bd:"Toll für Familien."}, nl:{t:"Planet Ocean",d:"Aquarium & Planetarium.",bt:"Ontdekken",bd:"Leuk voor families."} },
+              fr: { t: "Planet ocean Montpellier", d: "Complexe moderne regroupant aquarium et planétarium au pôle Odysseum.", bt: "Ludique", bd: "Une très belle sortie abritée et climatisée." },
+              en: { t: "Planet Ocean", d: "Modern aquarium and planetarium at Odysseum.", bt: "Discover", bd: "Ideal for a fun and air-conditioned day." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80", link: "https://www.museeharibo.fr",
-              fr: { t: "Musée du bonbon Haribo", d: "Découvrez les secrets de fabrication et faites le plein de friandises.", bt: "Sucré", bd: "Le paradis des gourmands, petits et grands." },
-              en: { t: "Haribo Candy Museum", d: "Discover manufacturing secrets and stock up on sweets.", bt: "Sweet", bd: "Foodie paradise for kids and adults." }, de:{t:"Haribo Museum",d:"Süßigkeiten Museum.",bt:"Süß",bd:"Ein Traum für Kinder."}, nl:{t:"Haribo Museum",d:"Snoepmuseum.",bt:"Zoet",bd:"Een droom voor kinderen."} },
+              fr: { t: "Musée du bonbon haribo", d: "Découvrez l'histoire de la marque et faites le plein de douceurs à Uzès.", bt: "Gourmand", bd: "Le paradis absolu des enfants !" },
+              en: { t: "Haribo Candy Museum", d: "Discover manufacturing secrets and stock up on sweets.", bt: "Sweet", bd: "Foodie paradise for kids and adults." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1578309193796-015886616e25?auto=format&fit=crop&w=400&q=80", link: "https://museefabre.montpellier3m.fr",
-              fr: { t: "Musée Fabre", d: "Le grand musée des beaux-arts de Montpellier. Architecture et œuvres superbes.", bt: "Culture", bd: "Une des plus riches collections publiques d'Europe." },
-              en: { t: "Musée Fabre", d: "Montpellier's fine arts museum. Great architecture and works.", bt: "Culture", bd: "One of Europe's richest public collections." }, de:{t:"Museum Fabre",d:"Kunstmuseum.",bt:"Kunst",bd:"Sehr schöne Ausstellung."}, nl:{t:"Museum Fabre",d:"Kunstmuseum.",bt:"Kunst",bd:"Heel mooie tentoonstelling."} },
+              fr: { t: "Musée Fabre", d: "Le grand musée d'art de Montpellier avec de magnifiques collections permanentes.", bt: "Culture", bd: "Situé à deux pas de la place de la Comédie." },
+              en: { t: "Musée Fabre", d: "Montpellier's fine arts museum. Great architecture and works.", bt: "Culture", bd: "One of Europe's richest public collections." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1555529733-0e670560f7e1?auto=format&fit=crop&w=400&q=80", link: "https://www.montpellier3m.fr/odysseum",
-              fr: { t: "Pôle Odysseum", d: "Centre commercial à ciel ouvert avec cinéma, restaurants, patinoire, trampoline...", bt: "Shopping", bd: "Toutes les activités ludiques regroupées au même endroit." },
-              en: { t: "Odysseum Mall", d: "Open-air mall with cinema, restaurants, ice rink, trampoline...", bt: "Shopping", bd: "All fun activities in one place." }, de:{t:"Odysseum",d:"Einkaufszentrum & Kino.",bt:"Shopping",bd:"Viele Aktivitäten."}, nl:{t:"Odysseum",d:"Winkelcentrum & bioscoop.",bt:"Shoppen",bd:"Veel activiteiten."} },
-            { section: "loisirs", img: "https://images.unsplash.com/photo-1517400508447-f8dd518b86e3?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+du+Cres",
-              fr: { t: "Lac du Crès", d: "Grand lac de baignade gratuit avec espaces verts, jeux et parcours de santé.", bt: "Relax", bd: "À 5 minutes en voiture, idéal pour un plouf rapide." },
-              en: { t: "Le Crès Lake", d: "Large free swimming lake with parks and playgrounds.", bt: "Relax", bd: "5 min drive, ideal for a quick dip." }, de:{t:"See Le Crès",d:"Badesee in der Nähe.",bt:"Baden",bd:"Kostenlos und schön."}, nl:{t:"Meer Le Crès",d:"Zwemmeer in de buurt.",bt:"Zwemmen",bd:"Gratis en mooi."} },
+              fr: { t: "Odysseum", d: "Pôle de loisirs à ciel ouvert : commerces, cinéma, restaurants, karting, escalade, patinoire.", bt: "Loisirs", bd: "Tout est réuni au même endroit pour s'amuser." },
+              en: { t: "Odysseum Mall", d: "Open-air mall with cinema, restaurants, ice rink, trampoline...", bt: "Shopping", bd: "All fun activities in one place." } },
+            { section: "loisirs", img: "https://images.unsplash.com/photo-1517400508447-f8dd518b86e3?auto=format&fit=crop&w=400&q=80", link: "https://maps.google.com/?q=Lac+du+cres",
+              fr: { t: "Lac du crès", d: "Espace de baignade gratuit aménagé avec espaces verts, parcs de jeux pour enfants.", bt: "Baignade", bd: "À 5 minutes en voiture, idéal pour un plongeon rapide." },
+              en: { t: "Le Crès Lake", d: "Large free swimming lake with parks and playgrounds.", bt: "Relax", bd: "5 min drive, ideal for a quick dip." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1544321703-a1f5999818ab?auto=format&fit=crop&w=400&q=80", link: "https://www.palavaskayakdemer.com",
-              fr: { t: "Palavas Kayak de Mer (PKM)", d: "Pirogue, Paddle. Possibilité pour les PMR de faire une promenade sur les étangs !", bt: "Sport", bd: "Une équipe super encadrante et inclusive." },
-              en: { t: "Palavas Kayak (PKM)", d: "Paddle, Canoe. Wheelchair users can also enjoy pond tours!", bt: "Sport", bd: "A very inclusive and friendly team." }, de:{t:"Kajak Palavas",d:"Auch für Rollstühle.",bt:"Sport",bd:"Tolles Team."}, nl:{t:"Kajak Palavas",d:"Ook voor rolstoelen.",bt:"Sport",bd:"Geweldig team."} },
+              fr: { t: "PALAVAS KAYAK DE MER PIROGUE SURFSKI STAND UP PADDLE (PKM)", d: "Palavas kayak de mer (site internet). Possibilité pour les personnes à mobilité réduite de faire une promenade en canoë kayak sur les étangs.", bt: "PMR / Sport", bd: "Une équipe formidable pour une glisse inclusive sur les étangs." },
+              en: { t: "Palavas Kayak (PKM)", d: "Paddle, Canoe. Wheelchair users can also enjoy pond tours!", bt: "Sport", bd: "A very inclusive and friendly team." } },
             { section: "loisirs", img: "https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=400&q=80", link: "https://www.canoe-lemoulin.fr",
-              fr: { t: "Canoë Le Moulin", d: "Location de canoë kayak dans les magnifiques Gorges de l'Hérault.", bt: "Aventure", bd: "Descente ludique avec baignades." },
-              en: { t: "Canoë Le Moulin", d: "Canoe rentals in the beautiful Hérault Gorges.", bt: "Adventure", bd: "Fun descent with swimming stops." }, de:{t:"Kanu Le Moulin",d:"Schöne Kanutour.",bt:"Natur",bd:"Sehr erfrischend."}, nl:{t:"Kano Le Moulin",d:"Mooie kanotocht.",bt:"Natuur",bd:"Heel verfrissend."} }
+              fr: { t: "Canoë Le Moulin : Location Canoë Kayak", d: "Location de matériel pour de superbes descentes au cœur des Gorges de l'Hérault.", bt: "Aventure", bd: "Idéal en famille pour allier sport et baignades sauvages." },
+              en: { t: "Canoë Le Moulin", d: "Canoe rentals in the beautiful Hérault Gorges.", bt: "Adventure", bd: "Fun descent with swimming stops." } }
         ];
 
         let currentLang = 'fr';
@@ -408,7 +395,7 @@
             document.documentElement.setAttribute('lang', lang);
             localStorage.setItem('villa-lang', lang);
             
-            // Textes statiques
+            // Mises à jour des textes statiques
             const t = i18nGlobal[lang];
             document.querySelectorAll('.i18n').forEach(el => {
                 const key = el.getAttribute('data-key');
@@ -417,7 +404,17 @@
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             document.getElementById('themeBtn').innerText = isDark ? t.themeLight || t.themeToggle : t.themeToggle;
 
-            // Regénération dynamique des cartes avec la nouvelle langue
+            // Rendu des listes logistiques
+            const checkoutContainer = document.getElementById('checkout-list-element');
+            if (checkoutContainer) {
+                checkoutContainer.innerHTML = t.checkoutList;
+            }
+            const checkinContainer = document.querySelector('.list-clean[data-key="checkinList"]');
+            if (checkinContainer) {
+                checkinContainer.innerHTML = t.checkinList;
+            }
+
+            // Regénération dynamique des cartes des onglets
             renderDynamicCards();
         }
 
@@ -432,32 +429,29 @@
             Object.values(containers).forEach(c => c.innerHTML = '');
 
             dbPlaces.forEach(item => {
-                // Utilise la langue dispo, ou anglais par défaut, ou français
+                // Utilise la langue sélectionnée (ou l'anglais/français par défaut s'il manque des traductions sur certains éléments)
                 const txt = item[currentLang] || item['en'] || item['fr']; 
                 const btnText = i18nGlobal[currentLang].btnLink;
 
                 const html = `
-                    <div class="flip-card scroll-item">
-                        <div class="flip-inner">
-                            <div class="flip-front">
-                                <div class="item-image" style="background-image: url('${item.img}');"></div>
-                                <div class="item-content">
-                                    <h4>${txt.t}</h4>
-                                    <p>${txt.d}</p>
-                                    <a href="${item.link}" target="_blank" class="btn-minimal">${btnText}</a>
+                    <div class="place-card scroll-item">
+                        <div class="item-image" style="background-image: url('${item.img}');"></div>
+                        <div class="item-content">
+                            <div>
+                                <h4>${txt.t}</h4>
+                                <p style="margin-top: 6px; margin-bottom: 10px;">${txt.d}</p>
+                                <div class="item-badge">
+                                    <strong>${txt.bt} :</strong> ${txt.bd}
                                 </div>
                             </div>
-                            <div class="flip-back">
-                                <h4>${txt.bt}</h4>
-                                <p>${txt.bd}</p>
-                            </div>
+                            <a href="${item.link}" target="_blank" class="btn-minimal">${btnText}</a>
                         </div>
                     </div>
                 `;
                 if(containers[item.section]) containers[item.section].innerHTML += html;
             });
 
-            // Relancer les triggers d'animation
+            // Relancer le moteur d'affichage progressif
             scrollRevealEngine();
         }
 
@@ -466,7 +460,7 @@
             const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('villa-theme-pref', newTheme);
-            changeLanguage(currentLang); // Met à jour le texte du bouton
+            changeLanguage(currentLang);
         }
 
         function switchPage(pageId) {
