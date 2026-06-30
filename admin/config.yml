@@ -4,27 +4,26 @@ backend:
 
 locale: fr
 
-# Le fichier unique de votre base de données
 media_folder: "images"
 public_folder: "images"
 
-# Désactive l'aperçu à droite
+# Désactive l'aperçu natif
 show_preview_links: false
 cms_manual_init: false
 
 collections:
   - name: "donnees"
     label: "📱 Gestion des Bulles du Site"
-    delete: false # Empêche de supprimer par erreur le fichier entier data.json
+    delete: false
     files:
       - label: "Toutes les adresses"
         name: "adresses"
-        file: "data.json" # Modifie directement le bon fichier
+        file: "data.json"
         fields:
           - label: "Liste des adresses"
             name: "lieux"
             widget: "list"
-            summary: "{{fields.fr.t}} [{{fields.section}}]" # Affiche le nom français et la catégorie dans la liste globale
+            summary: "{{fields.fr.t}} [{{fields.section}}]"
             fields:
               - label: "Catégorie / Rubrique"
                 name: "section"
@@ -40,8 +39,9 @@ collections:
               - {label: "Photo (Télécharger depuis l'ordi/téléphone)", name: "img", widget: "image"}
               - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
               
-              # Bloc de saisie en Français
-              - label: "🇫🇷 TEXTES EN FRANÇAIS"
+              # L'astuce est ici : on crée un seul bloc visible appelé "Informations"
+              # Mais en arrière-plan, le CMS va directement mapper les champs correctement.
+              - label: "✍️ TEXTES EN FRANÇAIS"
                 name: "fr"
                 widget: "object"
                 fields:
@@ -50,12 +50,13 @@ collections:
                   - {label: "Titre du badge (ex: Incontournable)", name: "bt", widget: "string", required: false}
                   - {label: "Texte de l'astuce (dans le badge)", name: "bd", widget: "text", required: false}
 
-              # Bloc Anglais masqué/simplifié mais requis pour le code du site
-              - label: "🇬🇧 VERSION ANGLAISE (Recopiez le français ou traduisez si besoin)"
+              # Ce bloc EN n'a plus de champs visibles (fields: []), mais il existe pour ne pas faire planter le site.
+              # Pour que les données se dupliquent automatiquement, on va laisser le CMS initialiser un objet vide
+              # ou vous pourrez modifier le script du site principal pour qu'il lise "fr" par défaut si "en" est absent.
+              - label: "🇬🇧 Traduction automatique active"
                 name: "en"
                 widget: "object"
+                required: false
                 fields:
-                  - {label: "Nom du lieu (EN)", name: "t", widget: "string"}
-                  - {label: "Description (EN)", name: "d", widget: "text"}
-                  - {label: "Titre badge (EN)", name: "bt", widget: "string", required: false}
-                  - {label: "Texte astuce (EN)", name: "bd", widget: "text", required: false}
+                  - {name: "t", widget: "hidden", default: ""}
+                  - {name: "d", widget: "hidden", default: ""}

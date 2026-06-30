@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administration - Villa Vendargues</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Supprime définitivement la colonne d'aperçu de droite et met le formulaire à 100% de largeur */
+    div[class^="nc-previewPane-previewPane"], 
+    .nc-previewPane-previewPane,
+    iframe { 
+      display: none !important; 
+      width: 0px !important;
+    }
+    div[class^="nc-entryEditor-controlPane"],
+    .nc-entryEditor-controlPane { 
+      width: 100% !important; 
+      max-width: 100% !important; 
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Attend que le CMS soit initialisé pour désactiver l'aperçu moche
+    // Désactive les templates d'aperçu pour cette collection
     CMS.registerPreviewTemplate("donnees", () => null);
     CMS.registerPreviewTemplate("adresses", () => null);
-    
-    // Force visuelle pour cacher la colonne de droite au cas où
-    const style = document.createElement('style');
-    style.innerHTML = `
-      .nc-previewPane-previewPane { display: none !important; } 
-      .nc-entryEditor-controlPane { width: 100% !important; max-width: 100% !important; }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>
