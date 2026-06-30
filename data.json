@@ -1,3 +1,490 @@
 {
-  "lieux": []
+  "lieux": [
+    {
+      "section": "artisans",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAEso3II7I_8HByqcNPU9nN16kkcJl8_QrbshR7WjKYzzIbRZte1NaWYff9-bQHD0RX3105Tv6DQsmB25y0RfwF3AaLfTrepsPjTXy-wnfzo1H0C2zcM4wzlNSNdlG3DD3I-uppn1Q=w408-h408-k-no",
+      "link": "https://maps.google.com/?q=FRED+PRODUCTEUR+Le+Cres",
+      "t": "Fred Producteur",
+      "d": "Producteur Fruits Et Légumes. Vente Directe Au Crès, à 5min en voiture de la maison.",
+      "bt": "Circuit Court",
+      "bd": "Parfait pour des fruits et légumes ultra-frais et de saison!"
+    },
+    {
+      "section": "artisans",
+      "img": "https://www.chezsauveur.com/public/img/big/PLATEAUjpg_6332b703d76b4.jpg",
+      "link": "https://www.chezsauveur.com/contact.html",
+      "t": "Chez Sauveur",
+      "d": "Poissonnerie et délicieux restaurant de poissons très frais.",
+      "bt": "La Mer à Table",
+      "bd": "Une adresse incontournable pour les amateurs de vrais produits marins."
+    },
+    {
+      "section": "artisans",
+      "img": "https://www.clarajung.fr/wp-content/uploads/elementor/thumbs/Camille_Marie_Vavoihigher_ClaraJung_Avril25-75-r4cq8ucrt9mnjsvhvbnvc3u4ab3552glj6dean1548.jpg",
+      "link": "https://clarajung.fr",
+      "t": "Clara Jung Pâtisserie",
+      "d": "Artisan pâtissier d'exception renommé pour ses douceurs haut de gamme.",
+      "bt": "Gourmandise",
+      "bd": "Idéal pour s'offrir un dessert raffiné durant le séjour."
+    },
+    {
+      "section": "artisans",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEy67gohQLUwQ-Kq4TiTr1mNu8SWB6frJzVS4g3fsZtq0LTsJhS7BPVtTkZ8rnVbe0wgjeqRhmd0XYE2fTP1HraBU7upIEKX6mP75wUqR_6De7C0T1caetAL-unmX-T015uGDrfrh92eUo=s1360-w1360-h1020",
+      "link": "https://maps.app.goo.gl/aws2mU78VssFDUN99",
+      "t": "Boulangerie Titon",
+      "d": "Boulangerie artisanale à Vendargues, idéale pour votre pain frais et vos viennoiseries du matin.",
+      "bt": "Boulangerie",
+      "bd": "Une excellente adresse locale pour des petits-déjeuners réussis."
+    },
+    {
+      "section": "artisans",
+      "img": "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Carrefour+Market+Le+Crès",
+      "t": "Carrefour Market du Crès",
+      "d": "Supermarché très complet et pratique pour faire vos courses régulières.",
+      "bt": "Pratique",
+      "bd": "Situé à quelques minutes de la villa."
+    },
+    {
+      "section": "artisans",
+      "img": "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Lidl+Vendargues",
+      "t": "Lidl Vendargues",
+      "d": "Supermarché abordable situé directement sur la commune de Vendargues.",
+      "bt": "Économique",
+      "bd": "L'idéal pour les courses rapides et économiques."
+    },
+    {
+      "section": "artisans",
+      "img": "https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Leclerc+Saint+Aunes",
+      "t": "Leclerc Saint Aunes",
+      "d": "Grand hypermarché très complet. Mention spéciale pour son excellente cave à vin !",
+      "bt": "Vins & Grand Choix",
+      "bd": "Le choix parfait pour les gros pleins de courses."
+    },
+    {
+      "section": "artisans",
+      "img": "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Carrefour+Castries",
+      "t": "Carrefour Castries",
+      "d": "Supermarché situé à l'entrée du village voisin de Castries.",
+      "bt": "Proximité",
+      "bd": "Une excellente alternative très facile d'accès."
+    },
+    {
+      "section": "marches",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAHABxWewL3-m54fs4veQDCvQQ9IWWRZ76YTr43YgJuqW-YC7XVjo6JgbcBhAZazkHoa50by_4cci-amtl0D3jnU_-Xxj7Df2JaGXrmXKXrr-hiWeagC6CsakNMSfwlRludxnspR=s1360-w1360-h1020",
+      "link": "https://mauguio-carnon.com/mes-loisirs/envie-de-nature/les-marches/",
+      "t": "Marché de Mauguio",
+      "d": "Grand marché traditionnel très vivant, riche en couleurs et saveurs.",
+      "bt": "Authentique",
+      "bd": "Une superbe immersion dominicale à faire absolument."
+    },
+    {
+      "section": "marches",
+      "img": "https://www.lagrandemotte.com/wp-content/uploads/2020/07/marche_1.jpg",
+      "link": "https://www.lagrandemotte.com/les-marches/",
+      "t": "Marché de la Grande Motte",
+      "d": "Marché idéal pour combiner une agréable matinée côtière et emplettes.",
+      "bt": "Ambiance",
+      "bd": "Idéal pour ramener du poisson frais au retour de la plage."
+    },
+    {
+      "section": "marches",
+      "img": "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Marche+de+Castries",
+      "t": "Marché de Castries",
+      "d": "Marché convivial situé au cœur de ce charmant village historique.",
+      "bt": "Tradition",
+      "bd": "Parfait pour une balade matinale reposante."
+    },
+    {
+      "section": "marches",
+      "img": "https://www.lecres.fr//image/BibliothequeImages/611_1603699371/La_Vague_-_marche_trinquat_-_Cres.jpg",
+      "link": "https://www.lecres.fr/Le-march%C3%A9-du-Cr%C3%A8s/383/",
+      "t": "Marché du Crès",
+      "d": "Petit marché de proximité très pratique et détendu.",
+      "bt": "Proximité",
+      "bd": "On y trouve d'excellents produits à quelques minutes."
+    },
+    {
+      "section": "marches",
+      "img": "https://www.ville-teyran.fr/image/BibliothequeImages/05_VIVRE_A_TEYRAN/05_Vie_eco/01_Marche_hebdo/8d9390bc7dc846c0aff6f58f0552fc76_%281%29-site.jpg",
+      "link": "https://www.ville-teyran.fr/March%C3%A9-hebdomadaire/145/",
+      "t": "Marché de Teyran",
+      "d": "Petit marché de village mettant en valeur les producteurs locaux.",
+      "bt": "Qualité",
+      "bd": "Une ambiance de village typique du Sud."
+    },
+    {
+      "section": "restos",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAEiSpIQ7c7EAmJVxp0ZR5wqvG2ulLHK8-1Nw_bu_hyuCHU15Hm_y_PXRNx8UbV2Z2iFCZF8GTSffB1kNS3eDfzCq595Ucz-iDQTn0CbFGh50EIY0kdetMacVFZzobywf2IJhgjx-w=s1360-w1360-h1020",
+      "link": "https://www.restaurantlabanane.fr/",
+      "t": "Restaurant la banane à Palavas",
+      "d": "Très bon restaurant de poissons frais situé en bord de mer.",
+      "bt": "Frais",
+      "bd": "Idéal pour savourer la pêche du jour les yeux dans l'eau."
+    },
+    {
+      "section": "restos",
+      "img": "https://www.grandpicsaintloup-tourisme.fr/_objects/tao_suite_annuaire/pna/photos/t1_hres/652.webp?1747887538",
+      "link": "https://www.grandpicsaintloup-tourisme.fr/patrimoine-naturel/lac-de-ceceles",
+      "t": "Lac de Ceceles / La guinguette des amoureux",
+      "d": "Sublime lac non loin du village de Saint-Mathieu-de-Tréviers. Très sympa pour pique-nique ou guinguette au bord de l'eau. Pas d'accès PMR.",
+      "bt": "Cadre",
+      "bd": "Un véritable havre de paix romantique et sauvage."
+    },
+    {
+      "section": "restos",
+      "img": "https://laplagebonaventure.fr/wp-content/uploads/2026/05/20260424Bonaventure-559HD.jpg",
+      "link": "https://laplagebonaventure.fr/",
+      "t": "La Plage Bonaventure",
+      "d": "Pour déjeuner, dîner ou prendre un verre au coucher du soleil les pieds dans le sable, sur une des plus belles plages. Très familial.",
+      "bt": "Unique",
+      "bd": "Une ambiance magique au bord de la Méditerranée."
+    },
+    {
+      "section": "restos",
+      "img": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80",
+      "link": "http://googleusercontent.com/maps.google.com/pizza",
+      "t": "Camion Pizza Party",
+      "d": "Camion à pizzas installé juste à côté de la maison à Vendargues.",
+      "bt": "Pratique",
+      "bd": "Idéal pour une soirée sans cuisiner, à quelques pas seulement."
+    },
+    {
+      "section": "restos",
+      "img": "https://lh3.googleusercontent.com/gps-cs-/APNQKAFD-j2KLj1ND7vHEWosVxvvqfw3t9dNgE9aGy1Xjoc9XGvv3bInG2wlEafPJzocw1cCQaB7aYTqzcaybsHDUBILxe2aHDsT7DbG70qzT-k3Ki0pnYPxD5vEs0aKmr-j60viU3hP=w408-h544-k-no",
+      "link": "https://www.google.com/maps/place/La+Plage+paillote+sauvage/@43.5537854,4.0127111,709m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12b6bdcc84aa9e9d:0x5765284a856c2a69!8m2!3d43.5537854!4d4.015286!16s%2Fg%2F11s37z2g93?entry=ttu&g_ep=EgoyMDI2MDYyNC4WIKXMDSOASAFQAW%3D%3D",
+      "t": "La Plage paillote sauvage",
+      "d": "Plage privée très familiale et sympa. Salade repas et transat à prix correct. Parking Gratuit! Vous pouvez aussi vous poser à côté sans louer de transat.",
+      "bt": "Astuce",
+      "bd": "Idéal pour économiser le parking tout en profitant du spot."
+    },
+    {
+      "section": "restos",
+      "img": "https://marchedulez.com/wp-content/uploads/2025/08/marche_du_lez_sunside.jpg.webp",
+      "link": "https://marchedulez.com",
+      "t": "Marché du lez à Montpellier",
+      "d": "Très sympa le soir en fin de semaine pour manger et boire un coup, balade au bord du fleuve du Lez très agréable.",
+      "bt": "Branché",
+      "bd": "Rassemblement de foodtrucks et brocanteurs incontournable."
+    },
+    {
+      "section": "restos",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAF82X794uH60yMIeDlQ_vwXNZT8ijn2PHVV9oPRd8M9fdJiMvlKV4mQQ5nqCY9slgh00a7Aju808XwhQ3kG3rDe0lAPEzf3ZAD6mvBMtSxFYypc-0_LQkvwlmI9eSWKS0DMx_2WccU6I7wf=s1360-w1360-h1020",
+      "link": "https://www.google.com/maps/place/Ponant+Sur+Berges/@43.5682035,4.1002945,709m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12b699204fffa49f:0x9a8944b2a9da3a26!8m2!3d43.5682035!4d4.1002945!165%2Fg%2F11nnmxhwlx?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSOASAFQAW%3D%3D",
+      "t": "Ponant sur berges",
+      "d": "Un spot ultra convivial au bord de l'eau pour se détendre en fin de journée.",
+      "bt": "Détente",
+      "bd": "Parfait pour décompresser dans un cadre verdoyant."
+    },
+    {
+      "section": "restos",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAF8NyP6kcNWKm-pVVAJd8nugjaWglDu9AtCcHJ1VS00nSpd5h9_I-jPCsbtXuLVojqbJbhMC7CbDW02YThXj3ctD4WGMTrpar72sTkFVpiGRMkgqIVg1gzl-xRFOLCZ2cdo_Zb90vfRo677=s1360-w1360-h1020",
+      "link": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b6ba5975caa2a3:0x84a317a7e10e6e4c?sa=X&ved=1t:8290&ictx=111",
+      "t": "Le bain de soleil",
+      "d": "Une jolie paillote décontractée pour savourer le climat du Sud.",
+      "bt": "Soleil",
+      "bd": "Idéal pour une journée farniente complète."
+    },
+    {
+      "section": "restos",
+      "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Plage+du+Grand+Travers",
+      "t": "Petit / Grand Travers",
+      "d": "Belles plages de sable naturel. Attention seul l'Accès 60 est 'dog friendly' (chiens en laisse autorisés). Les autres plages sont interdites aux chiens.",
+      "bt": "Sauvage & Nature",
+      "bd": "Parking facile et ambiance plus sauvage avec de belles dunes."
+    },
+    {
+      "section": "restos",
+      "img": "https://images.unsplash.com/photo-1621272036047-bf0fe327318b?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Plage+de+l'Espiguette",
+      "t": "Plage de L'Espiguette",
+      "d": "Immense plage sauvage au Grau du Roi avec des dunes gigantesques, classée grand site de France.",
+      "bt": "Immensité",
+      "bd": "Un véritable désert de sable magnifique."
+    },
+    {
+      "section": "restos",
+      "img": "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.google.com/maps/search/Plage+Villeneuve+les+Maguelone",
+      "t": "Plage de Villeneuve-lès-Maguelone",
+      "d": "Plage préservée et très paisible, accessible via une jolie passerelle ou un petit train.",
+      "bt": "Tranquillité",
+      "bd": "Idéale pour fuir la foule, en pleine nature."
+    },
+    {
+      "section": "domaines",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGDW7c_dy5hCtnYXUU4lygEHI_HfRXGTcKZINvfbIimmNKoef5N3qN3n61n-kQp64c8korRDIiZ_Nt2km5BNbo7PLazIu9TiYghv_ybmeteJVEeAJMMM7CzH8tSfP95tjBZG2ayr=s1360-w1360-h1020",
+      "link": "https://www.lemasdupont.fr",
+      "t": "Mas du Pont",
+      "d": "Petit marché des producteurs régionaux le dimanche matin. Restaurant toute la semaine et café-théâtre.",
+      "bt": "Culture",
+      "bd": "Un lieu qui mêle à merveille gastronomie locale et spectacles."
+    },
+    {
+      "section": "domaines",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAEV54C007A6VClnsxF-VJL9Pon9xKwbIS9Pyvayo6x0y0mDuia97mg08YMFJ48i-mSA7XncfeN-RYT9pW1i62UguxmfEDlfg6yVQMfwlxKvbusgamGiZ-NRy9nBW0RuQSD79qEc5A=s1360-w1360-h1020",
+      "link": "https://www.guinguette-massillan.fr/",
+      "t": "Guinguette du Massillan",
+      "d": "Vignoble réputé près de Montpellier organisant une chouette guinguette dans les vignes.",
+      "bt": "Vignes",
+      "bd": "Parfait pour une soirée estivale typique sous les lampions."
+    },
+    {
+      "section": "domaines",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAGJyRs0xCmp8U1HAg6Q1XBfIjcC6rcf0Vn4SxctEA60Pf-wy5Ix29Wd2ejYG-K4HGXQ9r1Rx6-EHACBHKEYsiJ0_V5iMwyNpY9kSwXPIC_Nrj7E1F0-SP1ZKVneR7NokZgDa_kS0Q=s1360-w1360-h1020",
+      "link": "https://oulivie.com/",
+      "t": "Domaine de l'Oulivie",
+      "d": "Producteur d'huiles d'olive. Moulin à huile pour acheter et visiter. À la belle saison, restau en plein air sous les oliviers. Très sympa et familial. Regarder le programme sur leur site.",
+      "bt": "Olives",
+      "bd": "Une magnifique expérience sous l'ombre des oliviers."
+    },
+    {
+      "section": "domaines",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAExdCUoTQevxL0QTa6UCSLZHVw5C1dsZhy_0kzxtulhlLSftoLBVE13L2fABPD6Mzid0sPtslQBaSueXVH7D8573os8AsoP9BEqhfIAoEWUWcHgz_0d10mckNmTcK37hjg_px8Z=s1360-w1360-h1020",
+      "link": "https://puech-haut.com/",
+      "t": "Chateau Puech haut",
+      "d": "Un des meilleurs vins de notre région. Sur les tables du monde entier. A 5 mn en voiture de la villa.",
+      "bt": "Prestige",
+      "bd": "La boutique et le domaine sont magnifiques à visiter."
+    },
+    {
+      "section": "domaines",
+      "img": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=400&q=80",
+      "link": "http://googleusercontent.com/maps.google.com/gassac",
+      "t": "Mas de Daumas Gassac",
+      "d": "Souvent qualifié de 'Grand Cru du Languedoc', un domaine prestigieux mondialement reconnu.",
+      "bt": "Exception",
+      "bd": "Un vin d'une qualité rare dans un cadre exceptionnel."
+    },
+    {
+      "section": "domaines",
+      "img": "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=400&q=80",
+      "link": "http://googleusercontent.com/maps.google.com/armes",
+      "t": "Le Mas des Armes",
+      "d": "Domaine incontournable de la région proposant de magnifiques vins de terroir.",
+      "bt": "Terroir",
+      "bd": "Très belle dégustation en perspective."
+    },
+    {
+      "section": "domaines",
+      "img": "https://images.unsplash.com/photo-1596484552993-9c7457d38398?auto=format&fit=crop&w=400&q=80",
+      "link": "http://googleusercontent.com/maps.google.com/peyres",
+      "t": "La Grange des Pères",
+      "d": "Le vin le plus mythique et recherché du Languedoc. Une véritable légende locale.",
+      "bt": "Mythe",
+      "bd": "L'élite absolue du vignoble régional."
+    },
+    {
+      "section": "visites",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Arc_triomphe_de_Montpellier.jpg/500px-Arc_triomphe_de_Montpellier.jpg",
+      "link": "https://maps.google.com/?q=Centre+commercial+du+polygone+Montpellier",
+      "t": "L'écusson",
+      "d": "Cœur historique. Se garer au centre commercial du Polygone (accessible PMR). Avec les tout-petits, prenez le petit train touristique sur la place de la Comédie. Baladez-vous devant les églises, l'esplanade, le Peyrou.",
+      "bt": "PMR",
+      "bd": "Le parking du Polygone permet un accès de plain-pied direct à la vieille ville."
+    },
+    {
+      "section": "visites",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/La_Grace_%28ship%2C_2010%29%2C_S%C3%A8te%2C_H%C3%A9rault_01.jpg/960px-La_Grace_%28ship%2C_2010%29%2C_S%C3%A8te%2C_H%C3%A9rault_01.jpg",
+      "link": "https://www.sete.fr/agenda-actualites/",
+      "t": "Ville de sète",
+      "d": "Prendre la spécialité tielle chez Paradiso (paiement en espèces). Regarder le site web avec calendrier de la ville pour ne pas louper de bons événements.",
+      "bt": "Espèces",
+      "bd": "Attention: Paradiso ne prend pas la carte bancaire !"
+    },
+    {
+      "section": "visites",
+      "img": "https://www.petitfute.com/medias/mag/37649/originale/AdobeStock_637889275-1024x634.jpeg",
+      "link": "https://ot-aiguesmortes.com/",
+      "t": "Aigues mortes",
+      "d": "Cité médiévale fortifiée unique en Camargue, au cœur des marais salants roses.",
+      "bt": "Histoire",
+      "bd": "Faites le tour des remparts au coucher du soleil."
+    },
+    {
+      "section": "visites",
+      "img": "https://www.saint-guilhem-le-desert.com/wp-content/uploads/2022/02/StGuilhem_VoiedArles_AFCC_JJGelbart-recoupee-e1675864211523.png",
+      "link": "https://www.saint-guilhem-le-desert.com/",
+      "t": "Saint Guilhem le désert",
+      "d": "Un des plus beaux villages de France niché dans les magnifiques Gorges de l'Hérault.",
+      "bt": "Incontournable",
+      "bd": "Des ruelles médiévales pleines de charme."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1601662916666-6b2160350280?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Chateau+de+castries",
+      "t": "Chateau de castries",
+      "d": "Un magnifique château historique et son grand parc à la française tout proche.",
+      "bt": "Local",
+      "bd": "Surnommé le petit Versailles du Languedoc."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1598460627795-0975cb450849?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Cathedrale+de+Villeneuve+les+maguelone",
+      "t": "Cathédrale de Villeneuve les maguelone",
+      "d": "Superbe édifice roman isolé sur une presqu'île entre mer et étangs.",
+      "bt": "Unique",
+      "bd": "Une balade hors du temps au milieu des vignes marines."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1582656910626-d6682cc9b0d7?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Le+lac+du+salagou",
+      "t": "Le lac du salagou",
+      "d": "Un lac au paysage lunaire spectaculaire de terres rouges (ruffes).",
+      "bt": "Paysage",
+      "bd": "Idéal pour la rando, le VTT ou la baignade."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1520645062688-66236b2518e1?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.demoiselles.com",
+      "t": "Grotte des demoiselles",
+      "d": "Une des plus impressionnantes grottes de la région avec sa salle 'cathédrale'.",
+      "bt": "Frais",
+      "bd": "Idéal quand il fait trop chaud dehors !"
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.bambouseraie.fr",
+      "t": "Bambouseraie d'anduze",
+      "d": "Forêt géante de bambous unique en Europe et superbe jardin botanique.",
+      "bt": "Nature",
+      "bd": "Une promenade ombragée dépaysante et très zen."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1508688439169-7c8fa57a4141?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Cascade+de+la+VIs",
+      "t": "Cascade de la Vis",
+      "d": "Une magnifique cascade naturelle aux eaux fraîches et limpides.",
+      "bt": "Fraîcheur",
+      "bd": "Un décor de carte postale pour se baigner."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1551065609-bba91b0521e6?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Moureze+randonnee",
+      "t": "Mourèze",
+      "d": "Un cirque dolomitique aux rochers géants sculptés par le temps. Belle randonnée.",
+      "bt": "Rando",
+      "bd": "Prévoyez de bonnes chaussures de marche."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1550850839-8dc894ed385a?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.parcornithologique.com",
+      "t": "Parc ornithologique du pont de gau",
+      "d": "Le meilleur endroit pour observer les flamants roses de près en Camargue.",
+      "bt": "Oiseaux",
+      "bd": "Magique en fin de journée pour les photos."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1540304323207-6bb97063cc12?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Halle+de+sete",
+      "t": "Halle de sète",
+      "d": "Le fameux marché couvert typique de Sète pour acheter les produits locaux.",
+      "bt": "Gastronomie",
+      "bd": "L'endroit idéal pour s'imprégner de l'ambiance sétoise."
+    },
+    {
+      "section": "visites",
+      "img": "https://images.unsplash.com/photo-1460888289873-10e3d231de01?auto=format&fit=crop&w=400&q=80",
+      "link": "https://theatredelamer.eu",
+      "t": "Théatre de la mer a sète",
+      "d": "Amphithéâtre à ciel ouvert donnant directement sur la mer. Voir le calendrier.",
+      "bt": "Spectacle",
+      "bd": "Y voir un concert est un souvenir inoubliable."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80",
+      "link": "https://lepetitparadis.com",
+      "t": "LE petit paradis : Vendargues",
+      "d": "Parc animalier et de jeux ombragé idéal pour les familles, situé directement sur la commune.",
+      "bt": "Enfants",
+      "bd": "Génial pour occuper les petits sans faire de route !"
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.seaquarium.fr",
+      "t": "Seaquarium du grau du roi",
+      "d": "Grand aquarium de Camargue réputé pour son très impressionnant requinarium.",
+      "bt": "Animaux",
+      "bd": "Une visite captivante pour les petits comme les grands."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.planetoceanworld.fr",
+      "t": "Planet ocean Montpellier",
+      "d": "Complexe moderne regroupant aquarium et planétarium au pôle Odysseum.",
+      "bt": "Ludique",
+      "bd": "Une très belle sortie abritée et climatisée."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.museeharibo.fr",
+      "t": "Musée du bonbon haribo",
+      "d": "Découvrez l'histoire de la marque et faites le plein de douceurs à Uzès.",
+      "bt": "Gourmand",
+      "bd": "Le paradis absolu des enfants !"
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1578309193796-015886616e25?auto=format&fit=crop&w=400&q=80",
+      "link": "https://museefabre.montpellier3m.fr",
+      "t": "Musée Fabre",
+      "d": "Le grand musée d'art de Montpellier avec de magnifiques collections permanentes.",
+      "bt": "Culture",
+      "bd": "Situé à deux pas de la place de la Comédie."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1555529733-0e670560f7e1?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.montpellier3m.fr/odysseum",
+      "t": "Odysseum",
+      "d": "Pôle de loisirs à ciel ouvert : commerces, cinéma, restaurants, karting, escalade, patinoire.",
+      "bt": "Loisirs",
+      "bd": "Tout est réuni au même endroit pour s'amuser."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1517400508447-f8dd518b86e3?auto=format&fit=crop&w=400&q=80",
+      "link": "https://maps.google.com/?q=Lac+du+cres",
+      "t": "Lac du crès",
+      "d": "Espace de baignade gratuit aménagé avec espaces verts, parcs de jeux pour enfants.",
+      "bt": "Baignade",
+      "bd": "À 5 minutes en voiture, idéal pour un plongeon rapide."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1544321703-a1f5999818ab?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.palavaskayakdemer.com",
+      "t": "PALAVAS KAYAK DE MER PIROGUE SURFSKI STAND UP PADDLE (PKM)",
+      "d": "Palavas kayak de mer (site internet). Possibilité pour les personnes à mobilité réduite de faire une promenade en canoë kayak sur les étangs.",
+      "bt": "PMR / Sport",
+      "bd": "Une équipe formidable pour une glisse inclusive sur les étangs."
+    },
+    {
+      "section": "loisirs",
+      "img": "https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=400&q=80",
+      "link": "https://www.canoe lemoulin.fr",
+      "t": "Canoë Le Moulin : Location Canoë Kayak",
+      "d": "Location de matériel pour de superbes descentes au cœur des Gorges de l'Hérault.",
+      "bt": "Aventure",
+      "bd": "Idéal en famille pour allier sport et baignades sauvages."
+    }
+  ]
 }

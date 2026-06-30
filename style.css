@@ -300,3 +300,8 @@ footer {
     border-top: 1px solid var(--border-color);
     margin-top: 60px;
 }
+
+/* Empêche les mots importants et leurs deux-points de se séparer */
+.bento-card strong, .list-clean strong {
+  white-space: nowrap;
+}
