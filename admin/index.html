@@ -9,12 +9,17 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-  // Désactive le panneau de prévisualisation pour toutes les collections
-  CMS.registerPreviewStyle("body { display: none; }");
-  // Force la suppression visuelle de la colonne de droite si le CMS insiste
-  const style = document.createElement('style');
-  style.innerHTML = '.nc-previewPane-previewPane { display: none !important; } .nc-entryEditor-controlPane { width: 100% !important; }';
-  document.head.appendChild(style);
-</script>
+    // Attend que le CMS soit initialisé pour désactiver l'aperçu moche
+    CMS.registerPreviewTemplate("donnees", () => null);
+    CMS.registerPreviewTemplate("adresses", () => null);
+    
+    // Force visuelle pour cacher la colonne de droite au cas où
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .nc-previewPane-previewPane { display: none !important; } 
+      .nc-entryEditor-controlPane { width: 100% !important; max-width: 100% !important; }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
