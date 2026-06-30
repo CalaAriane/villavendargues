@@ -449,14 +449,6 @@
       <div class="logo">Villa d'Ariane</div>
       <div class="controls">
         <div id="google_translate_element"></div>
-        <select id="langSelector" class="btn-control" onchange="changeLanguage(this.value)">
-          <option value="fr">FR 🇫🇷</option>
-          <option value="en">EN 🇬🇧</option>
-          <option value="de">DE 🇩🇪</option>
-          <option value="nl">NL 🇳🇱</option>
-        </select>
-        <button class="btn-control i18n" onclick="toggleTheme()" id="themeBtn" data-key="themeToggle">Mode Sombre
-          🌙</button>
       </div>
     </div>
   </header>
@@ -780,7 +772,7 @@
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'fr', 
-    includedLanguages: 'en,de,nl,es,it', // Ajoutez les langues que vous voulez ici
+    includedLanguages: 'fr,en,de,nl,es,it', // Ajoutez les langues que vous voulez ici
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
