@@ -8,5 +8,13 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+  // Désactive le panneau de prévisualisation pour toutes les collections
+  CMS.registerPreviewStyle("body { display: none; }");
+  // Force la suppression visuelle de la colonne de droite si le CMS insiste
+  const style = document.createElement('style');
+  style.innerHTML = '.nc-previewPane-previewPane { display: none !important; } .nc-entryEditor-controlPane { width: 100% !important; }';
+  document.head.appendChild(style);
+</script>
 </body>
 </html>
