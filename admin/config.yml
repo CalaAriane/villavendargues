@@ -7,7 +7,6 @@ locale: fr
 media_folder: "images"
 public_folder: "images"
 
-# Désactive l'aperçu natif
 show_preview_links: false
 cms_manual_init: false
 
@@ -23,7 +22,7 @@ collections:
           - label: "Liste des adresses"
             name: "lieux"
             widget: "list"
-            summary: "{{fields.fr.t}} [{{fields.section}}]"
+            summary: "{{fields.t}} [{{fields.section}}]"
             fields:
               - label: "Catégorie / Rubrique"
                 name: "section"
@@ -36,27 +35,11 @@ collections:
                   - {label: "🏰 Patrimoine & Nature", value: "visites"}
                   - {label: "🎯 Loisirs & Famille", value: "loisirs"}
               
-              - {label: "Photo (Télécharger depuis l'ordi/téléphone)", name: "img", widget: "image"}
+              - {label: "Photo", name: "img", widget: "image"}
               - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
               
-              # L'astuce est ici : on crée un seul bloc visible appelé "Informations"
-              # Mais en arrière-plan, le CMS va directement mapper les champs correctement.
-              - label: "✍️ TEXTES EN FRANÇAIS"
-                name: "fr"
-                widget: "object"
-                fields:
-                  - {label: "Nom du lieu", name: "t", widget: "string"}
-                  - {label: "Description principale", name: "d", widget: "text"}
-                  - {label: "Titre du badge vert(ex: Incontournable)", name: "bt", widget: "string", required: false}
-                  - {label: "Texte de l'astuce verte (dans le badge)", name: "bd", widget: "text", required: false}
-
-              # Ce bloc EN n'a plus de champs visibles (fields: []), mais il existe pour ne pas faire planter le site.
-              # Pour que les données se dupliquent automatiquement, on va laisser le CMS initialiser un objet vide
-              # ou vous pourrez modifier le script du site principal pour qu'il lise "fr" par défaut si "en" est absent.
-              - label: "🇬🇧 Traduction automatique (ne rien mettre)"
-                name: "en"
-                widget: "object"
-                required: false
-                fields:
-                  - {name: "t", widget: "hidden", default: ""}
-                  - {name: "d", widget: "hidden", default: ""}
+              # Saisie unique en Français
+              - {label: "Nom du lieu", name: "t", widget: "string"}
+              - {label: "Description principale", name: "d", widget: "text"}
+              - {label: "Titre du badge (ex: Incontournable)", name: "bt", widget: "string", required: false}
+              - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
