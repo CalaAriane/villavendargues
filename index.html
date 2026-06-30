@@ -434,7 +434,8 @@
       margin-top: 50px;
     }
   </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js">
+  </script>
 </head>
 
 <body>
@@ -983,7 +984,7 @@
 
       dbPlaces.forEach(item => {
         // Utilise la langue sélectionnée (ou l'anglais/français par défaut s'il manque des traductions sur certains éléments)
-        const txt = item;
+        const txt = item[currentLang] || item;
         const btnText = i18nGlobal[currentLang].btnLink;
 
         const html = `
