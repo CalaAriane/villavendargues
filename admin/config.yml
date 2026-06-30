@@ -1,101 +1,61 @@
-# Configuration de la connexion
 backend:
   name: git-gateway
-  branch: main # ⚠️ CHANGEZ PAR "master" SI VOTRE BRANCHE GITHUB S'APPELLE MASTER
+  branch: main
 
-# Force l'interface de Decap CMS en Français (Boutons, messages, etc.)
 locale: fr
 
-# Gestion des images
+# Le fichier unique de votre base de données
 media_folder: "images"
 public_folder: "images"
 
-# Désactivation complète de l'aperçu dynamique à droite (Render Preview)
+# Désactive l'aperçu à droite
 show_preview_links: false
 cms_manual_init: false
 
-# Configuration des catégories de gestion
 collections:
-  - name: "artisans"
-    label: "🛒 Artisans & Commerces"
-    label_singular: "un artisan / commerce"
-    folder: "data/artisans" # Organise par dossiers pour séparer proprement
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo (Télécharger depuis l'ordi/téléphone)", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge (ex: Incontournable)", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce (dans le badge)", name: "bd", widget: "text", required: false}
+  - name: "donnees"
+    label: "📱 Gestion des Bulles du Site"
+    delete: false # Empêche de supprimer par erreur le fichier entier data.json
+    files:
+      - label: "Toutes les adresses"
+        name: "adresses"
+        file: "data.json" # Modifie directement le bon fichier
+        fields:
+          - label: "Liste des adresses"
+            name: "lieux"
+            widget: "list"
+            summary: "{{fields.fr.t}} [{{fields.section}}]" # Affiche le nom français et la catégorie dans la liste globale
+            fields:
+              - label: "Catégorie / Rubrique"
+                name: "section"
+                widget: "select"
+                options:
+                  - {label: "🛒 Artisans & Commerces", value: "artisans"}
+                  - {label: "🧺 Les Marchés Locaux", value: "marches"}
+                  - {label: "🍹 Restaurants & Plages", value: "restos"}
+                  - {label: "🍇 Vignobles & Domaines", value: "domaines"}
+                  - {label: "🏰 Patrimoine & Nature", value: "visites"}
+                  - {label: "🎯 Loisirs & Famille", value: "loisirs"}
+              
+              - {label: "Photo (Télécharger depuis l'ordi/téléphone)", name: "img", widget: "image"}
+              - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
+              
+              # Bloc de saisie en Français
+              - label: "🇫🇷 TEXTES EN FRANÇAIS"
+                name: "fr"
+                widget: "object"
+                fields:
+                  - {label: "Nom du lieu", name: "t", widget: "string"}
+                  - {label: "Description principale", name: "d", widget: "text"}
+                  - {label: "Titre du badge (ex: Incontournable)", name: "bt", widget: "string", required: false}
+                  - {label: "Texte de l'astuce (dans le badge)", name: "bd", widget: "text", required: false}
 
-  - name: "marches"
-    label: "🧺 Les Marchés Locaux"
-    label_singular: "un marché"
-    folder: "data/marches"
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
-
-  - name: "restos"
-    label: "🍹 Restaurants & Plages"
-    label_singular: "un restaurant / plage"
-    folder: "data/restos"
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
-
-  - name: "domaines"
-    label: "🍇 Vignobles & Domaines"
-    label_singular: "un domaine"
-    folder: "data/domaines"
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
-
-  - name: "visites"
-    label: "🏰 Patrimoine & Nature"
-    label_singular: "une visite"
-    folder: "data/visites"
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
-
-  - name: "loisirs"
-    label: "🎯 Loisirs & Famille"
-    label_singular: "une activité"
-    folder: "data/loisirs"
-    create: true
-    delete: true
-    fields:
-      - {label: "Nom du lieu", name: "t", widget: "string"}
-      - {label: "Photo", name: "img", widget: "image"}
-      - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
-      - {label: "Description principale", name: "d", widget: "text"}
-      - {label: "Titre du badge", name: "bt", widget: "string", required: false}
-      - {label: "Texte de l'astuce", name: "bd", widget: "text", required: false}
+              # Bloc Anglais masqué/simplifié mais requis pour le code du site
+              - label: "🇬🇧 VERSION ANGLAISE (Recopiez le français ou traduisez si besoin)"
+                name: "en"
+                widget: "object"
+                fields:
+                  - {label: "Nom du lieu (EN)", name: "t", widget: "string"}
+                  - {label: "Description (EN)", name: "d", widget: "text"}
+                  - {label: "Titre badge (EN)", name: "bt", widget: "string", required: false}
+                  - {label: "Texte astuce (EN)", name: "bd", widget: "text", required: false}
