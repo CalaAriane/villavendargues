@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
   branch: main # Remplacez par "master" si votre branche principale sur GitHub s'appelle master
+  identity_url: https://bucolic-tulumba-212bb2.netlify.app/.netlify/identity
+  gateway_url: https://bucolic-tulumba-212bb2.netlify.app/.netlify/git-gateway
 
 media_folder: "images" # Les photos uploadées par votre mère iront dans ce dossier
 public_folder: "images"
