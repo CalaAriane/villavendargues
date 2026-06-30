@@ -2,15 +2,6 @@
   "lieux": [
     {
       "section": "artisans",
-      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAEso3II7I_8HByqcNPU9nN16kkcJl8_QrbshR7WjKYzzIbRZte1NaWYff9-bQHD0RX3105Tv6DQsmB25y0RfwF3AaLfTrepsPjTXy-wnfzo1H0C2zcM4wzlNSNdlG3DD3I-uppn1Q=w408-h408-k-no",
-      "link": "https://maps.google.com/?q=FRED+PRODUCTEUR+Le+Cres",
-      "t": "Fred Producteur",
-      "d": "Producteur Fruits Et Légumes. Vente Directe Au Crès, à 5min en voiture de la maison.",
-      "bt": "Circuit Court",
-      "bd": "Parfait pour des fruits et légumes ultra-frais et de saison!"
-    },
-    {
-      "section": "artisans",
       "img": "https://www.chezsauveur.com/public/img/big/PLATEAUjpg_6332b703d76b4.jpg",
       "link": "https://www.chezsauveur.com/contact.html",
       "t": "Chez Sauveur",
@@ -23,9 +14,18 @@
       "img": "https://www.clarajung.fr/wp-content/uploads/elementor/thumbs/Camille_Marie_Vavoihigher_ClaraJung_Avril25-75-r4cq8ucrt9mnjsvhvbnvc3u4ab3552glj6dean1548.jpg",
       "link": "https://clarajung.fr",
       "t": "Clara Jung Pâtisserie",
-      "d": "Artisan pâtissier d'exception renommé pour ses douceurs haut de gamme.",
+      "d": "Artisan pâtissier d'exception renommé pour ses douceurs haut de gamme. Test. ",
       "bt": "Gourmandise",
       "bd": "Idéal pour s'offrir un dessert raffiné durant le séjour."
+    },
+    {
+      "section": "artisans",
+      "img": "https://lh3.googleusercontent.com/gps-cs-s/APNQKAEso3II7I_8HByqcNPU9nN16kkcJl8_QrbshR7WjKYzzIbRZte1NaWYff9-bQHD0RX3105Tv6DQsmB25y0RfwF3AaLfTrepsPjTXy-wnfzo1H0C2zcM4wzlNSNdlG3DD3I-uppn1Q=w408-h408-k-no",
+      "link": "https://maps.google.com/?q=FRED+PRODUCTEUR+Le+Cres",
+      "t": "Fred Producteur",
+      "d": "Producteur Fruits Et Légumes. Vente Directe Au Crès, à 5min en voiture de la maison.",
+      "bt": "Circuit Court",
+      "bd": "Parfait pour des fruits et légumes ultra-frais et de saison!"
     },
     {
       "section": "artisans",
