@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main # Remplacez par "master" si votre branche principale sur GitHub s'appelle master
+
+media_folder: "images" # Les photos uploadées par votre mère iront dans ce dossier
+public_folder: "images"
+
+collections:
+  - name: "donnees"
+    label: "Gestion du site"
+    files:
+      - label: "Toutes les adresses"
+        name: "adresses"
+        file: "data.json"
+        fields:
+          - label: "Liste des lieux"
+            name: "lieux"
+            widget: "list"
+            fields:
+              - {label: "Catégorie", name: "section", widget: "select", options: [{label: "Artisans & Courses", value: "artisans"}, {label: "Marchés", value: "marches"}, {label: "Restaurants & Plages", value: "restos"}, {label: "Vignobles & Domaines", value: "domaines"}, {label: "Patrimoine & Nature", value: "visites"}, {label: "Loisirs & Famille", value: "loisirs"}]}
+              - {label: "Nom du lieu", name: "t", widget: "string"}
+              - {label: "Photo du lieu", name: "img", widget: "image"}
+              - {label: "Lien Google Maps ou Site Web", name: "link", widget: "string"}
+              - {label: "Description principale", name: "d", widget: "text"}
+              - {label: "Titre du badge (ex: Incontournable)", name: "bt", widget: "string"}
+              - {label: "Texte du badge (L'astuce)", name: "bd", widget: "text"}
