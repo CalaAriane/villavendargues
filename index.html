@@ -640,7 +640,7 @@
       document.documentElement.setAttribute('data-theme', localStorage.getItem('villa-theme-pref') || 'light');
       
       try {
-        const response = await fetch('data.json');
+        const response = await fetch('data.json?t=' + new Date().getTime());
         const data = await response.json();
         if (data && data.lieux) {
           dbPlaces = data.lieux;
