@@ -74,7 +74,7 @@
       100% { transform: translate3d(-50%, 0, 0); }
     }
     
-    /* HEADER & NAVIGATION CORRIGÉ POUR LE BOUTON DE TRADUCTION EN HAUT */
+    /* HEADER & NAVIGATION */
     header {
       position: sticky;
       top: 0;
@@ -90,7 +90,7 @@
     
     .header-inner {
       display: flex;
-      justify-content: space-between; /* Espace le titre à gauche et Google Translate à droite */
+      justify-content: space-between;
       align-items: center;
     }
     .logo {
@@ -100,7 +100,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Ajustement discret pour intégrer Google Translate proprement dans la barre du haut */
     #google_translate_element {
       display: inline-block;
     }
@@ -155,9 +154,9 @@
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 15px;
-      color: #596644;
+      color: #1E8012;
     }
-    [data-theme="dark"] h3.section-title { color: #92A66D; }
+    [data-theme="dark"] h3.section-title { color: #63B32B; }
     
     /* ADRESSE LINK */
     .address-link {
@@ -205,6 +204,18 @@
     }
     [data-theme="dark"] .item-badge { background: rgba(82, 140, 98, 0.12); }
     
+    /* LIENS UTILES INTERNES */
+    .health-link {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed var(--accent-color);
+      transition: opacity 0.2s;
+    }
+    .health-link:hover {
+      opacity: 0.8;
+    }
+
     /* STICKY CARDS */
     .stack-container {
       display: flex;
@@ -320,7 +331,7 @@
       transform: translateY(0);
     }
     
-    /* FOOTER NETTOYÉ */
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -333,7 +344,6 @@
       gap: 18px;
     }
 
-    /* RETOUR DU BOUTON TEXTURÉ ESTHÉTIQUE */
     .theme-btn {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -358,7 +368,6 @@
       opacity: 0.8;
     }
     
-    /* Suppression des éléments parasites supérieurs de Google Translate */
     .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
   </style>
 
@@ -408,9 +417,18 @@
       
       <div class="bento-card reveal">
         <h3 class="section-title i18n" data-key="bentoHealthTitle"> Urgences & Santé</h3>
-        <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthDoc"></strong> Cabinet Médical de Vendargues</p>
-        <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthPharma"></strong> Pharmacie des Portes de l'Or</p>
-        <p><strong class="i18n" data-key="bentoHealthUrg"></strong> 112</p>
+        <p style="margin-bottom: 4px;">
+          <strong class="i18n" data-key="bentoHealthDoc"></strong> 
+          <a href="https://www.lepole-jacou.fr/les-professionnels-de-sante" target="_blank" class="health-link">Pôle Santé Jacou</a>
+        </p>
+        <p style="margin-bottom: 4px;">
+          <strong class="i18n" data-key="bentoHealthPharma"></strong> 
+          <a href="https://www.google.com/maps/place/PHARMACIE+OCCITANE+VENDARGUES/@43.6550199,3.9705604,708m/data=!3m1!1e3!4m10!1m2!2m1!1spharmacie+vendargues!3m6!1s0x12b6a7a32a3abeb3:0x8074fbf6bbc99fb1!8m2!3d43.6532329!4d3.975355!15sChRwaGFybWFjaWUgdmVuZGFyZ3Vlc1oWIhRwaGFybWFjaWUgdmVuZGFyZ3Vlc5IBEWhlYWx0aF9jb25zdWx0YW504AEA!16s%2Fg%2F11tn5fdzpy?entry=ttu&g_ep=EgoyMDI2MDYyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="health-link">Pharmacie Occitanie Vendargues</a>
+        </p>
+        <p>
+          <strong class="i18n" data-key="bentoHealthUrg"></strong> 
+          <span>112, 18 Pompiers, 17 Police</span>
+        </p>
         <div class="item-badge i18n" data-key="backHealthDesc"></div>
       </div>
       
@@ -493,18 +511,23 @@
         bentoMaintenanceDesc: "Pour maintenir les extérieurs parfaits, notez l'intervention des techniciens de la villa (Jardinier & Pisciniste). L'intervention se fait en autonomie totale : les locataires n'ont pas besoin d'être sur place puisque les techniciens ont le code du portail.",
         bentoMaintenanceTime: " ⏰ Vendredi matin&nbsp;: Passage des techniciens.",
         backMaintDesc: " 💡 Note&nbsp;: Nos équipes passent de façon totalement indépendante et discrète sans nécessiter votre présence.",
+        
+        // CORRECTIONS SANTÉ DANS LE DICTIONNAIRE TEXTUEL (MÉDECINS ET URGENCE)
         bentoHealthTitle: " 🏥 Urgences & Santé",
-        bentoHealthDoc: "Médecin Généraliste&nbsp;:",
+        bentoHealthDoc: "Médecins&nbsp;:",
         bentoHealthPharma: "Pharmacie&nbsp;:",
         bentoHealthUrg: "Urgence&nbsp;:",
         backHealthDesc: " 💡 Note&nbsp;: Tous les services médicaux de secours essentiels se trouvent à moins de 5 minutes de la maison.",
+        
         logisticsTitle: "Consignes de séjour",
         checkinTitle: " 🛬 Arrivée (15h - 20h)",
         checkinDesc: "Accueil en personne pour l'état des lieux et explications&nbsp;:",
         checkinList: "<li><span class='icon'>✓</span> Climatisation & chauffage réversible.</li><li><span class='icon'>✓</span> Alarme de la villa.</li><li><span class='icon'>✓</span> Gestion du Jacuzzi.</li>",
+        
         checkoutTitle: " 🛫 Départ (Avant 10h)",
         checkoutDesc: "Merci de bien vouloir respecter scrupuleusement ces directives avant votre départ&nbsp;:",
-        checkoutList: "<li><span class='icon'>▪</span> <strong>Linge&nbsp;:</strong> Rassembler l'ensemble au pied de chaque lit.</li><li><span class='icon'>▪</span> <strong>Serviettes&nbsp;:</strong> À déposer directement dans la baignoire.</li><li><span class='icon'>▪</span> <strong>Poubelles&nbsp;:</strong> Vider dans les bacs extérieurs. Mettre impérativement les bouteilles en verre usagées dans le container qui se trouve derrière le camion Pizza.</li><li><span class='icon'>▪</span> <strong>Barbecue&nbsp;:</strong> Le barbecue doit être laissé propre et la barquette qui est sous le barbecue doit être jetée à la poubelle.</li><li><span class='icon'>▪</span> <strong>Jacuzzi&nbsp;:</strong> Remettre la température au minimum.</li><li><span class='icon'>▪</span> <strong>Sécurité&nbsp;:</strong> Veiller à fermer les volets, la porte ainsi que le portail.</li>",
+        checkoutList: "<li><span class='icon'>✓</span> <strong>Linge&nbsp;:</strong> Rassembler l'ensemble au pied de chaque lit.</li><li><span class='icon'>✓</span> <strong>Serviettes&nbsp;:</strong> À déposer directement dans la baignoire.</li><li><span class='icon'>✓</span> <strong>Poubelles&nbsp;:</strong> Vider dans les bacs extérieurs. Mettre impérativement les bouteilles en verre usagées dans le container qui se trouve derrière le camion Pizza.</li><li><span class='icon'>✓</span> <strong>Barbecue&nbsp;:</strong> Le barbecue doit être laissé propre et la barquette qui est sous le barbecue doit être jetée à la poubelle.</li><li><span class='icon'>✓</span> <strong>Jacuzzi&nbsp;:</strong> Remettre la température au minimum.</li><li><span class='icon'>✓</span> <strong>Sécurité&nbsp;:</strong> Veiller à fermer les volets, la porte ainsi que le portail.</li>",
+        
         shoppingTitle: "Alimentation & Marchés",
         activitiesTitle: "Recommandations & Sorties",
         bentoRulesTitle: " ⚠ Consignes Importantes",
@@ -512,7 +535,7 @@
         bentoRulesWind: " 💨 Attention au vent&nbsp;: Remontez toujours les stores extérieurs and sanglez les parasols le soir et avant de quitter la maison.",
         backRulesDesc: " 💡 Le vent peut se lever d’une minute à l’autre dans notre région et causer d'importants dégâts matériels.",
         manualTitle: " 📖 Mode d'emploi de la Villa",
-        manualList: "<li><span class='icon'> 🔑</span> <strong>Clés&nbsp;:</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'> 📶</span> <strong>Wi-Fi&nbsp;:</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'> 🪟</span> <strong>Volets & Store&nbsp;:</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'> 🏊</span> <strong>Piscine & Jeux&nbsp;:</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'> 🚲</span> <strong>Garage&nbsp;:</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'> 🥩</span> <strong>Barbecue&nbsp;:</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'> 🫧</span> <strong>Jacuzzi&nbsp;:</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'> 🔥</span> <strong>Cheminée&nbsp;:</strong> Actuellement hors d'usage.</li><li><span class='icon'> 🪟</span> <strong>Usage&nbsp;:</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>"
+        manualList: "<li><span class='icon'>✓</span> <strong>Clés&nbsp;:</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'>✓</span> <strong>Wi-Fi&nbsp;:</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'>✓</span> <strong>Volets & Store&nbsp;:</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'>✓</span> <strong>Piscine & Jeux&nbsp;:</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'>✓</span> <strong>Garage&nbsp;:</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'>✓</span> <strong>Barbecue&nbsp;:</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'>✓</span> <strong>Jacuzzi&nbsp;:</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'>✓</span> <strong>Cheminée&nbsp;:</strong> Actuellement hors d'usage.</li><li><span class='icon'>✓</span> <strong>Usage&nbsp;:</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>"
       }
     };
 
