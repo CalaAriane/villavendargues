@@ -309,35 +309,42 @@ footer {
 
 /* Style pour le footer pour s'assurer qu'il aligne bien les éléments */
 footer {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.8rem;
+  color: #888;
+  border-top: 1px solid var(--border-color);
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px; /* Espace entre le traducteur et le bouton thème */
-  padding: 20px;
-  width: 100%;
+  gap: 12px; /* Espace équilibré verticalement */
 }
 
-/* Style pour votre bouton Clair/Sombre centré */
-.theme-btn, #theme-toggle {
-  display: block;
-  margin: 0 auto; /* Centre horizontalement */
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  background-color: var(--bg-button, #ffffff); /* S'adapte si vous utilisez des variables */
-  color: var(--text-button, #333333);
+/* Style du bouton thème ultra-épuré dans l'esprit du site */
+.theme-btn-minimal {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 5px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.6;
 }
 
-/* Rendre le sélecteur Google Translate plus discret au centre aussi */
-#google_translate_element {
-  text-align: center;
-  margin: 0 auto;
+.theme-btn-minimal:hover {
+  transform: scale(1.15);
+  opacity: 1;
 }
 
-/* Petite astuce CSS : Masquer la barre d'outils d'aperçu de Google tout en haut du site s'il la génère */
+footer .copyright {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Masquer la bannière d'outils supérieure de Google Translate */
 .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
   display: none !important;
 }
