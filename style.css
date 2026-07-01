@@ -305,3 +305,42 @@ footer {
 .bento-card strong, .list-clean strong {
   white-space: nowrap;
 }
+
+
+/* Style pour le footer pour s'assurer qu'il aligne bien les éléments */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Espace entre le traducteur et le bouton thème */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Style pour votre bouton Clair/Sombre centré */
+.theme-btn, #theme-toggle {
+  display: block;
+  margin: 0 auto; /* Centre horizontalement */
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: var(--bg-button, #ffffff); /* S'adapte si vous utilisez des variables */
+  color: var(--text-button, #333333);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Rendre le sélecteur Google Translate plus discret au centre aussi */
+#google_translate_element {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Petite astuce CSS : Masquer la barre d'outils d'aperçu de Google tout en haut du site s'il la génère */
+.goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
