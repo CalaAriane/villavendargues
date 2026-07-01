@@ -1,18 +1,477 @@
-<footer>
-    <div id="google_translate_element"></div>
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa d'Ariane - Livret d'Accueil</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* COULEURS ET DESIGN */
+    :root {
+      --bg-color: #f7f5f0;
+      --text-color: #1a1a1a;
+      --card-bg: #ffffff;
+      --accent-color: #3b6647;
+      --border-color: #dbdbdb;
+      --shadow-subtle: 0 10px 40px rgba(0, 0, 0, 0.04);
+      --font-main: 'Montserrat', sans-serif;
+    }
     
-    <button id="themeBtn" class="theme-btn-minimal" onclick="toggleTheme()" aria-label="Changer de mode">🌓</button>
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e5e5e5;
+      --card-bg: #1e1e1e;
+      --accent-color: #528c62;
+      --border-color: #2d2d2d;
+      --shadow-subtle: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
     
-    <p class="copyright">© Ariane Calafatis — Digital Welcome Guide</p>
-  </footer>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.5s ease, color 0.5s ease;
+      overflow-x: hidden;
+      top: 0px !important; /* Empêche le décalage Google Translate */
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* BANDEAU DÉFILANT */
+    .marquee {
+      background: var(--accent-color);
+      color: #ffffff;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee-anim 25s linear infinite;
+    }
+    @keyframes marquee-anim {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    
+    /* HEADER & NAVIGATION */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background-color: rgba(247, 245, 240, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 15px 0;
+    }
+    [data-theme="dark"] header {
+      background-color: rgba(18, 18, 18, 0.85);
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: center; /* Centrer le logo puisque les boutons ont disparu */
+      align-items: center;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 15px 0 25px 0;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    
+    nav button {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+    nav button.active {
+      background-color: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+    
+    /* PAGES ET TITRES */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .page-view.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    h2.page-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    h3.section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1E8012;
+    }
+    [data-theme="dark"] h3.section-title { color: #63B32B; }
+    
+    /* ADRESSE LINK */
+    .address-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 35px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      text-decoration: none;
+      padding: 10px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      box-shadow: var(--shadow-subtle);
+      transition: 0.3s;
+    }
+    .address-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* BLOCS STATIQUES */
+    .bento-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: var(--shadow-subtle);
+      padding: 25px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .item-badge {
+      background: rgba(59, 102, 71, 0.06);
+      color: var(--accent-color);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.4;
+      border-left: 3px solid var(--accent-color);
+    }
+    [data-theme="dark"] .item-badge { background: rgba(82, 140, 98, 0.12); }
+    
+    /* STICKY CARDS */
+    .stack-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+    .stack-card {
+      position: sticky;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+    }
+    .stack-card:nth-child(1) { top: 120px; z-index: 1; }
+    .stack-card:nth-child(2) { top: 140px; z-index: 2; }
+    
+    .list-clean { list-style: none; }
+    .list-clean li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .list-clean li:last-child { border-bottom: none; }
+    .list-clean li span.icon { color: var(--accent-color); font-weight: 600; }
+    
+    /* HORIZONTAL SCROLL PANE */
+    .scroll-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 15px;
+    }
+    .scroll-hint {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      animation: bounce-x 1.5s infinite;
+      padding-bottom: 5px;
+    }
+    @keyframes bounce-x {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    
+    .horizontal-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: auto;
+      scrollbar-color: var(--accent-color) transparent;
+    }
+    .horizontal-scroll::-webkit-scrollbar { height: 8px; }
+    .horizontal-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
+    .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+    
+    /* CARTES PLACES */
+    .place-card {
+      flex: 0 0 290px;
+      scroll-snap-align: start;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    .place-card:hover { transform: translateY(-4px); }
+    .item-image {
+      width: 100%;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+    }
+    .item-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: space-between;
+    }
+    .item-content h4 { font-size: 1.05rem; font-weight: 600; }
+    .item-content p { font-size: 0.85rem; color: #555; line-height: 1.4; }
+    [data-theme="dark"] .item-content p { color: #aaa; }
+    .btn-minimal {
+      align-self: flex-start;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 2px;
+      transition: 0.2s;
+    }
+    .btn-minimal:hover { border-color: var(--text-color); color: var(--text-color); }
+    
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* FOOTER & TRADUCTION & BOUTON THÈME */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .theme-btn-minimal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.7;
+    }
+    .theme-btn-minimal:hover {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    footer .copyright {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #888;
+      opacity: 0.8;
+    }
+    
+    /* Masquer le menu lourd en haut de page généré par Google Translate */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+  </style>
 
-  </div> <script>
-    // --- DICTIONNAIRE GLOBAL STATIQUE ---
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <div class="marquee">
+    <div class="marquee-inner i18n" data-key="marquee"></div>
+  </div>
+  
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Villa d'Ariane</div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <nav>
+      <button onclick="switchPage('home')" id="nav-home" class="active i18n" data-key="navHome"> Accueil</button>
+      <button onclick="switchPage('logistics')" id="nav-logistics" class="i18n" data-key="navLogistics"> Logistique</button>
+      <button onclick="switchPage('shopping')" id="nav-shopping" class="i18n" data-key="navShopping"> Courses</button>
+      <button onclick="switchPage('activities')" id="nav-activities" class="i18n" data-key="navActivities"> Sorties</button>
+    </nav>
+    
+    <section id="page-home" class="page-view active">
+      <h2 class="page-title i18n" data-key="homeTitle">Bienvenue à la Villa d'Ariane</h2>
+      
+      <a href="http://maps.google.com/?q=12+Route+de+Teyran,+34740+Vendargues" target="_blank" class="address-link reveal">
+        12 Route de Teyran, 34740 Vendargues
+      </a>
+      
+      <div class="bento-card reveal">
+        <h3 class="section-title i18n" data-key="bentoMaintenanceTitle"> Entretien Hebdomadaire</h3>
+        <p class="i18n" data-key="bentoMaintenanceDesc"></p>
+        <p style="font-weight: 600; color: var(--accent-color);" class="i18n" data-key="bentoMaintenanceTime"></p>
+        <div class="item-badge i18n" data-key="backMaintDesc"></div>
+      </div>
+      
+      <div class="bento-card reveal" style="border-color: rgba(184, 59, 59, 0.3);">
+        <h3 class="section-title i18n" style="color: #b83b3b;" data-key="bentoRulesTitle">▲ Consignes Importantes</h3>
+        <p class="i18n" data-key="bentoRulesDesc"></p>
+        <p style="margin-top: 12px; font-weight: 600; color: #b83b3b;" class="i18n" data-key="bentoRulesWind"></p>
+        <div class="item-badge i18n" style="border-left-color: #b83b3b; background: rgba(184, 59, 59, 0.05); color: #b83b3b;" data-key="backRulesDesc"></div>
+      </div>
+      
+      <div class="bento-card reveal">
+        <h3 class="section-title i18n" data-key="bentoHealthTitle"> Urgences & Santé</h3>
+        <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthDoc"></strong> Cabinet Médical de Vendargues</p>
+        <p style="margin-bottom: 2px;"><strong class="i18n" data-key="bentoHealthPharma"></strong> Pharmacie des Portes de l'Or</p>
+        <p><strong class="i18n" data-key="bentoHealthUrg"></strong> 112</p>
+        <div class="item-badge i18n" data-key="backHealthDesc"></div>
+      </div>
+      
+      <div class="bento-card reveal">
+        <h3 class="section-title i18n" data-key="manualTitle"> 📖 Mode d'emploi de la Villa</h3>
+        <ul class="list-clean i18n" data-key="manualList"></ul>
+      </div>
+    </section>
+    
+    <section id="page-logistics" class="page-view">
+      <h2 class="page-title i18n" data-key="logisticsTitle">Consignes de séjour</h2>
+      <div class="stack-container">
+        <div class="stack-card reveal">
+          <h3 class="section-title i18n" style="color: var(--text-color);" data-key="checkinTitle"> 🛬 Arrivée</h3>
+          <p style="margin-bottom: 10px;" class="i18n" data-key="checkinDesc"></p>
+          <ul class="list-clean i18n" data-key="checkinList"></ul>
+        </div>
+        <div class="stack-card reveal">
+          <h3 class="section-title i18n" style="color: var(--text-color);" data-key="checkoutTitle"> 🛫 Départ</h3>
+          <p style="margin-bottom: 10px;" class="i18n" data-key="checkoutDesc"></p>
+          <ul class="list-clean" id="checkout-list-element"></ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="page-shopping" class="page-view">
+      <h2 class="page-title i18n" data-key="shoppingTitle">Alimentation & Marchés</h2>
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🛒 Artisans & Commerces</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-artisans" style="margin-bottom: 30px;"></div>
+      
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🧺 Les Marchés Locaux</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-marches"></div>
+    </section>
+    
+    <section id="page-activities" class="page-view">
+      <h2 class="page-title i18n" data-key="activitiesTitle">Recommandations & Sorties</h2>
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🍹 Restaurants & Plages</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-restos" style="margin-bottom: 30px;"></div>
+      
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🍇 Vignobles & Domaines</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-domaines" style="margin-bottom: 30px;"></div>
+      
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🏰 Patrimoine & Nature</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-visites" style="margin-bottom: 30px;"></div>
+      
+      <div class="scroll-header reveal">
+        <h3 class="section-title" style="margin:0;"> 🎯 Loisirs & Famille</h3><span class="scroll-hint i18n" data-key="hintScroll"></span>
+      </div>
+      <div class="horizontal-scroll reveal" id="container-loisirs"></div>
+    </section>
+    
+    <footer>
+      <div id="google_translate_element"></div>
+      <button id="themeBtn" class="theme-btn-minimal" onclick="toggleTheme()" aria-label="Changer de mode">🌓</button>
+      <p class="copyright">© Ariane Calafatis — Digital Welcome Guide</p>
+    </footer>
+  </div>
+
+  <script>
     const i18nGlobal = {
       fr: {
         marquee: "✦ BIENVENUE À LA VILLA D'ARIANE • PASSEZ UN SÉJOUR INOUBLIABLE ✦",
-        themeToggle: "Mode Sombre 🌙",
-        hintScroll: "➔ Faites défiler pour voir plus",
+        hintScroll: "➔ Faites défiler",
         btnLink: "Découvrir le lieu",
         navHome: " 🏠 Accueil",
         navLogistics: " 📋 Logistique",
@@ -42,8 +501,8 @@
         bentoRulesWind: " 💨 Attention au vent : Remontez toujours les stores extérieurs et sanglez les parasols le soir et avant de quitter la maison.",
         backRulesDesc: " 💡 Le vent peut se lever d’une minute à l’autre dans notre région et causer d'importants dégâts matériels.",
         manualTitle: " 📖 Mode d'emploi de la Villa",
-        manualList: "<li><span class='icon'> 🔑</span> <strong>Clés :</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'> 📶</span> <strong>Wi-Fi :</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'> 🪟</span> <strong>Volets & Store :</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'> 🏊</span> <strong>Piscine & Jeux :</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'> 🚲</span> <strong>Garage :</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'> 🥩</span> <strong>Barbecue :</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'> 🫧</span> <strong>Jacuzzi :</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'> 🔥</span> <strong>Cheminée :</strong> Actuellement hors d'usage.</li><li><span class='icon'> 🍽</span> <strong>Usage :</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>",
-      },
+        manualList: "<li><span class='icon'> 🔑</span> <strong>Clés :</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'> 📶</span> <strong>Wi-Fi :</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'> 🪟</span> <strong>Volets & Store :</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'> 🏊</span> <strong>Piscine & Jeux :</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'> 🚲</span> <strong>Garage :</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'> 🥩</span> <strong>Barbecue :</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'> 🫧</span> <strong>Jacuzzi :</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'> 🔥</span> <strong>Cheminée :</strong> Actuellement hors d'usage.</li><li><span class='icon'> 🍽</span> <strong>Usage :</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>"
+      }
     };
 
     let dbPlaces = [];
@@ -54,30 +513,17 @@
       document.documentElement.setAttribute('lang', lang);
       localStorage.setItem('villa-lang', lang);
 
-      const t = i18nGlobal[lang];
-      if (!t) return;
-
+      const t = i18nGlobal[lang] || i18nGlobal['fr'];
       document.querySelectorAll('.i18n').forEach(el => {
         const key = el.getAttribute('data-key');
         if (t[key]) el.innerHTML = t[key];
       });
 
-      // Vérification de sécurité pour éviter le plantage du bouton de thème
-      const themeBtn = document.getElementById('themeBtn');
-      if (themeBtn) {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        themeBtn.innerText = "🌓"; 
-      }
-
       const checkoutContainer = document.getElementById('checkout-list-element');
       if (checkoutContainer) {
         checkoutContainer.innerHTML = t.checkoutList;
       }
-      const checkinContainer = document.querySelector('.list-clean[data-key="checkinList"]');
-      if (checkinContainer) {
-        checkinContainer.innerHTML = t.checkinList;
-      }
-
+      
       renderDynamicCards();
     }
 
@@ -95,7 +541,8 @@
 
       dbPlaces.forEach(item => {
         const txt = item[currentLang] || item;
-        const btnText = i18nGlobal[currentLang] ? i18nGlobal[currentLang].btnLink : "Découvrir";
+        const btnText = (i18nGlobal[currentLang] && i18nGlobal[currentLang].btnLink) ? i18nGlobal[currentLang].btnLink : "Découvrir";
+        
         const html = `
           <div class="place-card scroll-item">
             <div class="item-image" style="background-image: url('${item.img}');"></div>
@@ -104,14 +551,16 @@
                 <h4>${txt.t}</h4>
                 <p style="margin-top: 6px; margin-bottom: 10px;">${txt.d}</p>
                 <div class="item-badge">
-                  <strong>${txt.bt} :</strong> ${txt.bd}
+                  <strong>${txt.bt || 'Info'} :</strong> ${txt.bd || ''}
                 </div>
               </div>
-              <a href="${item.link}" target="_blank" class="btn minimal">${btnText}</a>
+              <a href="${item.link}" target="_blank" class="btn-minimal">${btnText}</a>
             </div>
           </div>
         `;
-        if (containers[item.section]) containers[item.section].innerHTML += html;
+        if (containers[item.section]) {
+          containers[item.section].innerHTML += html;
+        }
       });
 
       scrollRevealEngine();
@@ -122,17 +571,14 @@
       const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('villa-theme-pref', newTheme);
-      changeLanguage(currentLang);
     }
 
     function switchPage(pageId) {
       document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
       
-      const targetPage = document.getElementById(`page-${pageId}`);
-      const targetNav = document.getElementById(`nav-${pageId}`);
-      if(targetPage) targetPage.classList.add('active');
-      if(targetNav) targetNav.classList.add('active');
+      document.getElementById(`page-${pageId}`).classList.add('active');
+      document.getElementById(`nav-${pageId}`).classList.add('active');
       
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(scrollRevealEngine, 50);
@@ -141,17 +587,17 @@
     function scrollRevealEngine() {
       const items = document.querySelectorAll('.reveal');
       items.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+          el.classList.add('active');
+        }
       });
     }
 
-    // 🌟 SÉCURISATION DU CHARGEMENT SANS SÉLECTEUR DE LANGUE DE HAUT DE PAGE
     document.addEventListener('DOMContentLoaded', async () => {
+      // Appliquer le thème sauvegardé
       document.documentElement.setAttribute('data-theme', localStorage.getItem('villa-theme-pref') || 'light');
       
-      // Récupération sécurisée de la langue sauvegardée sans appeler .value sur un élément inexistant
-      const savedLang = localStorage.getItem('villa-lang') || 'fr';
-
+      // Récupérer la base de données JSON
       try {
         const response = await fetch('data.json');
         const data = await response.json();
@@ -159,12 +605,15 @@
           dbPlaces = data.lieux;
         }
       } catch (e) {
-        console.error("Erreur de chargement des données", e);
+        console.error("Erreur de chargement des données de la carte :", e);
       }
 
-      changeLanguage(savedLang);
+      // Appliquer la langue (toujours Français de base)
+      changeLanguage('fr');
+      
       window.addEventListener('scroll', scrollRevealEngine);
 
+      // Redirection interface admin
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
@@ -180,13 +629,14 @@
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'fr,en,de,nl', 
+        pageLanguage: 'fr', 
+        includedLanguages: 'fr,en,de,nl,es,it', 
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
