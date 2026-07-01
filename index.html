@@ -44,7 +44,7 @@
       line-height: 1.6;
       transition: background-color 0.5s ease, color 0.5s ease;
       overflow-x: hidden;
-      top: 0px !important; /* Empêche le décalage Google Translate */
+      top: 0px !important;
     }
     
     .container {
@@ -74,7 +74,7 @@
       100% { transform: translate3d(-50%, 0, 0); }
     }
     
-    /* HEADER & NAVIGATION */
+    /* HEADER & NAVIGATION CORRIGÉ POUR LE BOUTON DE TRADUCTION EN HAUT */
     header {
       position: sticky;
       top: 0;
@@ -90,7 +90,7 @@
     
     .header-inner {
       display: flex;
-      justify-content: center; /* Centrer le logo puisque les boutons ont disparu */
+      justify-content: space-between; /* Espace le titre à gauche et Google Translate à droite */
       align-items: center;
     }
     .logo {
@@ -98,6 +98,11 @@
       font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    /* Ajustement discret pour intégrer Google Translate proprement dans la barre du haut */
+    #google_translate_element {
+      display: inline-block;
     }
     
     nav {
@@ -315,7 +320,7 @@
       transform: translateY(0);
     }
     
-    /* FOOTER & TRADUCTION & BOUTON THÈME */
+    /* FOOTER NETTOYÉ */
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -325,21 +330,27 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 18px;
     }
-    .theme-btn-minimal {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
+
+    /* RETOUR DU BOUTON TEXTURÉ ESTHÉTIQUE */
+    .theme-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 20px;
       cursor: pointer;
-      padding: 8px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-      opacity: 0.7;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-subtle);
     }
-    .theme-btn-minimal:hover {
-      transform: scale(1.15);
-      opacity: 1;
+    .theme-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-color);
     }
+    
     footer .copyright {
       margin: 0;
       font-size: 0.85rem;
@@ -347,7 +358,7 @@
       opacity: 0.8;
     }
     
-    /* Masquer le menu lourd en haut de page généré par Google Translate */
+    /* Suppression des éléments parasites supérieurs de Google Translate */
     .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
   </style>
 
@@ -362,6 +373,7 @@
   <header>
     <div class="container header-inner">
       <div class="logo">Villa d'Ariane</div>
+      <div id="google_translate_element"></div>
     </div>
   </header>
   
@@ -376,7 +388,7 @@
     <section id="page-home" class="page-view active">
       <h2 class="page-title i18n" data-key="homeTitle">Bienvenue à la Villa d'Ariane</h2>
       
-      <a href="http://maps.google.com/?q=12+Route+de+Teyran,+34740+Vendargues" target="_blank" class="address-link reveal">
+      <a href="https://maps.google.com" target="_blank" class="address-link reveal">
         12 Route de Teyran, 34740 Vendargues
       </a>
       
@@ -461,8 +473,7 @@
     </section>
     
     <footer>
-      <div id="google_translate_element"></div>
-      <button id="themeBtn" class="theme-btn-minimal" onclick="toggleTheme()" aria-label="Changer de mode">🌓</button>
+      <button id="themeBtn" class="theme-btn" onclick="toggleTheme()"></button>
       <p class="copyright">© Ariane Calafatis — Digital Welcome Guide</p>
     </footer>
   </div>
@@ -498,10 +509,10 @@
         activitiesTitle: "Recommandations & Sorties",
         bentoRulesTitle: " ⚠ Consignes Importantes",
         bentoRulesDesc: "La maison est équipée d'une fosse septique : veuillez jeter UNIQUEMENT du papier toilette dedans. De plus, la maison est strictement non fumeur.",
-        bentoRulesWind: " 💨 Attention au vent : Remontez toujours les stores extérieurs et sanglez les parasols le soir et avant de quitter la maison.",
+        bentoRulesWind: " 💨 Attention au vent : Remontez toujours les stores extérieurs and sanglez les parasols le soir et avant de quitter la maison.",
         backRulesDesc: " 💡 Le vent peut se lever d’une minute à l’autre dans notre région et causer d'importants dégâts matériels.",
         manualTitle: " 📖 Mode d'emploi de la Villa",
-        manualList: "<li><span class='icon'> 🔑</span> <strong>Clés :</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'> 📶</span> <strong>Wi-Fi :</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'> 🪟</span> <strong>Volets & Store :</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'> 🏊</span> <strong>Piscine & Jeux :</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'> 🚲</span> <strong>Garage :</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'> 🥩</span> <strong>Barbecue :</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'> 🫧</span> <strong>Jacuzzi :</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'> 🔥</span> <strong>Cheminée :</strong> Actuellement hors d'usage.</li><li><span class='icon'> 🍽</span> <strong>Usage :</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>"
+        manualList: "<li><span class='icon'> 🔑</span> <strong>Clés :</strong> 2 jeux avec télécommandes (porte principale et garage).</li><li><span class='icon'> 📶</span> <strong>Wi-Fi :</strong> Code sur la box entre les canapés (ou scannez le QR code).</li><li><span class='icon'> 🪟</span> <strong>Volets & Store :</strong> Bouton 'centralisation' sous l'interphone pour les volets du salon (chambres individuelles). Télécommande du store à gauche de la baie vitrée (à rentrer la nuit, en cas d'absence, ou s'il y a du vent). Pensez aussi à sangler les parasols.</li><li><span class='icon'> 🏊</span> <strong>Piscine & Jeux :</strong> Interrupteur lumière piscine au même endroit. Raquettes, fléchettes et serviettes de piscine dans le pool house.</li><li><span class='icon'> 🚲</span> <strong>Garage :</strong> Vous y trouverez vélos, boules de pétanque et matériel de nettoyage.</li><li><span class='icon'> 🥩</span> <strong>Barbecue :</strong> Au gaz (bouteille de rechange dispo, remplaçable au Carrefour Market du Crès).</li><li><span class='icon'> 🫧</span> <strong>Jacuzzi :</strong> Notice dans le livre noir (bibliothèque). Rincez vos pieds, n'entrez pas avec crème ou huile, et remettez la couverture après usage.</li><li><span class='icon'> 🔥</span> <strong>Cheminée :</strong> Actuellement hors d'usage.</li><li><span class='icon'> 🪟</span> <strong>Usage :</strong> Villa destinée à la location, n'hésitez pas à utiliser ce qui se trouve dans les placards !</li>"
       }
     };
 
@@ -524,6 +535,7 @@
         checkoutContainer.innerHTML = t.checkoutList;
       }
       
+      updateThemeButtonText();
       renderDynamicCards();
     }
 
@@ -566,11 +578,19 @@
       scrollRevealEngine();
     }
 
+    function updateThemeButtonText() {
+      const btn = document.getElementById('themeBtn');
+      if (!btn) return;
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.innerHTML = isDark ? "Mode Clair ☀️" : "Mode Sombre 🌙";
+    }
+
     function toggleTheme() {
       const html = document.documentElement;
       const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('villa-theme-pref', newTheme);
+      updateThemeButtonText();
     }
 
     function switchPage(pageId) {
@@ -594,10 +614,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // Appliquer le thème sauvegardé
       document.documentElement.setAttribute('data-theme', localStorage.getItem('villa-theme-pref') || 'light');
       
-      // Récupérer la base de données JSON
       try {
         const response = await fetch('data.json');
         const data = await response.json();
@@ -605,15 +623,12 @@
           dbPlaces = data.lieux;
         }
       } catch (e) {
-        console.error("Erreur de chargement des données de la carte :", e);
+        console.error("Erreur de chargement des données :", e);
       }
 
-      // Appliquer la langue (toujours Français de base)
       changeLanguage('fr');
-      
       window.addEventListener('scroll', scrollRevealEngine);
 
-      // Redirection interface admin
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
